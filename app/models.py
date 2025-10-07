@@ -235,20 +235,4 @@ class Complaint(db.Model, TimestampMixin):
     notes = db.Column(db.Text)
 
 
-# --- Master (global) models ---
-
-class Company(db.Model, TimestampMixin):
-    __tablename__ = "companies"
-    __bind_key__ = "master"
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(200), nullable=False, unique=True)
-    subdomain = db.Column(db.String(100), nullable=False, unique=True, index=True)
-    db_uri = db.Column(db.String(500), nullable=False)
-    # Identity and branding
-    logo_path = db.Column(db.String(500))
-    primary_color = db.Column(db.String(20), default="#0d6efd")
-    secondary_color = db.Column(db.String(20), default="#6c757d")
-    font_family = db.Column(db.String(100), default="system-ui, -apple-system, Segoe UI, Roboto")
-    is_active = db.Column(db.Boolean, default=True, nullable=False)
-    is_archived = db.Column(db.Boolean, default=False, nullable=False)
+# Single-tenant: removed Company and master bind usage
