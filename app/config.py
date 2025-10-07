@@ -5,22 +5,12 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
     SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-key-change-me")
 
-    # --- Databases ---
-    # MASTER database holds Super Admin users and Companies registry
-    MASTER_DATABASE_URI = os.getenv(
-        "MASTER_DATABASE_URI",
-        f"sqlite:///{os.path.join(basedir, 'instance', 'master.db')}",
-    )
-    # Default tenant database URI (used only for Alembic and when no company bound)
-    # Keep legacy single-tenant sqlite as the default tenant engine when needed
+    # --- Database (single-tenant) ---
     SQLALCHEMY_DATABASE_URI = os.getenv(
-        "TENANT_DEFAULT_DATABASE_URI",
+        "DATABASE_URI",
         f"sqlite:///{os.path.join(basedir, 'instance', 'app.db')}",
     )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-
-    # Directory where per-company SQLite databases will be stored by default
-    COMPANY_DB_DIR = os.getenv("COMPANY_DB_DIR", os.path.join(os.path.dirname(__file__), "..", "companies"))
 
     # Base directory to store user uploads; served via /uploads/<filename>
     UPLOAD_FOLDER = os.getenv(
