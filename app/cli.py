@@ -28,20 +28,18 @@ def register_cli(app: Flask) -> None:
         db.session.commit()
         click.echo("Admin created")
 
-    @app.cli.command("create-superadmin")
-    @click.option("--username", prompt=True)
-    @click.option("--email", prompt=True)
-    @click.option("--password", prompt=True, hide_input=True, confirmation_prompt=True)
-    def create_superadmin(username: str, email: str, password: str):
-        """Create a superadmin user in the single-tenant database."""
-        if User.query.filter((User.username == username) | (User.email == email)).first():
-            click.echo("User with same username or email already exists")
+    @app.cli.command("migrate-remove-superadmin")
+    def migrate_remove_superadmin():
+        """Migrate existing users with role 'superadmin' to 'admin'."""
+        updated = 0
+        try:
+            updated = User.query.filter_by(role="superadmin").update({User.role: "admin"})
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+            click.echo("Migration failed; database rolled back")
             return
-        user = User(username=username, email=email, role="superadmin")
-        user.set_password(password)
-        db.session.add(user)
-        db.session.commit()
-        click.echo("Superadmin created")
+        click.echo(f"Updated {updated} users from superadmin to admin")
 
     @app.cli.command("seed-data")
     def seed_data():

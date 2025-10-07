@@ -16,7 +16,7 @@ def admin_required(func):
 
     @wraps(func)
     def wrapper(*args, **kwargs):
-        if not current_user.is_authenticated or not (current_user.is_admin or current_user.is_superadmin):
+        if not current_user.is_authenticated or not current_user.is_admin:
             from flask import abort
 
             return abort(403)
@@ -29,7 +29,6 @@ def admin_required(func):
 @login_required
 @admin_required
 def dashboard():
-    # Super Admin dashboard now moved to /superadmin
     # Total units = standalone apartments + apartments within buildings (exclude buildings)
     standalone_apartments_count = Property.query.filter(Property.property_type == "apartment").count()
     building_apartments_count = Apartment.query.count()

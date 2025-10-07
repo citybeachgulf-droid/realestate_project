@@ -1,6 +1,6 @@
 # Multi-tenant Real Estate Management (Flask)
 
-This project implements a multi-tenant real estate management system with a Super Admin portal and per-company databases.
+This project implements a real estate management system.
 
 ## Key Concepts
 - Master DB (bind `master`) stores companies and branding.
@@ -10,7 +10,6 @@ This project implements a multi-tenant real estate management system with a Supe
 
 ## Structure
 - `app/models.py`: Tenant models and `Company` (bound to `master`).
-- `app/superadmin/*`: Super Admin CRUD, export, dashboard.
 - `app/tenant_manager.py`: Utilities for per-company DB creation, export, deletion.
 - `app/cli.py`: `flask tenant-create|tenant-export|tenant-delete` commands.
 
