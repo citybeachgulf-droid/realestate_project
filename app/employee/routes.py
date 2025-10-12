@@ -61,50 +61,34 @@ def complaints_list():
 @login_required
 @employee_required
 def properties_list():
-    only = (request.args.get("only") or "").strip().lower()
-    # Separate buildings and standalone apartments
-    base_buildings_q = Property.query.filter_by(property_type="building")
-    base_apartments_q = Property.query.filter_by(property_type="apartment")
+    # Manager-like filters: q (title), status, type
+    q = (request.args.get("q") or "").strip()
+    status = (request.args.get("status") or "").strip()
+    ptype = (request.args.get("type") or "").strip()  # building | apartment | all
 
-    if only == "unleased":
-        # Filter properties that have no active contract covering today
-        from datetime import date
-        today = date.today()
-        active_props_subq = (
-            db.session.query(Contract.property_id)
-            .filter(
-                Contract.status == "active",
-                Contract.start_date <= today,
-                Contract.end_date >= today,
-            )
-            .subquery()
-        )
-        base_buildings_q = base_buildings_q.filter(~Property.id.in_(active_props_subq))
-        base_apartments_q = base_apartments_q.filter(~Property.id.in_(active_props_subq))
+    props_q = Property.query
+    if ptype in {"building", "apartment"}:
+        props_q = props_q.filter(Property.property_type == ptype)
+    if status in {"available", "occupied"}:
+        props_q = props_q.filter(Property.status == status)
+    if q:
+        like = f"%{q}%"
+        props_q = props_q.filter(Property.title.ilike(like))
 
-    buildings = base_buildings_q.order_by(Property.created_at.desc()).all()
-    standalone_apartments = base_apartments_q.order_by(Property.created_at.desc()).all()
-    serializer = URLSafeSerializer(current_app.config["SECRET_KEY"], salt="property-share")
-    share_tokens = {p.id: serializer.dumps(p.id) for p in buildings + standalone_apartments}
+    properties = props_q.order_by(Property.created_at.desc()).all()
 
-    # Preload apartments for each building to render nested dropdowns
-    apartments_by_building = {}
-    if buildings:
-        building_ids = [b.id for b in buildings]
-        apts = (
-            Apartment.query.filter(Apartment.building_id.in_(building_ids))
-            .order_by(Apartment.number.asc(), Apartment.created_at.desc())
-            .all()
-        )
-        for a in apts:
-            apartments_by_building.setdefault(a.building_id, []).append(a)
+    # Quick totals like manager page
+    total_buildings = Property.query.filter_by(property_type="building").count()
+    total_standalone = Property.query.filter_by(property_type="apartment").count()
+
     return render_template(
         "employee/properties_list.html",
-        buildings=buildings,
-        standalone_apartments=standalone_apartments,
-        share_tokens=share_tokens,
-        apartments_by_building=apartments_by_building,
-        only=only,
+        properties=properties,
+        total_buildings=total_buildings,
+        total_standalone=total_standalone,
+        q=q,
+        selected_status=(status or None),
+        selected_type=(ptype or "all"),
     )
 
 
