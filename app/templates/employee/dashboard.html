@@ -122,7 +122,7 @@ h3.dashboard-title {
 <h5 class="dashboard-title"><i class="bi bi-building"></i>{{ _('Recent Properties') }}</h5>
 <div class="dashboard-grid">
   {% for p in properties[:6] %}
-  <div class="dashboard-card" onclick="window.location.href='{{ url_for('employee.properties_edit', prop_id=p.id) }}'">
+  <div class="dashboard-card" onclick="window.location.href='{{ url_for('employee.apartments_list', building_id=p.id) if p.property_type == 'building' else url_for('employee.properties_edit', prop_id=p.id) }}'">
     <i class="bi bi-house-door icon-blue"></i>
     <span class="title">{{ p.title }}</span>
     {% if p.status == 'available' %}
