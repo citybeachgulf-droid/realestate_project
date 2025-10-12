@@ -110,6 +110,12 @@ h3.dashboard-title {
     <span class="title">{{ _('Complaints') }}</span>
     <span class="badge-status">{{ complaints|length }}</span>
   </div>
+
+  <div class="dashboard-card" onclick="window.location.href='{{ url_for('employee.unleased_units_employee') }}'">
+    <i class="bi bi-door-closed icon-blue"></i>
+    <span class="title">{{ _('Unleased Units') }}</span>
+    <span class="badge-status">{{ unleased_count or 0 }}</span>
+  </div>
 </div>
 
 <!-- أحدث العقارات -->

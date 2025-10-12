@@ -28,16 +28,160 @@ def employee_required(func):
 @login_required
 @employee_required
 def dashboard():
+    from datetime import date
+
     properties = Property.query.order_by(Property.created_at.desc()).limit(10).all()
     contracts = Contract.query.order_by(Contract.created_at.desc()).limit(10).all()
     maints = MaintenanceRequest.query.order_by(MaintenanceRequest.created_at.desc()).limit(10).all()
     complaints = Complaint.query.order_by(Complaint.created_at.desc()).limit(10).all()
+
+    # Compute count of unleased units (standalone + building apartments)
+    today = date.today()
+    # Standalone apartments without active contract covering today
+    active_apartment_props_subq = (
+        db.session.query(Contract.property_id)
+        .filter(
+            Contract.status == "active",
+            Contract.start_date <= today,
+            Contract.end_date >= today,
+        )
+        .subquery()
+    )
+    standalone_unleased = (
+        db.session.query(db.func.count(Property.id))
+        .filter(
+            Property.property_type == "apartment",
+            ~Property.id.in_(active_apartment_props_subq),
+        )
+        .scalar()
+    ) or 0
+
+    # Building apartments without active contract (and not covered by building-level contract)
+    active_building_apts_subq = (
+        db.session.query(Contract.apartment_id)
+        .filter(
+            Contract.status == "active",
+            Contract.start_date <= today,
+            Contract.end_date >= today,
+            Contract.apartment_id != None,
+        )
+        .subquery()
+    )
+    active_leased_buildings_subq = (
+        db.session.query(Contract.property_id)
+        .filter(
+            Contract.status == "active",
+            Contract.start_date <= today,
+            Contract.end_date >= today,
+            Contract.apartment_id == None,
+        )
+        .subquery()
+    )
+    building_apartments_unleased = (
+        db.session.query(db.func.count(Apartment.id))
+        .filter(
+            ~Apartment.id.in_(active_building_apts_subq),
+            ~Apartment.building_id.in_(active_leased_buildings_subq),
+        )
+        .scalar()
+    ) or 0
+
+    unleased_count = (standalone_unleased or 0) + (building_apartments_unleased or 0)
     return render_template(
         "employee/dashboard.html",
         properties=properties,
         contracts=contracts,
         maintenance_requests=maints,
         complaints=complaints,
+        unleased_count=unleased_count,
+    )
+
+
+# --- Unleased (unrented) units: standalone apartments + apartments inside buildings ---
+
+
+@employee_bp.route("/unleased")
+@login_required
+@employee_required
+def unleased_units_employee():
+    """List all unrented units today for employees.
+
+    Includes:
+    - Standalone apartments (rows in `properties` with property_type='apartment') without an active contract covering today.
+    - Apartments inside buildings (rows in `apartments`) that have no active contract and whose parent building is not under a building-level contract.
+    """
+    from datetime import date
+
+    today = date.today()
+
+    # Active contracts covering today (by property)
+    active_props_subq = (
+        db.session.query(Contract.property_id)
+        .filter(
+            Contract.status == "active",
+            Contract.start_date <= today,
+            Contract.end_date >= today,
+        )
+        .subquery()
+    )
+
+    # Standalone apartments without active contract
+    standalone_apartments = (
+        Property.query
+        .filter(
+            Property.property_type == "apartment",
+            ~Property.id.in_(active_props_subq),
+        )
+        .order_by(Property.created_at.desc())
+        .all()
+    )
+
+    # Building apartments without active contract (and not covered by a building-level contract)
+    active_building_apartments_subq = (
+        db.session.query(Contract.apartment_id)
+        .filter(
+            Contract.status == "active",
+            Contract.start_date <= today,
+            Contract.end_date >= today,
+            Contract.apartment_id != None,
+        )
+        .subquery()
+    )
+
+    # Buildings that are leased as a whole (building-level contracts without apartment)
+    active_leased_buildings_subq = (
+        db.session.query(Contract.property_id)
+        .filter(
+            Contract.status == "active",
+            Contract.start_date <= today,
+            Contract.end_date >= today,
+            Contract.apartment_id == None,
+        )
+        .subquery()
+    )
+
+    building_apartments = (
+        Apartment.query
+        .filter(
+            ~Apartment.id.in_(active_building_apartments_subq),
+            ~Apartment.building_id.in_(active_leased_buildings_subq),
+        )
+        .order_by(Apartment.building_id.asc(), Apartment.number.asc(), Apartment.created_at.desc())
+        .all()
+    )
+
+    # Preload buildings for apartments to show building title
+    buildings_by_id = {}
+    if building_apartments:
+        building_ids = {a.building_id for a in building_apartments}
+        buildings = Property.query.filter(Property.id.in_(building_ids)).all()
+        buildings_by_id = {b.id: b for b in buildings}
+
+    return render_template(
+        "employee/unleased_units.html",
+        standalone_apartments=standalone_apartments,
+        building_apartments=building_apartments,
+        buildings_by_id=buildings_by_id,
     )
 
 
