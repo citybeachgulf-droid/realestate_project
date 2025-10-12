@@ -1,256 +1,81 @@
 {% extends 'base.html' %}
-{% block title %}العقارات{% endblock %}
+{% block title %}{{ _('Properties') }}{% endblock %}
 
 {% block content %}
 
-<style>
-body {
-  direction: rtl;
-  text-align: right;
-  font-family: 'Tajawal', 'Cairo', sans-serif;
-}
-
-/* شبكة العقارات */
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 14px;
-}
-
-/* كرت العقار */
-.property-card {
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-  background: #fff;
-  transition: 0.3s ease;
-}
-.property-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-.property-card img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-bottom: 3px solid #f8f9fa;
-}
-.property-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 12px;
-  font-size: 0.95rem;
-}
-.property-status {
-  font-weight: 600;
-}
-.status-available { color: #198754; }
-.status-occupied { color: #dc3545; }
-.status-other { color: #6c757d; }
-
-/* حاوية العنصر */
-.property-item {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-/* الأزرار */
-.property-actions {
-  display: flex;
-  gap: 6px;
-  justify-content: center;
-  padding: 6px 0;
-}
-.btn-custom-share {
-  color: #0d6efd;
-  border-color: #0d6efd;
-}
-.btn-custom-share:hover {
-  background-color: #0d6efd;
-  color: white;
-}
-.btn-custom-delete:hover {
-  background-color: #dc3545;
-  color: white;
-}
-
-/* العناوين */
-.section-title {
-  color: #6f42c1;
-  font-weight: bold;
-  margin: 20px 0 12px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.section-title i {
-  font-size: 1.2rem;
-}
-</style>
-
-<!-- العنوان الرئيسي + زر الإضافة -->
 <div class="d-flex justify-content-between align-items-center mb-3">
-  <h4 class="section-title"><i class="bi bi-buildings"></i> المباني</h4>
-  <a href="{{ url_for('employee.properties_create') }}" class="btn btn-success btn-sm">
-    <i class="bi bi-plus-circle me-1"></i> إضافة عقار جديد
-  </a>
-</div>
-
-<!-- قائمة المباني -->
-<div class="grid-container mb-4">
-  {% for b in buildings %}
-  <div class="property-item">
-    <a href="{{ url_for('employee.apartments_list', building_id=b.id) }}" class="text-decoration-none">
-      <div class="property-card">
-        {% set first_b_image = (b.images or '').split(',')[0] %}
-        <img src="{{ first_b_image and url_for('uploaded_file', filename=first_b_image) or url_for('static', filename='default-building.jpg') }}" alt="{{ b.title }}">
-        <div class="property-info">
-          <span>{{ b.title }}</span>
-          {% if b.status == 'available' %}
-            <span class="property-status status-available">متاح</span>
-          {% elif b.status == 'occupied' %}
-            <span class="property-status status-occupied">مشغول</span>
-          {% else %}
-            <span class="property-status status-other">{{ b.status }}</span>
-          {% endif %}
-        </div>
-      </div>
+  <h3 class="mb-0"><i class="bi bi-buildings me-2"></i>{{ _('Properties') }}</h3>
+  <div class="text-muted small">{{ _('Total Buildings') }}: {{ total_buildings }} · {{ _('Standalone Apartments') }}: {{ total_standalone }}</div>
+  <div>
+    <a href="{{ url_for('employee.properties_create') }}" class="btn btn-success btn-sm">
+      <i class="bi bi-plus-circle me-1"></i>{{ _('Add Property') }}
     </a>
+  </div>
+  </div>
 
-    <!-- الشقق التابعة للمبنى -->
-<!-- Apartments dropdown under the building -->
-<div class="mt-2 custom-dropdown">
-  <div class="dropdown">
-    <button class="btn btn-light dropdown-toggle stylish-dropdown w-100" type="button" id="dropdownMenuButton{{ b.id }}" data-bs-toggle="dropdown" aria-expanded="false">
-      <i class="bi bi-door-closed me-1 text-primary"></i> {{ _('Select Apartment') }}
-    </button>
-    <ul class="dropdown-menu w-100 shadow-sm" aria-labelledby="dropdownMenuButton{{ b.id }}">
-      {% set apts = apartments_by_building.get(b.id, []) %}
-      {% for a in apts %}
-      <li>
-        <a class="dropdown-item d-flex justify-content-between align-items-center"
-           href="{{ url_for('employee.apartments_edit', apt_id=a.id) }}">
-          <span>
-            <i class="bi bi-house-door me-1 text-secondary"></i>
-            {{ a.title or (a.number and ( _('Apartment') ~ ' ' ~ a.number )) or _('Apartment') }}
-          </span>
-          {% if a.status == 'available' %}
-            <span class="badge bg-success">{{ _('Available') }}</span>
-          {% elif a.status == 'occupied' %}
-            <span class="badge bg-danger">{{ _('Occupied') }}</span>
+<form class="row g-2 align-items-end mb-3">
+  <div class="col-12 col-md-4">
+    <label class="form-label">{{ _('Search') }}</label>
+    <input type="text" name="q" class="form-control" value="{{ q or '' }}" placeholder="{{ _('Title...') }}" />
+  </div>
+  <div class="col-6 col-md-3">
+    <label class="form-label">{{ _('Type') }}</label>
+    <select class="form-select" name="type">
+      <option value="" {{ 'selected' if not selected_type or selected_type=='all' else '' }}>{{ _('All') }}</option>
+      <option value="building" {{ 'selected' if selected_type=='building' else '' }}>{{ _('Buildings') }}</option>
+      <option value="apartment" {{ 'selected' if selected_type=='apartment' else '' }}>{{ _('Standalone Apartments') }}</option>
+    </select>
+  </div>
+  <div class="col-6 col-md-3">
+    <label class="form-label">{{ _('Status') }}</label>
+    <select class="form-select" name="status">
+      <option value="" {{ 'selected' if not selected_status else '' }}>{{ _('All') }}</option>
+      <option value="available" {{ 'selected' if selected_status=='available' else '' }}>{{ _('Available') }}</option>
+      <option value="occupied" {{ 'selected' if selected_status=='occupied' else '' }}>{{ _('Occupied') }}</option>
+    </select>
+  </div>
+  <div class="col-12 col-md-2 d-grid">
+    <button class="btn btn-primary"><i class="bi bi-search me-1"></i>{{ _('Filter') }}</button>
+  </div>
+  </form>
+
+<div class="table-responsive">
+  <table class="table table-striped table-hover align-middle">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>{{ _('Title') }}</th>
+        <th>{{ _('Type') }}</th>
+        <th>{{ _('Status') }}</th>
+        <th>{{ _('Created at') }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in properties %}
+      <tr>
+        <td>{{ p.id }}</td>
+        <td>
+          <a href="{{ url_for('employee.properties_edit', prop_id=p.id) }}" class="text-decoration-none">{{ p.title }}</a>
+        </td>
+        <td>
+          {% if p.property_type == 'building' %}
+            <span class="badge text-bg-secondary">{{ _('Building') }}</span>
           {% else %}
-            <span class="badge bg-secondary">{{ a.status }}</span>
+            <span class="badge text-bg-info">{{ _('Apartment') }}</span>
           {% endif %}
-        </a>
-      </li>
+        </td>
+        <td>
+          <span class="badge {{ 'text-bg-success' if p.status=='available' else 'text-bg-warning text-dark' if p.status=='occupied' else 'text-bg-secondary' }}">{{ p.status }}</span>
+        </td>
+        <td>{{ p.created_at }}</td>
+      </tr>
       {% else %}
-      <li><span class="dropdown-item text-muted">{{ _('No apartments available') }}</span></li>
+      <tr>
+        <td colspan="5" class="text-center py-4">{{ _('No data') }}</td>
+      </tr>
       {% endfor %}
-    </ul>
+    </tbody>
+  </table>
   </div>
-</div>
-
-<style>
-/* شكل القائمة الجديدة */
-.stylish-dropdown {
-  border-radius: 8px;
-  border: 1px solid #dee2e6;
-  background: linear-gradient(135deg, #ffffff, #f8f9fa);
-  color: #495057;
-  font-weight: 500;
-  text-align: start;
-  transition: 0.3s ease;
-}
-
-.stylish-dropdown:hover,
-.stylish-dropdown:focus {
-  background: linear-gradient(135deg, #e9f5ff, #ffffff);
-  border-color: #0d6efd;
-  box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.2);
-  color: #0d6efd;
-}
-
-.dropdown-menu {
-  border-radius: 10px;
-  overflow: hidden;
-  animation: dropdownFade 0.15s ease-in-out;
-}
-
-.dropdown-item {
-  font-size: 0.9rem;
-  padding: 8px 12px;
-  transition: 0.2s;
-}
-
-.dropdown-item:hover {
-  background-color: #f1f3f5;
-}
-
-@keyframes dropdownFade {
-  from { opacity: 0; transform: translateY(-6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-</style>
-
-
-    <div class="property-actions">
-      <button type="button" class="btn btn-outline-primary btn-sm btn-custom-share"
-        onclick="navigator.clipboard.writeText('{{ url_for('public_property_view', token=share_tokens[b.id], _external=True) }}'); this.innerHTML='<i class=&quot;bi bi-clipboard-check me-1&quot;></i>تم النسخ'; setTimeout(()=>{ this.innerHTML='<i class=&quot;bi bi-share me-1&quot;></i>مشاركة'; }, 1500);">
-        <i class="bi bi-share me-1"></i>مشاركة
-      </button>
-
-      <form method="post" action="{{ url_for('employee.properties_delete', prop_id=b.id) }}" class="d-inline" onsubmit="return confirm('هل أنت متأكد أنك تريد حذف هذا العقار؟');">
-        <button type="submit" class="btn btn-outline-danger btn-sm btn-custom-delete">
-          <i class="bi bi-trash me-1"></i>حذف
-        </button>
-      </form>
-    </div>
-  </div>
-  {% else %}
-  <div class="col-12 text-center text-muted py-4">لا توجد مبانٍ حالياً</div>
-  {% endfor %}
-</div>
-
-<!-- الشقق المستقلة -->
-<h4 class="section-title"><i class="bi bi-house-door"></i> الشقق المستقلة</h4>
-
-<div class="grid-container">
-  {% for a in standalone_apartments %}
-  <div class="property-item">
-    <a href="{{ url_for('employee.properties_edit', prop_id=a.id) }}" class="text-decoration-none">
-      <div class="property-card">
-        {% set first_a_image = (a.images or '').split(',')[0] %}
-        <img src="{{ first_a_image and url_for('uploaded_file', filename=first_a_image) or url_for('static', filename='default-apartment.jpg') }}" alt="{{ a.title }}">
-        <div class="property-info">
-          <span>{{ a.title }}</span>
-          {% if a.status == 'available' %}
-            <span class="property-status status-available">متاحة</span>
-          {% elif a.status == 'occupied' %}
-            <span class="property-status status-occupied">مشغولة</span>
-          {% else %}
-            <span class="property-status status-other">{{ a.status }}</span>
-          {% endif %}
-        </div>
-      </div>
-    </a>
-    <div class="property-actions">
-      <button type="button" class="btn btn-outline-primary btn-sm btn-custom-share"
-        onclick="navigator.clipboard.writeText('{{ url_for('public_property_view', token=share_tokens[a.id], _external=True) }}'); this.innerHTML='<i class=&quot;bi bi-clipboard-check me-1&quot;></i>تم النسخ'; setTimeout(()=>{ this.innerHTML='<i class=&quot;bi bi-share me-1&quot;></i>مشاركة'; }, 1500);">
-        <i class="bi bi-share me-1"></i>مشاركة
-      </button>
-
-      <form method="post" action="{{ url_for('employee.properties_delete', prop_id=a.id) }}" class="d-inline" onsubmit="return confirm('هل أنت متأكد أنك تريد حذف هذه الشقة؟');">
-        <button type="submit" class="btn btn-outline-danger btn-sm btn-custom-delete">
-          <i class="bi bi-trash me-1"></i>حذف
-        </button>
-      </form>
-    </div>
-  </div>
-  {% else %}
-  <div class="col-12 text-center text-muted py-4">لا توجد شقق متاحة حالياً</div>
-  {% endfor %}
-</div>
 
 {% endblock %}
