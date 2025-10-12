@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}{{ _('Attendance') }}{% endblock %}
+{% block content %}
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <h3><i class="bi bi-clipboard-check"></i> {{ _('Attendance') }}</h3>
+  <div>
+    <a class="btn btn-sm btn-outline-success" href="{{ url_for('admin.attendance_export_excel', date=selected_date.isoformat(), employee_id=selected_employee_id) }}">
+      <i class="bi bi-file-earmark-excel"></i> {{ _('Export Excel') }}
+    </a>
+    <a class="btn btn-sm btn-outline-danger" href="{{ url_for('admin.attendance_export_pdf', date=selected_date.isoformat(), employee_id=selected_employee_id) }}">
+      <i class="bi bi-file-earmark-pdf"></i> {{ _('Export PDF') }}
+    </a>
+  </div>
+</div>
+
+<form class="row g-2 mb-3" method="get">
+  <div class="col-auto">
+    <label class="form-label">{{ _('Date') }}</label>
+    <input type="date" class="form-control" name="date" value="{{ selected_date.isoformat() }}" />
+  </div>
+  <div class="col-auto">
+    <label class="form-label">{{ _('Employee') }}</label>
+    <select class="form-select" name="employee_id">
+      <option value="">-- {{ _('All') }} --</option>
+      {% for e in employees %}
+      <option value="{{ e.id }}" {% if selected_employee_id == e.id %}selected{% endif %}>{{ e.username }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-auto align-self-end">
+    <button class="btn btn-primary" type="submit"><i class="bi bi-funnel"></i> {{ _('Filter') }}</button>
+  </div>
+</form>
+
+<div class="table-responsive">
+  <table class="table table-striped align-middle">
+    <thead>
+      <tr>
+        <th>{{ _('Employee') }}</th>
+        <th>{{ _('Status') }}</th>
+        <th>{{ _('Check-in') }}</th>
+        <th>{{ _('Check-out') }}</th>
+        <th>{{ _('Hours') }}</th>
+        <th>{{ _('Latitude') }}</th>
+        <th>{{ _('Longitude') }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in rows %}
+      <tr>
+        <td>{{ r.employee.username }}</td>
+        <td>
+          {% if r.status == 'present' %}
+            <span class="badge bg-success">{{ _('Present') }}</span>
+          {% elif r.status == 'checked_in' %}
+            <span class="badge bg-info text-dark">{{ _('Checked-in') }}</span>
+          {% else %}
+            <span class="badge bg-secondary">{{ _('Absent') }}</span>
+          {% endif %}
+        </td>
+        <td>{{ r.record.check_in_time if r.record else '' }}</td>
+        <td>{{ r.record.check_out_time if r.record else '' }}</td>
+        <td>{{ '%.2f'|format(r.hours) }}</td>
+        <td>{{ r.record.latitude if r.record else '' }}</td>
+        <td>{{ r.record.longitude if r.record else '' }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

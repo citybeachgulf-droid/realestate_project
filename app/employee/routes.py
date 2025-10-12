@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, abort, request, redirect, url_for,
 from flask_login import login_required, current_user
 from flask_babel import gettext as _
 from ..extensions import db
-from ..models import Property, Contract, MaintenanceRequest, Complaint, Apartment, Payment, User
+from ..models import Property, Contract, MaintenanceRequest, Complaint, Apartment, Payment, User, Attendance
 from werkzeug.utils import secure_filename
 import uuid
 import os
@@ -87,6 +87,23 @@ def dashboard():
     ) or 0
 
     unleased_count = (standalone_unleased or 0) + (building_apartments_unleased or 0)
+
+    # Attendance status for today for current employee
+    attendance_status = None
+    today_att = None
+    if current_user.is_employee or current_user.is_admin:
+        today_att = Attendance.query.filter(
+            Attendance.employee_id == current_user.id,
+            Attendance.date == today,
+        ).first()
+        if today_att is None:
+            attendance_status = "absent"
+        elif today_att.check_in_time and not today_att.check_out_time:
+            attendance_status = "checked_in"
+        elif today_att.check_in_time and today_att.check_out_time:
+            attendance_status = "present"
+        else:
+            attendance_status = "absent"
     return render_template(
         "employee/dashboard.html",
         properties=properties,
@@ -94,7 +111,87 @@ def dashboard():
         maintenance_requests=maints,
         complaints=complaints,
         unleased_count=unleased_count,
+        attendance_status=attendance_status,
+        today_attendance=today_att,
     )
+
+
+@employee_bp.route("/attendance")
+@login_required
+@employee_required
+def attendance_page():
+    from datetime import date
+
+    today = date.today()
+    record = Attendance.query.filter(
+        Attendance.employee_id == current_user.id,
+        Attendance.date == today,
+    ).first()
+    status = "absent"
+    if record and record.check_in_time and record.check_out_time:
+        status = "present"
+    elif record and record.check_in_time and not record.check_out_time:
+        status = "checked_in"
+    return render_template("employee/attendance.html", record=record, status=status)
+
+
+@employee_bp.route("/api/attendance/<action>", methods=["POST"])
+@login_required
+@employee_required
+def attendance_action(action: str):
+    from datetime import datetime, date
+    from flask import jsonify
+
+    action = (action or "").lower()
+    if action not in {"checkin", "checkout"}:
+        return jsonify({"error": "Invalid action"}), 400
+
+    data = request.get_json(silent=True) or {}
+    lat = data.get("lat")
+    lng = data.get("lng")
+    now = datetime.now()
+    today = date.today()
+
+    # Find or create today's attendance record
+    record = Attendance.query.filter(
+        Attendance.employee_id == current_user.id,
+        Attendance.date == today,
+    ).first()
+
+    if action == "checkin":
+        if record and record.check_in_time:
+            return jsonify({"error": "Already checked in today"}), 400
+        if record is None:
+            record = Attendance(
+                employee_id=current_user.id,
+                date=today,
+                check_in_time=now,
+                latitude=lat,
+                longitude=lng,
+                status="present",
+            )
+            db.session.add(record)
+        else:
+            record.check_in_time = now
+            record.latitude = lat
+            record.longitude = lng
+            record.status = record.status or "present"
+        db.session.commit()
+        return jsonify({"message": "تم تسجيل الحضور بنجاح", "record_id": record.id})
+
+    # checkout
+    if not record or not record.check_in_time:
+        return jsonify({"error": "Cannot checkout before checkin"}), 400
+    if record.check_out_time:
+        return jsonify({"error": "Already checked out today"}), 400
+    record.check_out_time = now
+    # update last known location on checkout as well
+    if lat is not None:
+        record.latitude = lat
+    if lng is not None:
+        record.longitude = lng
+    db.session.commit()
+    return jsonify({"message": "تم تسجيل الانصراف بنجاح", "record_id": record.id})
 
 
 # --- Unleased (unrented) units: standalone apartments + apartments inside buildings ---
