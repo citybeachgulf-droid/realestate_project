@@ -1,8 +1,41 @@
 {% extends 'base.html' %}
 {% block title %}{{ location and _('Edit Location') or _('New Location') }}{% endblock %}
+{% block meta %}
+  {{ super() }}
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    #pick-map { height: 360px; border: 1px solid #dee2e6; border-radius: .5rem; }
+    .map-tools { gap: .5rem; }
+    .search-results { position: absolute; z-index: 1000; max-height: 220px; overflow: auto; }
+    .search-results .list-group-item { cursor: pointer; }
+  </style>
+{% endblock %}
 {% block content %}
 <h3 class="mb-3"><i class="bi bi-geo"></i> {{ location and _('Edit Location') or _('New Location') }}</h3>
 <form method="post" class="row g-3" autocomplete="off">
+  <div class="col-12">
+    <div class="row g-2 align-items-stretch map-tools position-relative">
+      <div class="col-md-5">
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-search"></i></span>
+          <input id="mapSearchInput" type="text" class="form-control" placeholder="{{ _('Search address or place') }}" />
+          <button id="mapSearchBtn" class="btn btn-outline-secondary" type="button">{{ _('Search') }}</button>
+        </div>
+        <div id="mapSearchResults" class="search-results w-100 d-none">
+          <ul class="list-group list-group-flush"></ul>
+        </div>
+      </div>
+      <div class="col-md-3 d-grid d-md-block">
+        <button id="locateBtn" class="btn btn-outline-primary w-100" type="button">
+          <i class="bi bi-geo-alt"></i> {{ _('Use my location') }}
+        </button>
+      </div>
+      <div class="col-12">
+        <div id="pick-map"></div>
+      </div>
+    </div>
+    <div class="form-text mt-1">{{ _('Click on the map to set latitude/longitude. Drag circle edge to adjust radius.') }}</div>
+  </div>
   <div class="col-md-6">
     <label class="form-label">{{ _('Name') }}</label>
     <input type="text" name="name" class="form-control" value="{{ location and location.name or '' }}" required />
@@ -28,4 +61,149 @@
     <a class="btn btn-secondary" href="{{ url_for('admin.allowed_locations_list') }}">{{ _('Cancel') }}</a>
   </div>
 </form>
+{% endblock %}
+{% block scripts %}
+  {{ super() }}
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    (function() {
+      const latInput = document.querySelector('input[name="latitude"]');
+      const lngInput = document.querySelector('input[name="longitude"]');
+      const radiusInput = document.querySelector('input[name="radius_meters"]');
+
+      const initialLat = parseFloat(latInput.value || '');
+      const initialLng = parseFloat(lngInput.value || '');
+      const initialRadius = Math.max(parseInt(radiusInput.value || '100', 10) || 100, 10);
+
+      const defaultCenter = (!isNaN(initialLat) && !isNaN(initialLng))
+        ? [initialLat, initialLng]
+        : [25.276987, 55.296249]; // fallback: Dubai
+
+      const map = L.map('pick-map');
+      const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+      map.setView(defaultCenter, (!isNaN(initialLat) && !isNaN(initialLng)) ? 15 : 12);
+
+      let marker = null;
+      let circle = null;
+
+      function setPosition(lat, lng, updateFields = true) {
+        const latNum = Number(lat);
+        const lngNum = Number(lng);
+        if (!isFinite(latNum) || !isFinite(lngNum)) return;
+        const center = [latNum, lngNum];
+        if (!marker) {
+          marker = L.marker(center, { draggable: true }).addTo(map);
+          marker.on('dragend', () => {
+            const pos = marker.getLatLng();
+            if (updateFields) {
+              latInput.value = pos.lat.toFixed(6);
+              lngInput.value = pos.lng.toFixed(6);
+            }
+            if (circle) circle.setLatLng(pos);
+          });
+        } else {
+          marker.setLatLng(center);
+        }
+        const rad = Math.max(parseInt(radiusInput.value || String(initialRadius), 10) || initialRadius, 10);
+        if (!circle) {
+          circle = L.circle(center, { radius: rad, color: '#0d6efd', weight: 2, fillOpacity: 0.08 });
+          circle.addTo(map);
+        } else {
+          circle.setLatLng(center);
+        }
+        if (updateFields) {
+          latInput.value = latNum.toFixed(6);
+          lngInput.value = lngNum.toFixed(6);
+        }
+      }
+
+      // Initialize marker/circle if values exist
+      if (!isNaN(initialLat) && !isNaN(initialLng)) {
+        setPosition(initialLat, initialLng, false);
+        if (circle) circle.setRadius(initialRadius);
+      }
+
+      // Click to set position
+      map.on('click', function(e) {
+        setPosition(e.latlng.lat, e.latlng.lng, true);
+      });
+
+      // Sync radius input with circle
+      radiusInput.addEventListener('input', function() {
+        const r = Math.max(parseInt(radiusInput.value || '0', 10) || 0, 10);
+        if (circle) circle.setRadius(r);
+      });
+
+      // Locate me
+      const locateBtn = document.getElementById('locateBtn');
+      locateBtn?.addEventListener('click', function() {
+        if (!navigator.geolocation) return;
+        locateBtn.disabled = true;
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            const { latitude, longitude } = pos.coords;
+            setPosition(latitude, longitude, true);
+            map.setView([latitude, longitude], 16);
+            locateBtn.disabled = false;
+          },
+          () => { locateBtn.disabled = false; },
+          { enableHighAccuracy: true, maximumAge: 10000, timeout: 8000 }
+        );
+      });
+
+      // Simple address search via Nominatim
+      const searchInput = document.getElementById('mapSearchInput');
+      const searchBtn = document.getElementById('mapSearchBtn');
+      const resultsWrap = document.getElementById('mapSearchResults');
+      const resultsList = resultsWrap?.querySelector('ul');
+
+      async function runSearch() {
+        const q = (searchInput?.value || '').trim();
+        if (!q) return;
+        resultsWrap.classList.remove('d-none');
+        resultsList.innerHTML = `<li class="list-group-item text-muted">${q ? '{{ _('Searching...') }}' : ''}</li>`;
+        try {
+          const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(q)}&limit=5`;
+          const resp = await fetch(url, { headers: { 'Accept-Language': '{{ get_locale() }}' } });
+          const items = await resp.json();
+          if (!Array.isArray(items) || items.length === 0) {
+            resultsList.innerHTML = `<li class="list-group-item text-danger">{{ _('No results found') }}</li>`;
+            return;
+          }
+          resultsList.innerHTML = '';
+          items.forEach(item => {
+            const li = document.createElement('li');
+            li.className = 'list-group-item';
+            li.textContent = item.display_name || `${item.lat}, ${item.lon}`;
+            li.addEventListener('click', () => {
+              const lat = parseFloat(item.lat);
+              const lon = parseFloat(item.lon);
+              setPosition(lat, lon, true);
+              map.setView([lat, lon], 16);
+              resultsWrap.classList.add('d-none');
+            });
+            resultsList.appendChild(li);
+          });
+        } catch (e) {
+          resultsList.innerHTML = `<li class="list-group-item text-danger">{{ _('Search failed') }}</li>`;
+        }
+      }
+
+      searchBtn?.addEventListener('click', runSearch);
+      searchInput?.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); runSearch(); } });
+
+      // If creating new location with no coords, try geolocate once to improve center
+      if (isNaN(initialLat) || isNaN(initialLng)) {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition((pos) => {
+            const { latitude, longitude } = pos.coords;
+            map.setView([latitude, longitude], 15);
+          });
+        }
+      }
+    })();
+  </script>
 {% endblock %}
