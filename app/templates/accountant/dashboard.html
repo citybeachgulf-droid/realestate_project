@@ -241,7 +241,7 @@
         {% for p in recent_properties %}
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <span class="text-truncate" style="max-width: 70%">{{ p.title }}</span>
-            <span class="badge {{ 'text-bg-success' if p.status=='available' else 'text-bg-secondary' }}">{{ p.status }}</span>
+            <span class="badge {{ 'text-bg-success' if p.status=='available' else 'text-bg-secondary' }}">{{ _('Available') if p.status=='available' else _('Occupied') }}</span>
           </li>
         {% else %}
           <li class="list-group-item text-muted">{{ _('No data') }}</li>
@@ -259,7 +259,7 @@
         {% for c in recent_contracts %}
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <span>#{{ c.id }} — {{ c.property.title }}</span>
-            <span class="badge {{ 'text-bg-success' if c.status=='active' else 'text-bg-secondary' }}">{{ c.status }}</span>
+            <span class="badge {{ 'text-bg-success' if c.status=='active' else 'text-bg-secondary' }}">{{ _('Active') if c.status=='active' else c.status }}</span>
           </li>
         {% else %}
           <li class="list-group-item text-muted">{{ _('No data') }}</li>
@@ -277,7 +277,7 @@
         {% for p in recent_payments %}
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <span>#{{ p.id }} — {{ p.due_date }}</span>
-            <span class="badge {{ 'text-bg-success' if p.status=='paid' else 'text-bg-warning' }}">{{ p.status }}</span>
+            <span class="badge {{ 'text-bg-success' if p.status=='paid' else 'text-bg-warning' }}">{{ _('paid') if p.status=='paid' else _('unpaid') }}</span>
           </li>
         {% else %}
           <li class="list-group-item text-muted">{{ _('No data') }}</li>
@@ -308,7 +308,7 @@
             <td>{{ p.due_date }}</td>
             <td>{{ p.amount }}</td>
             <td>
-              <span class="badge {{ 'text-bg-success' if p.status=='paid' else 'text-bg-warning' }}">{{ p.status }}</span>
+              <span class="badge {{ 'text-bg-success' if p.status=='paid' else 'text-bg-warning' }}">{{ _('paid') if p.status=='paid' else _('unpaid') }}</span>
             </td>
             <td class="text-end">
               <form class="d-inline" method="post" action="{{ url_for('accountant.mark_payment', payment_id=p.id) }}">

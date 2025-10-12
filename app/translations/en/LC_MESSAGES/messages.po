@@ -171,3 +171,128 @@ msgstr "Number of floors"
 
 msgid "All Properties"
 msgstr "All Properties"
+
+# Accountant dashboard additional strings
+msgid "Modern, responsive overview for financial operations"
+msgstr "Modern, responsive overview for financial operations"
+
+msgid "Tenants"
+msgstr "Tenants"
+
+msgid "Payments"
+msgstr "Payments"
+
+msgid "Invoices"
+msgstr "Invoices"
+
+msgid "Total Income"
+msgstr "Total Income"
+
+msgid "Total Expenses"
+msgstr "Total Expenses"
+
+msgid "Net Profit"
+msgstr "Net Profit"
+
+msgid "Unpaid Payments"
+msgstr "Unpaid Payments"
+
+msgid "Monthly Income vs Expenses vs Profit"
+msgstr "Monthly Income vs Expenses vs Profit"
+
+msgid "Alerts"
+msgstr "Alerts"
+
+msgid "Due Soon (next 7 days)"
+msgstr "Due Soon (next 7 days)"
+
+msgid "No upcoming dues"
+msgstr "No upcoming dues"
+
+msgid "Overdue"
+msgstr "Overdue"
+
+msgid "No overdue items"
+msgstr "No overdue items"
+
+msgid "Units Total"
+msgstr "Units Total"
+
+msgid "Active"
+msgstr "Active"
+
+msgid "Upcoming"
+msgstr "Upcoming"
+
+msgid "Maintenance Requests"
+msgstr "Maintenance Requests"
+
+msgid "New"
+msgstr "New"
+
+msgid "In Progress"
+msgstr "In Progress"
+
+msgid "Resolved"
+msgstr "Resolved"
+
+msgid "Closed"
+msgstr "Closed"
+
+msgid "Complaints"
+msgstr "Complaints"
+
+msgid "Reviewing"
+msgstr "Reviewing"
+
+msgid "Latest Properties"
+msgstr "Latest Properties"
+
+msgid "Latest Contracts"
+msgstr "Latest Contracts"
+
+msgid "Latest Payments"
+msgstr "Latest Payments"
+
+msgid "All Payments"
+msgstr "All Payments"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "paid"
+msgstr "paid"
+
+msgid "unpaid"
+msgstr "unpaid"
+
+# Nav items
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "Unpaid"
+msgstr "Unpaid"
+
+msgid "Chart of Accounts"
+msgstr "Chart of Accounts"
+
+msgid "New Journal Entry"
+msgstr "New Journal Entry"
+
+msgid "General Ledger"
+msgstr "General Ledger"
+
+msgid "Trial Balance"
+msgstr "Trial Balance"
+
+msgid "Income Statement"
+msgstr "Income Statement"
+
+msgid "Balance Sheet"
+msgstr "Balance Sheet"
+
+msgid "AR Aging"
+msgstr "AR Aging"
+
+msgid "Financial Overview"
+msgstr "Financial Overview"

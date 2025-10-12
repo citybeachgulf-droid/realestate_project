@@ -366,3 +366,128 @@ msgstr "تم إنشاء المستأجر بنجاح"
 
 msgid "All Properties"
 msgstr "كل العقارات"
+
+# Accountant dashboard additional strings
+msgid "Modern, responsive overview for financial operations"
+msgstr "نظرة عامة حديثة ومتجاوبة للعمليات المالية"
+
+msgid "Tenants"
+msgstr "المستأجرون"
+
+msgid "Payments"
+msgstr "المدفوعات"
+
+msgid "Invoices"
+msgstr "الفواتير"
+
+msgid "Total Income"
+msgstr "إجمالي الدخل"
+
+msgid "Total Expenses"
+msgstr "إجمالي المصروفات"
+
+msgid "Net Profit"
+msgstr "صافي الربح"
+
+msgid "Unpaid Payments"
+msgstr "مدفوعات غير مسددة"
+
+msgid "Monthly Income vs Expenses vs Profit"
+msgstr "الدخل مقابل المصروفات مقابل الربح شهرياً"
+
+msgid "Alerts"
+msgstr "التنبيهات"
+
+msgid "Due Soon (next 7 days)"
+msgstr "مستحق قريباً (7 أيام القادمة)"
+
+msgid "No upcoming dues"
+msgstr "لا مستحقات قادمة"
+
+msgid "Overdue"
+msgstr "متأخر"
+
+msgid "No overdue items"
+msgstr "لا عناصر متأخرة"
+
+msgid "Units Total"
+msgstr "إجمالي الوحدات"
+
+msgid "Active"
+msgstr "نشط"
+
+msgid "Upcoming"
+msgstr "قادمة"
+
+msgid "Maintenance Requests"
+msgstr "طلبات الصيانة"
+
+msgid "New"
+msgstr "جديد"
+
+msgid "In Progress"
+msgstr "قيد التنفيذ"
+
+msgid "Resolved"
+msgstr "محلول"
+
+msgid "Closed"
+msgstr "مغلق"
+
+msgid "Complaints"
+msgstr "الشكاوى"
+
+msgid "Reviewing"
+msgstr "قيد المراجعة"
+
+msgid "Latest Properties"
+msgstr "أحدث العقارات"
+
+msgid "Latest Contracts"
+msgstr "أحدث العقود"
+
+msgid "Latest Payments"
+msgstr "أحدث المدفوعات"
+
+msgid "All Payments"
+msgstr "كل المدفوعات"
+
+msgid "Actions"
+msgstr "إجراءات"
+
+msgid "paid"
+msgstr "مدفوع"
+
+msgid "unpaid"
+msgstr "غير مدفوع"
+
+# Nav items
+msgid "Dashboard"
+msgstr "اللوحة"
+
+msgid "Unpaid"
+msgstr "غير مدفوع"
+
+msgid "Chart of Accounts"
+msgstr "شجرة الحسابات"
+
+msgid "New Journal Entry"
+msgstr "قيد يومية جديد"
+
+msgid "General Ledger"
+msgstr "دفتر الأستاذ"
+
+msgid "Trial Balance"
+msgstr "ميزان المراجعة"
+
+msgid "Income Statement"
+msgstr "بيان الدخل"
+
+msgid "Balance Sheet"
+msgstr "الميزانية العمومية"
+
+msgid "AR Aging"
+msgstr "تقادم الذمم المدينة"
+
+msgid "Financial Overview"
+msgstr "نظرة مالية عامة"
