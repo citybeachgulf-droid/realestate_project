@@ -600,11 +600,41 @@ def contracts_list():
 def contracts_create():
     from ..models import User
     if request.method == "POST":
-        property_id = int(request.form.get("property_id"))
-        tenant_id = int(request.form.get("tenant_id"))
-        start_date = request.form.get("start_date")
-        end_date = request.form.get("end_date")
-        rent_amount = request.form.get("rent_amount")
+        # Basic parsing and validation
+        from datetime import datetime
+        from decimal import Decimal, InvalidOperation
+
+        # Validate required selections
+        try:
+            property_id = int(request.form.get("property_id"))
+            tenant_id = int(request.form.get("tenant_id"))
+        except (TypeError, ValueError):
+            flash(_("Invalid property or tenant selection"), "danger")
+            return redirect(url_for("employee.contracts_create"))
+
+        # Parse dates from YYYY-MM-DD into Python date objects
+        start_date_raw = (request.form.get("start_date") or "").strip()
+        end_date_raw = (request.form.get("end_date") or "").strip()
+        try:
+            start_date = datetime.strptime(start_date_raw, "%Y-%m-%d").date()
+            end_date = datetime.strptime(end_date_raw, "%Y-%m-%d").date()
+        except ValueError:
+            flash(_("Invalid date format. Please use YYYY-MM-DD."), "danger")
+            return redirect(url_for("employee.contracts_create"))
+
+        if start_date > end_date:
+            flash(_("End date must be on or after start date."), "danger")
+            return redirect(url_for("employee.contracts_create"))
+
+        # Parse rent amount into Decimal
+        rent_amount_raw = (request.form.get("rent_amount") or "").strip()
+        try:
+            rent_amount = Decimal(rent_amount_raw)
+            if rent_amount < 0:
+                raise InvalidOperation()
+        except Exception:
+            flash(_("Invalid rent amount."), "danger")
+            return redirect(url_for("employee.contracts_create"))
         # Save optional contract document (validate type and uniquify filename)
         doc = request.files.get("document")
         document_path = None
