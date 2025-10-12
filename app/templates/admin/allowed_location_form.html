@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}{{ location and _('Edit Location') or _('New Location') }}{% endblock %}
+{% block content %}
+<h3 class="mb-3"><i class="bi bi-geo"></i> {{ location and _('Edit Location') or _('New Location') }}</h3>
+<form method="post" class="row g-3" autocomplete="off">
+  <div class="col-md-6">
+    <label class="form-label">{{ _('Name') }}</label>
+    <input type="text" name="name" class="form-control" value="{{ location and location.name or '' }}" required />
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">{{ _('Latitude') }}</label>
+    <input type="number" step="0.000001" name="latitude" class="form-control" value="{{ location and location.latitude or '' }}" required />
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">{{ _('Longitude') }}</label>
+    <input type="number" step="0.000001" name="longitude" class="form-control" value="{{ location and location.longitude or '' }}" required />
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">{{ _('Radius (m)') }}</label>
+    <input type="number" min="10" step="1" name="radius_meters" class="form-control" value="{{ location and location.radius_meters or 100 }}" required />
+  </div>
+  <div class="col-md-3 form-check align-self-end ms-2">
+    <input type="checkbox" class="form-check-input" id="activeCheck" name="active" {% if not location or location.active %}checked{% endif %} />
+    <label class="form-check-label" for="activeCheck">{{ _('Active') }}</label>
+  </div>
+  <div class="col-12 mt-2">
+    <button class="btn btn-primary" type="submit"><i class="bi bi-save"></i> {{ _('Save') }}</button>
+    <a class="btn btn-secondary" href="{{ url_for('admin.allowed_locations_list') }}">{{ _('Cancel') }}</a>
+  </div>
+</form>
+{% endblock %}

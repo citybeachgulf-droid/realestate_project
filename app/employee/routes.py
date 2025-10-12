@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, abort, request, redirect, url_for,
 from flask_login import login_required, current_user
 from flask_babel import gettext as _
 from ..extensions import db
-from ..models import Property, Contract, MaintenanceRequest, Complaint, Apartment, Payment, User, Attendance
+from ..models import Property, Contract, MaintenanceRequest, Complaint, Apartment, Payment, User, Attendance, AllowedLocation
 from werkzeug.utils import secure_filename
 import uuid
 import os
@@ -22,6 +22,18 @@ def employee_required(func):
         return func(*args, **kwargs)
 
     return wrapper
+
+
+def _haversine_meters(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    import math
+    r = 6371000.0  # Earth radius in meters
+    phi1 = math.radians(lat1)
+    phi2 = math.radians(lat2)
+    dphi = math.radians(lat2 - lat1)
+    dlambda = math.radians(lon2 - lon1)
+    a = math.sin(dphi / 2) ** 2 + math.cos(phi1) * math.cos(phi2) * math.sin(dlambda / 2) ** 2
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    return r * c
 
 
 @employee_bp.route("/")
@@ -151,6 +163,27 @@ def attendance_action(action: str):
     lng = data.get("lng")
     now = datetime.now()
     today = date.today()
+
+    # Enforce allowed geofenced locations if any are defined
+    active_locations = AllowedLocation.query.filter(AllowedLocation.active == True).all()  # noqa: E712
+    if active_locations:
+        # Require coordinates if geofencing is configured
+        try:
+            lat_val = float(lat)
+            lng_val = float(lng)
+        except (TypeError, ValueError):
+            return jsonify({"error": "لا يمكن إتمام العملية بدون تحديد الموقع"}), 400
+        within_allowed = False
+        for loc in active_locations:
+            try:
+                dist = _haversine_meters(lat_val, lng_val, float(loc.latitude), float(loc.longitude))
+            except Exception:
+                continue
+            if dist <= float(loc.radius_meters or 0):
+                within_allowed = True
+                break
+        if not within_allowed:
+            return jsonify({"error": "الموقع الحالي خارج النطاق المسموح به للتسجيل"}), 400
 
     # Find or create today's attendance record
     record = Attendance.query.filter(

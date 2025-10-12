@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, jsonify
 from flask_login import login_required, current_user
 from flask_babel import gettext as _
-from ..models import Property, Contract, Payment, User, Apartment, Attendance
+from ..models import Property, Contract, Payment, User, Apartment, Attendance, AllowedLocation
 from ..extensions import db
 from flask import request, redirect, url_for, flash
 from datetime import date, datetime, timedelta
@@ -24,6 +24,88 @@ def admin_required(func):
 
     return wrapper
 
+
+@admin_bp.route("/allowed-locations")
+@login_required
+@admin_required
+def allowed_locations_list():
+    locations = AllowedLocation.query.order_by(AllowedLocation.created_at.desc()).all()
+    return render_template("admin/allowed_locations_list.html", locations=locations)
+
+
+@admin_bp.route("/allowed-locations/new", methods=["GET", "POST"])
+@login_required
+@admin_required
+def allowed_locations_new():
+    if request.method == "POST":
+        name = (request.form.get("name") or "").strip()
+        lat = request.form.get("latitude")
+        lng = request.form.get("longitude")
+        radius = request.form.get("radius_meters")
+        active = True if (request.form.get("active") == "on") else False
+        if not name:
+            flash(_("All fields are required"), "warning")
+            return redirect(url_for("admin.allowed_locations_new"))
+        try:
+            lat_v = float(lat)
+            lng_v = float(lng)
+            radius_v = int(radius)
+        except Exception:
+            flash(_("Invalid coordinates or radius"), "danger")
+            return redirect(url_for("admin.allowed_locations_new"))
+        loc = AllowedLocation(
+            name=name,
+            latitude=lat_v,
+            longitude=lng_v,
+            radius_meters=radius_v,
+            active=active,
+            created_by_user_id=getattr(current_user, "id", None),
+        )
+        db.session.add(loc)
+        db.session.commit()
+        flash(_("Location created"), "success")
+        return redirect(url_for("admin.allowed_locations_list"))
+    return render_template("admin/allowed_location_form.html", location=None)
+
+
+@admin_bp.route("/allowed-locations/<int:loc_id>/edit", methods=["GET", "POST"])
+@login_required
+@admin_required
+def allowed_locations_edit(loc_id: int):
+    loc = AllowedLocation.query.get_or_404(loc_id)
+    if request.method == "POST":
+        name = (request.form.get("name") or "").strip()
+        lat = request.form.get("latitude")
+        lng = request.form.get("longitude")
+        radius = request.form.get("radius_meters")
+        active = True if (request.form.get("active") == "on") else False
+        if not name:
+            flash(_("All fields are required"), "warning")
+            return redirect(url_for("admin.allowed_locations_edit", loc_id=loc.id))
+        try:
+            loc.latitude = float(lat)
+            loc.longitude = float(lng)
+            loc.radius_meters = int(radius)
+        except Exception:
+            flash(_("Invalid coordinates or radius"), "danger")
+            return redirect(url_for("admin.allowed_locations_edit", loc_id=loc.id))
+        loc.name = name
+        loc.active = active
+        db.session.commit()
+        flash(_("Location updated"), "success")
+        return redirect(url_for("admin.allowed_locations_list"))
+    return render_template("admin/allowed_location_form.html", location=loc)
+
+
+@admin_bp.route("/allowed-locations/<int:loc_id>/delete", methods=["POST"])
+@login_required
+@admin_required
+def allowed_locations_delete(loc_id: int):
+    loc = AllowedLocation.query.get_or_404(loc_id)
+    db.session.delete(loc)
+    db.session.commit()
+    flash(_("Location deleted"), "info")
+    return redirect(url_for("admin.allowed_locations_list"))
 
 @admin_bp.route("/")
 @login_required

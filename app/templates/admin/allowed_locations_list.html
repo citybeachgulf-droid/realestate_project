@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}{{ _('Allowed Locations') }}{% endblock %}
+{% block content %}
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <h3><i class="bi bi-geo"></i> {{ _('Allowed Locations') }}</h3>
+  <a href="{{ url_for('admin.allowed_locations_new') }}" class="btn btn-primary btn-sm">
+    <i class="bi bi-plus"></i> {{ _('New Location') }}
+  </a>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped align-middle">
+    <thead>
+      <tr>
+        <th>{{ _('Name') }}</th>
+        <th>{{ _('Latitude') }}</th>
+        <th>{{ _('Longitude') }}</th>
+        <th>{{ _('Radius (m)') }}</th>
+        <th>{{ _('Active') }}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for l in locations %}
+      <tr>
+        <td>{{ l.name }}</td>
+        <td>{{ '%.6f'|format(l.latitude) }}</td>
+        <td>{{ '%.6f'|format(l.longitude) }}</td>
+        <td>{{ l.radius_meters }}</td>
+        <td>
+          {% if l.active %}<span class="badge bg-success">{{ _('Yes') }}</span>
+          {% else %}<span class="badge bg-secondary">{{ _('No') }}</span>{% endif %}
+        </td>
+        <td class="text-end">
+          <a class="btn btn-sm btn-outline-primary" href="{{ url_for('admin.allowed_locations_edit', loc_id=l.id) }}">
+            <i class="bi bi-pencil"></i> {{ _('Edit') }}
+          </a>
+          <form action="{{ url_for('admin.allowed_locations_delete', loc_id=l.id) }}" method="post" class="d-inline" onsubmit="return confirm('{{ _('Delete this location?') }}');">
+            <button class="btn btn-sm btn-outline-danger" type="submit"><i class="bi bi-trash"></i> {{ _('Delete') }}</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+      {% if not locations %}
+      <tr><td colspan="6" class="text-center text-muted">{{ _('No locations yet') }}</td></tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
