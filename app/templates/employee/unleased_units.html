@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}{{ _('Unleased Units') }}{% endblock %}
+
+{% block content %}
+<style>
+.grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+.property-card { border-radius: 14px; overflow: hidden; box-shadow: 0 4px 14px rgba(0,0,0,0.08); background: #fff; transition: 0.3s ease; }
+.property-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+.property-card img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-bottom: 3px solid #f8f9fa; }
+.property-info { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; font-size: 0.95rem; }
+.property-status { font-weight: 600; }
+.status-available { color: #198754; }
+.section-title { color: #0d6efd; font-weight: bold; margin: 20px 0 12px; display: flex; align-items: center; gap: 6px; }
+.section-title i { font-size: 1.2rem; }
+.subtle { color: #6c757d; font-size: 0.9rem; }
+</style>
+
+<h3 class="mb-3 text-primary"><i class="bi bi-door-closed"></i> {{ _('Unleased Units') }}</h3>
+
+<h5 class="section-title"><i class="bi bi-house"></i> {{ _('Apartments inside buildings') }}</h5>
+<div class="grid-container mb-4">
+  {% for a in building_apartments %}
+  {% set building = buildings_by_id.get(a.building_id) %}
+  <div class="property-card">
+    {% set first_image = (a.images or '').split(',')[0] %}
+    <img src="{{ first_image and url_for('uploaded_file', filename=first_image) or url_for('static', filename='default-apartment.jpg') }}" alt="{{ a.title or (a.number and ( _('Apartment') ~ ' ' ~ a.number )) or _('Apartment') }}">
+    <div class="property-info">
+      <div>
+        <div>{{ a.title or (a.number and ( _('Apartment') ~ ' ' ~ a.number )) or _('Apartment') }}</div>
+        <div class="subtle">{{ _('Building') }}: {{ building and building.title or ('#' ~ a.building_id) }}</div>
+      </div>
+      <span class="property-status status-available">{{ _('Available') }}</span>
+    </div>
+  </div>
+  {% else %}
+  <div class="col-12 text-center text-muted py-4">{{ _('No apartments available') }}</div>
+  {% endfor %}
+</div>
+
+<h5 class="section-title"><i class="bi bi-house-door"></i> {{ _('Standalone Apartments') }}</h5>
+<div class="grid-container">
+  {% for p in standalone_apartments %}
+  <div class="property-card">
+    {% set first_p_image = (p.images or '').split(',')[0] %}
+    <img src="{{ first_p_image and url_for('uploaded_file', filename=first_p_image) or url_for('static', filename='default-apartment.jpg') }}" alt="{{ p.title }}">
+    <div class="property-info">
+      <span>{{ p.title }}</span>
+      <span class="property-status status-available">{{ _('Available') }}</span>
+    </div>
+  </div>
+  {% else %}
+  <div class="col-12 text-center text-muted py-4">{{ _('No apartments available') }}</div>
+  {% endfor %}
+</div>
+{% endblock %}
