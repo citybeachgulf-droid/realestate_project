@@ -41,9 +41,13 @@
 <div class="grid-container">
   {% for a in apartments %}
   {% set first_image = (a.images or '').split(',')[0] %}
+  {# Inline SVG placeholder for items without images #}
+  {% set placeholder_data = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' fill='%23f1f3f5'/%3E%3Cpath d='M20 70 L60 40 L100 70 V100 H75 V80 H45 V100 H20 Z' fill='%23adb5bd'/%3E%3C/svg%3E" %}
   <a href="{{ url_for('employee.apartments_edit', apt_id=a.id) }}" class="text-decoration-none">
     <div class="property-card">
-      <img src="{{ first_image and url_for('uploaded_file', filename=first_image) or url_for('static', filename='default-apartment.jpg') }}" alt="{{ a.title or (a.number and ( _('Apartment') ~ ' ' ~ a.number )) or _('Apartment') }}">
+      <img src="{{ first_image and url_for('uploaded_file', filename=first_image) or placeholder_data }}"
+           alt="{{ a.title or (a.number and ( _('Apartment') ~ ' ' ~ a.number )) or _('Apartment') }}"
+           onerror="this.onerror=null;this.src='{{ placeholder_data }}';">
       <div class="property-info">
         <span>{{ a.title or (a.number and ( _('Apartment') ~ ' ' ~ a.number )) or _('Apartment') }}</span>
         {% if a.status == 'available' %}
