@@ -1,3 +1,6 @@
+# Misc flash messages
+msgid "Use the Share button to copy the link"
+msgstr "استخدم زر المشاركة لنسخ الرابط"
 
 msgid ""
 msgstr ""
@@ -247,6 +250,67 @@ msgstr "الصفحة غير موجودة"
 #: app/templates/base.html:6 app/templates/base.html:31
 msgid "Real Estate"
 msgstr "إدارة العقارات"
+# General UI
+msgid "Previous"
+msgstr "السابق"
+
+msgid "Next"
+msgstr "التالي"
+
+# Public property view
+msgid "No images available"
+msgstr "لا توجد صور متاحة"
+
+msgid "USD"
+msgstr "دولار"
+
+msgid "Location"
+msgstr "الموقع"
+
+msgid "Copied"
+msgstr "تم النسخ"
+
+msgid "Copy Link"
+msgstr "نسخ الرابط"
+
+# Employee dashboard / pages
+msgid "Rent Collection"
+msgstr "تحصيل الإيجار"
+
+msgid "Unleased Units"
+msgstr "وحدات غير مؤجرة"
+
+msgid "No properties yet"
+msgstr "لا توجد عقارات بعد"
+
+# Rent collection table
+msgid "Month starting"
+msgstr "بداية الشهر"
+
+msgid "Rent Amount"
+msgstr "قيمة الإيجار"
+
+msgid "This Month"
+msgstr "هذا الشهر"
+
+msgid "Action"
+msgstr "إجراء"
+
+msgid "No contract"
+msgstr "لا يوجد عقد"
+
+msgid "Unavailable"
+msgstr "غير متاح"
+
+msgid "Paid"
+msgstr "مدفوع"
+
+msgid "Mark as Paid"
+msgstr "وضع علامة كمدفوع"
+
+# Tenant detail pages
+msgid "Employee Notes"
+msgstr "ملاحظات الموظف"
 
 # Newly added strings
 #: app/templates/base.html:39
