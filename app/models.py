@@ -22,6 +22,8 @@ class User(UserMixin, db.Model, TimestampMixin):
     role = db.Column(db.String(32), nullable=False, index=True)
 
     contracts = db.relationship("Contract", back_populates="tenant", lazy="dynamic")
+    # Attendance records for employees
+    attendances = db.relationship("Attendance", back_populates="employee", lazy="dynamic")
 
     def set_password(self, password: str) -> None:
         self.password_hash = generate_password_hash(password)
@@ -232,3 +234,24 @@ class Complaint(db.Model, TimestampMixin):
 
 
 # Single-tenant: removed Company and master bind usage
+
+
+class Attendance(db.Model, TimestampMixin):
+    __tablename__ = "attendance"
+
+    id = db.Column(db.Integer, primary_key=True)
+    employee_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False, index=True)
+    date = db.Column(db.Date, nullable=False, index=True)
+    check_in_time = db.Column(db.DateTime)
+    check_out_time = db.Column(db.DateTime)
+    latitude = db.Column(db.Float)
+    longitude = db.Column(db.Float)
+    # Optional status label, e.g., present/absent/late
+    status = db.Column(db.String(50))
+
+    employee = db.relationship("User", back_populates="attendances")
+
+    __table_args__ = (
+        db.UniqueConstraint("employee_id", "date", name="uix_attendance_employee_date"),
+        db.Index("ix_attendance_employee_date", "employee_id", "date"),
+    )

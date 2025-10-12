@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% block title %}{{ _('Attendance') }}{% endblock %}
+{% block content %}
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <h3><i class="bi bi-clock"></i> {{ _('Attendance') }}</h3>
+  <div class="text-muted">{{ _('User') }}: {{ current_user.username }}</div>
+  </div>
+
+<div class="card">
+  <div class="card-body">
+    <div class="mb-3">
+      <span class="me-2">{{ _('Today status') }}:</span>
+      {% if status == 'present' %}
+        <span class="badge bg-success">{{ _('Present') }}</span>
+      {% elif status == 'checked_in' %}
+        <span class="badge bg-info text-dark">{{ _('Checked-in') }}</span>
+      {% else %}
+        <span class="badge bg-secondary">{{ _('Absent') }}</span>
+      {% endif %}
+    </div>
+
+    <div class="d-flex gap-2">
+      <button id="btnCheckIn" class="btn btn-primary">
+        <i class="bi bi-box-arrow-in-right"></i> {{ _('Check-in') }}
+      </button>
+      <button id="btnCheckOut" class="btn btn-outline-danger">
+        <i class="bi bi-box-arrow-right"></i> {{ _('Check-out') }}
+      </button>
+    </div>
+
+    {% if record %}
+    <div class="mt-3">
+      <div class="small text-muted">{{ _('Check-in time') }}: {{ record.check_in_time or '-' }}</div>
+      <div class="small text-muted">{{ _('Check-out time') }}: {{ record.check_out_time or '-' }}</div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<div id="alertBox" class="alert d-none mt-3" role="alert"></div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // Initial button states based on status
+  (function initButtons() {
+    const status = {{ ("'" + (status or '') + "'") | safe }};
+    const btnIn = document.getElementById('btnCheckIn');
+    const btnOut = document.getElementById('btnCheckOut');
+    if (status === 'absent') {
+      btnIn.disabled = false;
+      btnOut.disabled = true;
+    } else if (status === 'checked_in') {
+      btnIn.disabled = true;
+      btnOut.disabled = false;
+    } else { // present
+      btnIn.disabled = true;
+      btnOut.disabled = true;
+    }
+  })();
+
+  function showAlert(kind, text) {
+    const el = document.getElementById('alertBox');
+    el.className = 'alert alert-' + kind;
+    el.textContent = text;
+    el.classList.remove('d-none');
+    setTimeout(() => { el.classList.add('d-none'); }, 2500);
+  }
+
+  async function postAttendance(action, coords) {
+    const url = `{{ url_for('employee.attendance_action', action='__ACTION__') }}`.replace('__ACTION__', action);
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ lat: coords?.latitude ?? null, lng: coords?.longitude ?? null })
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || 'Request failed');
+    return data;
+  }
+
+  function getLocation() {
+    return new Promise((resolve) => {
+      if (!navigator.geolocation) return resolve(null);
+      navigator.geolocation.getCurrentPosition(
+        pos => resolve(pos.coords),
+        _err => resolve(null),
+        { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
+      );
+    });
+  }
+
+  async function handleAction(action) {
+    const btnIn = document.getElementById('btnCheckIn');
+    const btnOut = document.getElementById('btnCheckOut');
+    btnIn.disabled = btnOut.disabled = true;
+    try {
+      const coords = await getLocation();
+      const result = await postAttendance(action, coords);
+      showAlert('success', result.message || 'Success');
+      setTimeout(() => window.location.reload(), 600);
+    } catch (e) {
+      showAlert('danger', e.message || 'Error');
+      // Re-enable to allow retry
+      const status = {{ ("'" + (status or '') + "'") | safe }};
+      if (status === 'absent') { btnIn.disabled = false; }
+      if (status === 'checked_in') { btnOut.disabled = false; }
+    }
+  }
+
+  document.getElementById('btnCheckIn').addEventListener('click', () => handleAction('checkin'));
+  document.getElementById('btnCheckOut').addEventListener('click', () => handleAction('checkout'));
+</script>
+{% endblock %}

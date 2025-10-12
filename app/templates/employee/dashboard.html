@@ -99,6 +99,16 @@ h3.dashboard-title {
     <span class="title">{{ _('Rent Collection') }}</span>
   </div>
 
+  <div class="dashboard-card" onclick="window.location.href='{{ url_for('employee.attendance_page') }}'">
+    <i class="bi bi-clock icon-green"></i>
+    <span class="title">{{ _('Attendance') }}</span>
+    <span class="badge-status">
+      {% if attendance_status == 'present' %}{{ _('Present') }}
+      {% elif attendance_status == 'checked_in' %}{{ _('Checked-in') }}
+      {% else %}{{ _('Absent') }}{% endif %}
+    </span>
+  </div>
+
   <div class="dashboard-card" onclick="window.location.href='{{ url_for('employee.maintenance_list') }}'">
     <i class="bi bi-tools icon-orange"></i>
     <span class="title">{{ _('Maintenance Requests') }}</span>

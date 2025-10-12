@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, jsonify
 from flask_login import login_required, current_user
 from flask_babel import gettext as _
-from ..models import Property, Contract, Payment, User, Apartment
+from ..models import Property, Contract, Payment, User, Apartment, Attendance
 from ..extensions import db
 from flask import request, redirect, url_for, flash
 from datetime import date, datetime, timedelta
@@ -244,6 +244,211 @@ def users_list():
         query = query.filter_by(role=role)
     users = query.order_by(User.created_at.desc()).all()
     return render_template("admin/users_list.html", users=users)
+
+
+@admin_bp.route("/attendance")
+@login_required
+@admin_required
+def attendance_dashboard():
+    from datetime import date, datetime
+    from flask import request
+
+    # Filters
+    date_str = (request.args.get("date") or "").strip()
+    try:
+        selected_date = datetime.strptime(date_str, "%Y-%m-%d").date() if date_str else date.today()
+    except ValueError:
+        selected_date = date.today()
+    employee_id = (request.args.get("employee_id") or "").strip()
+    try:
+        employee_id_int = int(employee_id) if employee_id else None
+    except ValueError:
+        employee_id_int = None
+
+    employees_q = User.query.filter(User.role == "employee").order_by(User.username.asc())
+    employees = employees_q.all()
+    if employee_id_int:
+        employees = [e for e in employees if e.id == employee_id_int]
+
+    def compute_hours(att: Attendance) -> float:
+        if att is None or att.check_in_time is None:
+            return 0.0
+        end_time = att.check_out_time or datetime.now()
+        total_seconds = max((end_time - att.check_in_time).total_seconds(), 0)
+        return round(total_seconds / 3600.0, 2)
+
+    rows = []
+    for emp in employees:
+        record = (
+            Attendance.query.filter(
+                Attendance.employee_id == emp.id,
+                Attendance.date == selected_date,
+            ).first()
+        )
+        if record is None:
+            status = "absent"
+        elif record.check_in_time and not record.check_out_time:
+            status = "checked_in"
+        else:
+            status = "present"
+        rows.append(
+            {
+                "employee": emp,
+                "record": record,
+                "status": status,
+                "hours": compute_hours(record),
+            }
+        )
+
+    return render_template(
+        "admin/attendance.html",
+        rows=rows,
+        employees=User.query.filter(User.role == "employee").order_by(User.username.asc()).all(),
+        selected_date=selected_date,
+        selected_employee_id=employee_id_int,
+    )
+
+
+@admin_bp.route("/attendance/export/excel")
+@login_required
+@admin_required
+def attendance_export_excel():
+    from datetime import date, datetime
+    from flask import request, send_file
+    from io import BytesIO
+    import openpyxl
+
+    date_str = (request.args.get("date") or "").strip()
+    try:
+        selected_date = datetime.strptime(date_str, "%Y-%m-%d").date() if date_str else date.today()
+    except ValueError:
+        selected_date = date.today()
+    employee_id = (request.args.get("employee_id") or "").strip()
+    try:
+        employee_id_int = int(employee_id) if employee_id else None
+    except ValueError:
+        employee_id_int = None
+
+    employees_q = User.query.filter(User.role == "employee").order_by(User.username.asc())
+    if employee_id_int:
+        employees_q = employees_q.filter(User.id == employee_id_int)
+    employees = employees_q.all()
+
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "Attendance"
+    ws.append(["Employee", "Date", "Check-in", "Check-out", "Hours", "Latitude", "Longitude", "Status"])
+
+    def compute_hours(att: Attendance) -> float:
+        if att is None or att.check_in_time is None:
+            return 0.0
+        end_time = att.check_out_time or datetime.now()
+        total_seconds = max((end_time - att.check_in_time).total_seconds(), 0)
+        return round(total_seconds / 3600.0, 2)
+
+    for emp in employees:
+        record = (
+            Attendance.query.filter(
+                Attendance.employee_id == emp.id,
+                Attendance.date == selected_date,
+            ).first()
+        )
+        status = (
+            "absent"
+            if record is None
+            else ("checked_in" if record.check_in_time and not record.check_out_time else "present")
+        )
+        ws.append([
+            emp.username,
+            selected_date.isoformat(),
+            record.check_in_time.isoformat(sep=" ") if record and record.check_in_time else "",
+            record.check_out_time.isoformat(sep=" ") if record and record.check_out_time else "",
+            compute_hours(record),
+            getattr(record, "latitude", None) if record else None,
+            getattr(record, "longitude", None) if record else None,
+            status,
+        ])
+
+    stream = BytesIO()
+    wb.save(stream)
+    stream.seek(0)
+    filename = f"attendance_{selected_date.isoformat()}.xlsx"
+    return send_file(stream, as_attachment=True, download_name=filename, mimetype="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+
+
+@admin_bp.route("/attendance/export/pdf")
+@login_required
+@admin_required
+def attendance_export_pdf():
+    from datetime import date, datetime
+    from flask import request, send_file
+    from io import BytesIO
+    from reportlab.lib.pagesizes import A4
+    from reportlab.pdfgen import canvas
+
+    date_str = (request.args.get("date") or "").strip()
+    try:
+        selected_date = datetime.strptime(date_str, "%Y-%m-%d").date() if date_str else date.today()
+    except ValueError:
+        selected_date = date.today()
+    employee_id = (request.args.get("employee_id") or "").strip()
+    try:
+        employee_id_int = int(employee_id) if employee_id else None
+    except ValueError:
+        employee_id_int = None
+
+    employees_q = User.query.filter(User.role == "employee").order_by(User.username.asc())
+    if employee_id_int:
+        employees_q = employees_q.filter(User.id == employee_id_int)
+    employees = employees_q.all()
+
+    def compute_hours(att: Attendance) -> float:
+        if att is None or att.check_in_time is None:
+            return 0.0
+        end_time = att.check_out_time or datetime.now()
+        total_seconds = max((end_time - att.check_in_time).total_seconds(), 0)
+        return round(total_seconds / 3600.0, 2)
+
+    buffer = BytesIO()
+    c = canvas.Canvas(buffer, pagesize=A4)
+    width, height = A4
+    y = height - 50
+    c.setFont("Helvetica-Bold", 14)
+    c.drawString(40, y, f"Attendance Report — {selected_date.isoformat()}")
+    y -= 30
+    c.setFont("Helvetica", 10)
+    c.drawString(40, y, "Employee")
+    c.drawString(200, y, "Check-in")
+    c.drawString(320, y, "Check-out")
+    c.drawString(440, y, "Hours")
+    y -= 15
+    c.line(40, y, width - 40, y)
+    y -= 10
+
+    for emp in employees:
+        record = (
+            Attendance.query.filter(
+                Attendance.employee_id == emp.id,
+                Attendance.date == selected_date,
+            ).first()
+        )
+        checkin = record.check_in_time.strftime("%Y-%m-%d %H:%M") if record and record.check_in_time else "-"
+        checkout = record.check_out_time.strftime("%Y-%m-%d %H:%M") if record and record.check_out_time else "-"
+        hours = f"{compute_hours(record):.2f}"
+        if y < 80:
+            c.showPage()
+            y = height - 50
+        c.drawString(40, y, emp.username)
+        c.drawString(200, y, checkin)
+        c.drawString(320, y, checkout)
+        c.drawString(440, y, hours)
+        y -= 18
+
+    c.showPage()
+    c.save()
+    buffer.seek(0)
+    filename = f"attendance_{selected_date.isoformat()}.pdf"
+    return send_file(buffer, as_attachment=True, download_name=filename, mimetype="application/pdf")
 
 
 @admin_bp.route("/users/new/<role>", methods=["GET", "POST"])
