@@ -177,11 +177,34 @@ def unleased_units_employee():
         buildings = Property.query.filter(Property.id.in_(building_ids)).all()
         buildings_by_id = {b.id: b for b in buildings}
 
+    # Prepare share URLs for public viewing
+    secret_key = current_app.config.get("SECRET_KEY")
+    prop_serializer = URLSafeSerializer(secret_key, salt="property-share")
+    apt_serializer = URLSafeSerializer(secret_key, salt="apartment-share")
+
+    property_share_urls = {}
+    for p in standalone_apartments:
+        try:
+            token = prop_serializer.dumps(p.id)
+            property_share_urls[p.id] = url_for("public_property_view", token=token, _external=True)
+        except Exception:
+            property_share_urls[p.id] = ""
+
+    apartment_share_urls = {}
+    for a in building_apartments:
+        try:
+            token = apt_serializer.dumps(a.id)
+            apartment_share_urls[a.id] = url_for("public_apartment_view", token=token, _external=True)
+        except Exception:
+            apartment_share_urls[a.id] = ""
+
     return render_template(
         "employee/unleased_units.html",
         standalone_apartments=standalone_apartments,
         building_apartments=building_apartments,
         buildings_by_id=buildings_by_id,
+        property_share_urls=property_share_urls,
+        apartment_share_urls=apartment_share_urls,
     )
 
 

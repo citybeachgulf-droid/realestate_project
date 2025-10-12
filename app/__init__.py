@@ -104,7 +104,7 @@ def create_app(config_class: type = Config) -> Flask:
         except Exception:
             pass
 
-    # --- Public Share Route for Property Details ---
+    # --- Public Share Routes for Property and Apartment Details ---
     def _get_property_share_serializer() -> URLSafeSerializer:
         secret_key = app.config.get("SECRET_KEY")
         return URLSafeSerializer(secret_key, salt="property-share")
@@ -129,6 +129,35 @@ def create_app(config_class: type = Config) -> Flask:
         return render_template(
             "public/property_view.html",
             prop=prop,
+            images=images,
+        )
+
+    def _get_apartment_share_serializer() -> URLSafeSerializer:
+        secret_key = app.config.get("SECRET_KEY")
+        return URLSafeSerializer(secret_key, salt="apartment-share")
+
+    @app.route("/a/<token>")
+    def public_apartment_view(token: str):
+        try:
+            serializer = _get_apartment_share_serializer()
+            apartment_id = serializer.loads(token)
+        except BadSignature:
+            return abort(404)
+
+        from .models import Apartment, Property  # local import to avoid circulars
+
+        apt = Apartment.query.get_or_404(int(apartment_id))
+        building = Property.query.get_or_404(int(apt.building_id))
+
+        # Prepare images list from stored comma-separated paths
+        images = []
+        if apt.images:
+            images = [p.strip() for p in apt.images.split(",") if p.strip()]
+
+        return render_template(
+            "public/apartment_view.html",
+            apt=apt,
+            building=building,
             images=images,
         )
 

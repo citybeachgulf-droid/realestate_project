@@ -29,7 +29,13 @@
         <div>{{ a.title or (a.number and ( _('Apartment') ~ ' ' ~ a.number )) or _('Apartment') }}</div>
         <div class="subtle">{{ _('Building') }}: {{ building and building.title or ('#' ~ a.building_id) }}</div>
       </div>
-      <span class="property-status status-available">{{ _('Available') }}</span>
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-sm btn-outline-primary" type="button"
+                onclick="navigator.clipboard.writeText('{{ apartment_share_urls.get(a.id) }}'); this.innerText='{{ _('Copied') }}'; setTimeout(()=>this.innerText='{{ _('Share') }}',1500);">
+          <i class="bi bi-share"></i> {{ _('Share') }}
+        </button>
+        <span class="property-status status-available">{{ _('Available') }}</span>
+      </div>
     </div>
   </div>
   {% else %}
@@ -45,7 +51,13 @@
     <img src="{{ first_p_image and url_for('uploaded_file', filename=first_p_image) or url_for('static', filename='default-apartment.jpg') }}" alt="{{ p.title }}">
     <div class="property-info">
       <span>{{ p.title }}</span>
-      <span class="property-status status-available">{{ _('Available') }}</span>
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-sm btn-outline-primary" type="button"
+                onclick="navigator.clipboard.writeText('{{ property_share_urls.get(p.id) }}'); this.innerText='{{ _('Copied') }}'; setTimeout(()=>this.innerText='{{ _('Share') }}',1500);">
+          <i class="bi bi-share"></i> {{ _('Share') }}
+        </button>
+        <span class="property-status status-available">{{ _('Available') }}</span>
+      </div>
     </div>
   </div>
   {% else %}
