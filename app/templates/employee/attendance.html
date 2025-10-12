@@ -85,7 +85,12 @@
       if (!navigator.geolocation) return resolve(null);
       navigator.geolocation.getCurrentPosition(
         pos => resolve(pos.coords),
-        _err => resolve(null),
+        err => {
+          // Surface geolocation errors to the user for clarity
+          const msg = err && err.message ? err.message : 'Location unavailable';
+          showAlert('warning', msg);
+          resolve(null);
+        },
         { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
       );
     });

@@ -255,3 +255,16 @@ class Attendance(db.Model, TimestampMixin):
         db.UniqueConstraint("employee_id", "date", name="uix_attendance_employee_date"),
         db.Index("ix_attendance_employee_date", "employee_id", "date"),
     )
+
+
+class AllowedLocation(db.Model, TimestampMixin):
+    __tablename__ = "allowed_locations"
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), nullable=False)
+    latitude = db.Column(db.Float, nullable=False)
+    longitude = db.Column(db.Float, nullable=False)
+    radius_meters = db.Column(db.Integer, nullable=False, default=100)
+    active = db.Column(db.Boolean, nullable=False, default=True, index=True)
+    created_by_user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True, index=True)
+

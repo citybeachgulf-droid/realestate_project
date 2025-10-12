@@ -39,6 +39,7 @@
             <li class="nav-item"><a class="nav-link" href="{{ url_for('admin.dashboard') }}">{{ _('Admin') }}</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ url_for('admin.users_list') }}">{{ _('Users') }}</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ url_for('admin.attendance_dashboard') }}">{{ _('Attendance') }}</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('admin.allowed_locations_list') }}">{{ _('Allowed Locations') }}</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ url_for('employee.properties_list') }}">{{ _('Properties') }}</a></li>
             {% endif %}
             {% if current_user.role == 'employee' %}
