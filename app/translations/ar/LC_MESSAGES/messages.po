@@ -1,493 +1,2297 @@
+
 msgid ""
 msgstr ""
-"Project-Id-Version: real-estate\n"
-"POT-Creation-Date: 2025-10-01 00:00+0000\n"
+"Project-Id-Version:  real-estate\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-10-12 06:10+0000\n"
 "PO-Revision-Date: 2025-10-01 00:00+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ar\n"
+"Language-Team: ar <LL@li.org>\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : "
+"n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Generated-By: Babel 2.17.0\n"
 
-msgid "Real Estate"
-msgstr "إدارة العقارات"
-
-msgid "Login"
-msgstr "تسجيل الدخول"
-
-msgid "Logout"
-msgstr "تسجيل الخروج"
-
-msgid "Language"
-msgstr "اللغة"
-
-msgid "Username"
-msgstr "اسم المستخدم"
-
-msgid "Password"
-msgstr "كلمة المرور"
-
-msgid "Sign in"
-msgstr "دخول"
-
-msgid "Welcome back, %(user)s"
-msgstr "مرحباً بعودتك، %(user)s"
-
-msgid "Invalid credentials"
-msgstr "بيانات الدخول غير صحيحة"
-
-msgid "You have been logged out"
-msgstr "تم تسجيل الخروج"
-
-msgid "Admin Dashboard"
-msgstr "لوحة تحكم المدير"
-
-msgid "Properties"
-msgstr "العقارات"
-
-msgid "Active Contracts"
-msgstr "العقود النشطة"
-
-msgid "Total Revenue"
-msgstr "إجمالي الإيرادات"
-
-msgid "Employee Dashboard"
-msgstr "لوحة تحكم الموظف"
-
-msgid "Recent Properties"
-msgstr "أحدث العقارات"
-
-msgid "Recent Contracts"
-msgstr "أحدث العقود"
-
-msgid "No data"
-msgstr "لا توجد بيانات"
-
-msgid "Add Property"
-msgstr "إضافة عقار"
-
-msgid "Title"
-msgstr "العنوان"
-
-msgid "Price"
-msgstr "السعر"
-
-msgid "Status"
-msgstr "الحالة"
-
-msgid "Edit"
-msgstr "تعديل"
-
-msgid "Delete"
-msgstr "حذف"
-
-msgid "Are you sure?"
-msgstr "هل أنت متأكد؟"
-
-msgid "Edit Property"
-msgstr "تعديل العقار"
-
-msgid "Create Property"
-msgstr "إنشاء عقار"
-
-msgid "Description"
-msgstr "الوصف"
-
+#: app/accountant/routes.py:240 app/templates/accountant/dashboard.html:140
+#: app/templates/accountant/dashboard.html:244
+#: app/templates/accountant/properties.html:26
+#: app/templates/admin/unleased_units.html:32
+#: app/templates/admin/unleased_units.html:48
+#: app/templates/employee/apartment_form.html:87
+#: app/templates/employee/apartments_list.html:54
+#: app/templates/employee/dashboard.html:129
+#: app/templates/employee/properties_list.html:33
+#: app/templates/employee/properties_list.html:59
+#: app/templates/employee/property_form.html:98
+#: app/templates/employee/unleased_units.html:32
+#: app/templates/employee/unleased_units.html:48
 msgid "Available"
 msgstr "متاح"
 
+#: app/accountant/routes.py:240 app/templates/accountant/dashboard.html:141
+#: app/templates/accountant/dashboard.html:244
+#: app/templates/accountant/properties.html:27
+#: app/templates/employee/apartment_form.html:88
+#: app/templates/employee/apartments_list.html:56
+#: app/templates/employee/dashboard.html:131
+#: app/templates/employee/properties_list.html:34
+#: app/templates/employee/properties_list.html:61
+#: app/templates/employee/property_form.html:99
 msgid "Occupied"
 msgstr "مشغول"
 
-msgid "Maintenance"
-msgstr "صيانة"
+#: app/accountant/routes.py:409 app/accountant/routes.py:663
+#, fuzzy
+msgid "Invalid payment data"
+msgstr "مدفوعات غير مسددة"
 
-msgid "Save"
-msgstr "حفظ"
+#: app/accountant/routes.py:432
+msgid "Payment recorded for tenant"
+msgstr ""
 
-msgid "Cancel"
-msgstr "إلغاء"
-
-msgid "Property created"
-msgstr "تم إنشاء العقار"
-
-msgid "Property updated"
-msgstr "تم تحديث العقار"
-
-msgid "Property deleted"
-msgstr "تم حذف العقار"
-
-msgid "Tenant Dashboard"
-msgstr "لوحة تحكم المستأجر"
-
-msgid "My Contracts"
-msgstr "عقودي"
-
-msgid "Invoices & Payments"
-msgstr "الفواتير والمدفوعات"
-
-msgid "Due"
-msgstr "مستحق"
-
-msgid "Amount"
-msgstr "المبلغ"
-
-msgid "Accountant Dashboard"
-msgstr "لوحة تحكم المحاسب"
-
-msgid "Total Paid"
-msgstr "إجمالي المدفوع"
-
-msgid "Due Date"
-msgstr "تاريخ الاستحقاق"
-
-msgid "Toggle"
-msgstr "تبديل"
-
+#: app/accountant/routes.py:477
 msgid "Payment status updated"
 msgstr "تم تحديث حالة الدفعة"
 
-# Newly added strings
-msgid "Admin"
-msgstr "المشرف"
-
-msgid "Users"
-msgstr "المستخدمون"
-
-msgid "Employee"
-msgstr "الموظف"
-
-msgid "Tenant"
-msgstr "المستأجر"
-
-msgid "Accountant"
-msgstr "المحاسب"
-
-msgid "Employee notes"
-msgstr "ملاحظات الموظف"
-
-msgid "New Request"
-msgstr "طلب جديد"
-
-msgid "New Complaint"
-msgstr "شكوى جديدة"
-
-msgid "Subject"
-msgstr "الموضوع"
-
-msgid "Submit"
-msgstr "إرسال"
-
-msgid "Property (optional)"
-msgstr "العقار (اختياري)"
-
-msgid "Update"
-msgstr "تحديث"
-
-msgid "Contracts"
-msgstr "العقود"
-
-msgid "Add Contract"
-msgstr "إضافة عقد"
-
-msgid "Property"
-msgstr "العقار"
-
-msgid "Start"
-msgstr "البداية"
-
-msgid "End"
-msgstr "النهاية"
-
-msgid "Rent"
-msgstr "الإيجار"
-
-msgid "Create Contract"
-msgstr "إنشاء عقد"
-
-msgid "Contract Document (optional)"
-msgstr "مستند العقد (اختياري)"
-
-msgid "Update Maintenance Request"
-msgstr "تحديث طلب الصيانة"
-
-msgid "Update Complaint"
-msgstr "تحديث الشكوى"
-
-msgid "You do not have permission to access this page"
-msgstr "ليست لديك صلاحية للوصول إلى هذه الصفحة"
-
-msgid "Home"
-msgstr "الصفحة الرئيسية"
-
-msgid "Page not found"
+#: app/accountant/routes.py:666
+#, fuzzy
+msgid "Contract not found"
 msgstr "الصفحة غير موجودة"
 
-msgid "Admin Dashboard"
-msgstr "لوحة تحكم المشرف"
+#: app/accountant/routes.py:671
+#, fuzzy
+msgid "Payment created"
+msgstr "تم إنشاء العقار"
 
-msgid "Add Employee"
-msgstr "إضافة موظف"
-
-msgid "Add Employee / Accountant"
-msgstr "إضافة موظف / محاسب"
-
-msgid "Add Tenant"
-msgstr "إضافة مستأجر"
-
-msgid "Total"
-msgstr "الإجمالي"
-
-msgid "Email"
-msgstr "البريد الإلكتروني"
-
-msgid "Role"
-msgstr "الدور"
-
-msgid "Created"
-msgstr "تم الإنشاء"
-
-msgid "Create Employee"
-msgstr "إنشاء موظف"
-
-msgid "Create Tenant"
-msgstr "إنشاء مستأجر"
-
-msgid "Income"
-msgstr "الدخل"
-
-msgid "Expenses"
-msgstr "المصروفات"
-
-msgid "Profit"
-msgstr "الربح"
-
-msgid "Unleased Properties"
-msgstr "عقارات غير مؤجرة"
-
-msgid "Maintenance Requests > 24h"
-msgstr "طلبات صيانة لأكثر من 24 ساعة"
-
-# Filtering labels
-msgid "Filtered to unleased properties"
-msgstr "مصفاة لعرض العقارات غير المؤجرة"
-
-msgid "Clear filter"
-msgstr "إزالة التصفية"
-
-msgid "Generate Invoice"
-msgstr "إنشاء فاتورة"
-
-msgid "Download"
-msgstr "تحميل"
-
-msgid "Export Excel"
-msgstr "تصدير إكسل"
-
-msgid "Export PDF"
-msgstr "تصدير PDF"
-
-msgid "Add Building"
-msgstr "إضافة مبنى"
-
-msgid "Type"
-msgstr "النوع"
-
-msgid "Building"
-msgstr "بناية"
-
-msgid "Apartment"
-msgstr "شقة"
-
-msgid "Standalone Apartments"
-msgstr "شقق منفصلة"
-
-msgid "Number of apartments"
-msgstr "عدد الشقق"
-msgid "Bedrooms"
-msgstr "غرف النوم"
-
-msgid "Bathrooms"
-msgstr "الحمامات"
-
-msgid "Area (sqm)"
-msgstr "المساحة (م²)"
-
-msgid "Number of floors"
-msgstr "عدد الأدوار"
-
-msgid "Maintenance Request"
-msgstr "طلب صيانة"
-
-msgid "Created at"
-msgstr "أُنشئ في"
-
-msgid "Notes"
-msgstr "ملاحظات"
-
-msgid "Back to dashboard"
-msgstr "العودة إلى اللوحة"
-
-msgid "Complaint"
-msgstr "شكوى"
-
-msgid "Maintenance request submitted"
-msgstr "تم إرسال طلب الصيانة"
-
-msgid "Complaint submitted"
-msgstr "تم إرسال الشكوى"
-
-msgid "Contract created"
+#: app/accountant/routes.py:874
+#, fuzzy
+msgid "Account created"
 msgstr "تم إنشاء العقد"
 
-msgid "Invalid status"
-msgstr "حالة غير صالحة"
+#: app/accountant/routes.py:876
+msgid "Account code already exists"
+msgstr ""
 
-msgid "Maintenance request updated"
-msgstr "تم تحديث طلب الصيانة"
+#: app/accountant/routes.py:878
+#, fuzzy
+msgid "Invalid account data"
+msgstr "بيانات الدخول غير صحيحة"
 
-msgid "Complaint updated"
-msgstr "تم تحديث الشكوى"
+#: app/accountant/routes.py:912
+msgid "Expense recorded"
+msgstr ""
 
+#: app/accountant/routes.py:914
+#, fuzzy
+msgid "Invalid expense data"
+msgstr "بيانات الدخول غير صحيحة"
+
+#: app/accountant/routes.py:942
+#, fuzzy
+msgid "Invalid journal data"
+msgstr "بيانات الدخول غير صحيحة"
+
+#: app/accountant/routes.py:957
+#, fuzzy
+msgid "Journal entry created"
+msgstr "قيد يومية جديد"
+
+#: app/admin/routes.py:304 app/admin/routes.py:314 app/employee/routes.py:248
 msgid "All fields are required"
 msgstr "كل الحقول مطلوبة"
 
-msgid "Username or email already exists"
+#: app/admin/routes.py:340
+#, fuzzy
+msgid "Username already exists"
 msgstr "اسم المستخدم أو البريد موجود مسبقاً"
 
-msgid "Employee created successfully"
-msgstr "تم إنشاء الموظف بنجاح"
+#: app/admin/routes.py:340
+#, fuzzy
+msgid "Username or phone already exists"
+msgstr "اسم المستخدم أو البريد موجود مسبقاً"
 
+#: app/admin/routes.py:358 app/admin/routes.py:371
+#, fuzzy
+msgid "Invalid property selected"
+msgstr "تم حذف العقار"
+
+#: app/admin/routes.py:384
+msgid "Please select an apartment or enter its number"
+msgstr ""
+
+#: app/admin/routes.py:399
+msgid "Invalid apartment selected"
+msgstr ""
+
+#: app/admin/routes.py:412
+msgid "Selected apartment is no longer available"
+msgstr ""
+
+#: app/admin/routes.py:428
+msgid "Entered apartment number is not available"
+msgstr ""
+
+#: app/admin/routes.py:460
+msgid "Selected property is no longer available"
+msgstr ""
+
+#: app/admin/routes.py:482
 msgid "Accountant created successfully"
 msgstr "تم إنشاء محاسب بنجاح"
 
-msgid "Tenant created successfully"
+#: app/admin/routes.py:484
+msgid "Employee created successfully"
+msgstr "تم إنشاء الموظف بنجاح"
+
+#: app/admin/routes.py:516
+#, fuzzy
+msgid "Tenant and contract created successfully"
 msgstr "تم إنشاء المستأجر بنجاح"
 
-msgid "All Properties"
-msgstr "كل العقارات"
+#: app/auth/routes.py:21
+#, python-format
+msgid "Welcome back, %(user)s"
+msgstr "مرحباً بعودتك، %(user)s"
 
-# Accountant dashboard additional strings
-msgid "Modern, responsive overview for financial operations"
-msgstr "نظرة عامة حديثة ومتجاوبة للعمليات المالية"
+#: app/auth/routes.py:24
+msgid "Invalid credentials"
+msgstr "بيانات الدخول غير صحيحة"
 
-msgid "Tenants"
-msgstr "المستأجرون"
+#: app/auth/routes.py:34
+msgid "You have been logged out"
+msgstr "تم تسجيل الخروج"
 
-msgid "Payments"
-msgstr "المدفوعات"
+#: app/employee/routes.py:282 app/employee/routes.py:315
+#: app/employee/routes.py:396 app/employee/routes.py:480
+#: app/employee/routes.py:537
+#, python-format
+msgid "Invalid image type. Allowed: %(allowed)s"
+msgstr "نوع صورة غير صالح. المسموح: %(allowed)s"
 
-msgid "Invoices"
-msgstr "الفواتير"
+#: app/employee/routes.py:354
+msgid "Property created"
+msgstr "تم إنشاء العقار"
 
-msgid "Total Income"
-msgstr "إجمالي الدخل"
+#: app/employee/routes.py:407
+msgid "Property updated"
+msgstr "تم تحديث العقار"
 
-msgid "Total Expenses"
-msgstr "إجمالي المصروفات"
+#: app/employee/routes.py:417
+msgid "Use the Share button to copy the link"
+msgstr "استخدم زر المشاركة لنسخ الرابط"
 
-msgid "Net Profit"
-msgstr "صافي الربح"
+#: app/employee/routes.py:428
+msgid "Property deleted"
+msgstr "تم حذف العقار"
 
-msgid "Unpaid Payments"
-msgstr "مدفوعات غير مسددة"
+#: app/employee/routes.py:502
+#, fuzzy
+msgid "Apartment created"
+msgstr "تم إنشاء الشقة"
 
-msgid "Monthly Income vs Expenses vs Profit"
-msgstr "الدخل مقابل المصروفات مقابل الربح شهرياً"
+#: app/employee/routes.py:549
+#, fuzzy
+msgid "Apartment updated"
+msgstr "تم تحديث الشقة"
 
-msgid "Alerts"
-msgstr "التنبيهات"
+#: app/employee/routes.py:562
+#, fuzzy
+msgid "Apartment deleted"
+msgstr "تم حذف الشقة"
 
-msgid "Due Soon (next 7 days)"
-msgstr "مستحق قريباً (7 أيام القادمة)"
+#: app/employee/routes.py:593
+#, python-format
+msgid "Invalid file type. Allowed: %(allowed)s"
+msgstr "نوع ملف غير صالح. المسموح: %(allowed)s"
 
-msgid "No upcoming dues"
-msgstr "لا مستحقات قادمة"
+#: app/employee/routes.py:615
+msgid "Contract created"
+msgstr "تم إنشاء العقد"
 
-msgid "Overdue"
-msgstr "متأخر"
+#: app/employee/routes.py:632 app/employee/routes.py:653
+msgid "Invalid status"
+msgstr "حالة غير صالحة"
 
-msgid "No overdue items"
-msgstr "لا عناصر متأخرة"
+#: app/employee/routes.py:638
+msgid "Maintenance request updated"
+msgstr "تم تحديث طلب الصيانة"
 
-msgid "Units Total"
-msgstr "إجمالي الوحدات"
+#: app/employee/routes.py:659
+msgid "Complaint updated"
+msgstr "تم تحديث الشكوى"
 
-msgid "Active"
-msgstr "نشط"
+#: app/employee/routes.py:748
+#, fuzzy
+msgid "No active contract for this tenant"
+msgstr "لا يوجد عقد نشط لهذا المستأجر"
 
-msgid "Upcoming"
-msgstr "قادمة"
+#: app/employee/routes.py:795
+msgid "Rent marked as received"
+msgstr "تم وضع علامة استلام الإيجار"
 
-msgid "Maintenance Requests"
-msgstr "طلبات الصيانة"
+#: app/templates/403.html:6
+msgid "You do not have permission to access this page"
+msgstr "ليست لديك صلاحية للوصول إلى هذه الصفحة"
 
-msgid "New"
-msgstr "جديد"
+#: app/templates/403.html:7 app/templates/404.html:7
+msgid "Home"
+msgstr "الصفحة الرئيسية"
 
-msgid "In Progress"
-msgstr "قيد التنفيذ"
+#: app/templates/404.html:6
+msgid "Page not found"
+msgstr "الصفحة غير موجودة"
 
-msgid "Resolved"
-msgstr "محلول"
+#: app/templates/base.html:6 app/templates/base.html:31
+msgid "Real Estate"
+msgstr "إدارة العقارات"
 
-msgid "Closed"
-msgstr "مغلق"
+# Newly added strings
+#: app/templates/base.html:39
+msgid "Admin"
+msgstr "المشرف"
 
-msgid "Complaints"
-msgstr "الشكاوى"
+#: app/templates/admin/users_list.html:2 app/templates/base.html:40
+msgid "Users"
+msgstr "المستخدمون"
 
-msgid "Reviewing"
-msgstr "قيد المراجعة"
+#: app/templates/accountant/properties.html:2
+#: app/templates/accountant/properties.html:5 app/templates/base.html:41
+#: app/templates/base.html:45 app/templates/base.html:57
+#: app/templates/employee/dashboard.html:87
+#: app/templates/employee/properties_list.html:2
+#: app/templates/employee/properties_list.html:7
+msgid "Properties"
+msgstr "العقارات"
 
-msgid "Latest Properties"
-msgstr "أحدث العقارات"
+#: app/templates/admin/user_form.html:57 app/templates/base.html:44
+msgid "Employee"
+msgstr "الموظف"
 
-msgid "Latest Contracts"
-msgstr "أحدث العقود"
+#: app/templates/accountant/contracts.html:2
+#: app/templates/accountant/contracts.html:5
+#: app/templates/accountant/dashboard.html:159
+#: app/templates/accountant/tenants_list.html:18 app/templates/base.html:46
+#: app/templates/base.html:58 app/templates/employee/contracts_list.html:2
+#: app/templates/employee/contracts_list.html:27
+#: app/templates/employee/dashboard.html:93
+msgid "Contracts"
+msgstr "العقود"
 
-msgid "Latest Payments"
-msgstr "أحدث المدفوعات"
+#: app/templates/accountant/ar_aging.html:14
+#: app/templates/accountant/contracts.html:41
+#: app/templates/accountant/tenant_detail.html:6 app/templates/base.html:49
+#: app/templates/employee/contract_form.html:49
+#: app/templates/employee/contracts_list.html:39
+#: app/templates/employee/rent_collection.html:26
+msgid "Tenant"
+msgstr "المستأجر"
 
-msgid "All Payments"
-msgstr "كل المدفوعات"
-
-msgid "Actions"
-msgstr "إجراءات"
-
-msgid "paid"
-msgstr "مدفوع"
-
-msgid "unpaid"
-msgstr "غير مدفوع"
+#: app/templates/admin/user_form.html:58 app/templates/base.html:53
+msgid "Accountant"
+msgstr "المحاسب"
 
 # Nav items
+#: app/templates/base.html:55
 msgid "Dashboard"
 msgstr "اللوحة"
 
+#: app/templates/accountant/dashboard.html:196
+#: app/templates/accountant/maintenance.html:2
+#: app/templates/accountant/maintenance.html:5 app/templates/base.html:59
+#: app/templates/employee/dashboard.html:104
+#: app/templates/employee/maintenance_list.html:2
+#: app/templates/employee/maintenance_list.html:15
+msgid "Maintenance Requests"
+msgstr "طلبات الصيانة"
+
+#: app/templates/accountant/complaints.html:2
+#: app/templates/accountant/complaints.html:5
+#: app/templates/accountant/dashboard.html:216 app/templates/base.html:60
+#: app/templates/employee/complaints_list.html:2
+#: app/templates/employee/complaints_list.html:15
+#: app/templates/employee/dashboard.html:110
+msgid "Complaints"
+msgstr "الشكاوى"
+
+#: app/templates/accountant/dashboard.html:14
+#: app/templates/accountant/dashboard.html:177
+#: app/templates/accountant/payments.html:2
+#: app/templates/accountant/payments.html:4 app/templates/base.html:62
+msgid "Payments"
+msgstr "المدفوعات"
+
+#: app/templates/accountant/payments.html:12
+#: app/templates/accountant/tenant_detail.html:12
+#: app/templates/accountant/tenant_detail.html:49 app/templates/base.html:63
+#: app/templates/employee/rent_collection.html:82
 msgid "Unpaid"
 msgstr "غير مدفوع"
 
+#: app/templates/accountant/dashboard.html:17
+#: app/templates/accountant/invoices.html:2
+#: app/templates/accountant/invoices.html:4 app/templates/base.html:64
+msgid "Invoices"
+msgstr "الفواتير"
+
+#: app/templates/accountant/accounts.html:2
+#: app/templates/accountant/accounts.html:5 app/templates/base.html:65
 msgid "Chart of Accounts"
 msgstr "شجرة الحسابات"
 
+#: app/templates/accountant/dashboard.html:349
+#: app/templates/accountant/expenses.html:2
+#: app/templates/accountant/expenses.html:5
+#: app/templates/accountant/financial_overview.html:46
+#: app/templates/accountant/income_statement.html:38 app/templates/base.html:66
+msgid "Expenses"
+msgstr "المصروفات"
+
+#: app/templates/accountant/journal_new.html:2
+#: app/templates/accountant/journal_new.html:5 app/templates/base.html:67
 msgid "New Journal Entry"
 msgstr "قيد يومية جديد"
 
+#: app/templates/accountant/ledger.html:2
+#: app/templates/accountant/ledger.html:5 app/templates/base.html:68
 msgid "General Ledger"
 msgstr "دفتر الأستاذ"
 
+#: app/templates/accountant/trial_balance.html:2
+#: app/templates/accountant/trial_balance.html:5 app/templates/base.html:69
 msgid "Trial Balance"
 msgstr "ميزان المراجعة"
 
+#: app/templates/accountant/income_statement.html:2
+#: app/templates/accountant/income_statement.html:5 app/templates/base.html:70
 msgid "Income Statement"
 msgstr "بيان الدخل"
 
+#: app/templates/accountant/balance_sheet.html:2
+#: app/templates/accountant/balance_sheet.html:5 app/templates/base.html:71
 msgid "Balance Sheet"
 msgstr "الميزانية العمومية"
 
+#: app/templates/accountant/ar_aging.html:2 app/templates/base.html:72
 msgid "AR Aging"
 msgstr "تقادم الذمم المدينة"
 
+#: app/templates/accountant/financial_overview.html:2
+#: app/templates/accountant/financial_overview.html:5
+#: app/templates/base.html:73
 msgid "Financial Overview"
 msgstr "نظرة مالية عامة"
+
+#: app/templates/base.html:77
+msgid "Logout"
+msgstr "تسجيل الخروج"
+
+#: app/templates/base.html:83
+msgid "Language"
+msgstr "اللغة"
+
+#: app/templates/accountant/accounts.html:10
+#, fuzzy
+msgid "Add New Account"
+msgstr "إضافة موظف / محاسب"
+
+#: app/templates/accountant/accounts.html:15
+#: app/templates/accountant/accounts.html:51
+#: app/templates/accountant/trial_balance.html:11
+#, fuzzy
+msgid "Code"
+msgstr "الدخل"
+
+#: app/templates/accountant/accounts.html:19
+#: app/templates/accountant/accounts.html:52
+#: app/templates/accountant/tenants_list.html:16
+#, fuzzy
+msgid "Name"
+msgstr "اسم المستخدم"
+
+#: app/templates/accountant/accounts.html:23
+#: app/templates/accountant/accounts.html:53
+#: app/templates/accountant/properties.html:15
+#: app/templates/accountant/properties.html:41
+#: app/templates/employee/properties_list.html:22
+#: app/templates/employee/property_form.html:13
+#: app/templates/tenant/complaint_form.html:14
+msgid "Type"
+msgstr "النوع"
+
+#: app/templates/accountant/accounts.html:25
+#: app/templates/accountant/accounts.html:63
+msgid "Asset"
+msgstr ""
+
+#: app/templates/accountant/accounts.html:26
+#: app/templates/accountant/accounts.html:64
+msgid "Liability"
+msgstr ""
+
+#: app/templates/accountant/accounts.html:27
+#: app/templates/accountant/accounts.html:65
+#: app/templates/accountant/balance_sheet.html:74
+#, fuzzy
+msgid "Equity"
+msgstr "تعديل"
+
+#: app/templates/accountant/accounts.html:28
+#: app/templates/accountant/accounts.html:66
+#: app/templates/accountant/dashboard.html:348
+#: app/templates/accountant/financial_overview.html:45
+#: app/templates/accountant/income_statement.html:11
+msgid "Income"
+msgstr "الدخل"
+
+#: app/templates/accountant/accounts.html:29
+#: app/templates/accountant/accounts.html:67
+#, fuzzy
+msgid "Expense"
+msgstr "المصروفات"
+
+#: app/templates/accountant/accounts.html:34
+#, fuzzy
+msgid "Add Account"
+msgstr "إضافة عقد"
+
+#: app/templates/accountant/accounts.html:44
+#, fuzzy
+msgid "Accounts List"
+msgstr "المحاسب"
+
+#: app/templates/accountant/accounts.html:72
+#: app/templates/accountant/ar_aging.html:53
+#: app/templates/accountant/balance_sheet.html:24
+#: app/templates/accountant/balance_sheet.html:55
+#: app/templates/accountant/balance_sheet.html:86
+#: app/templates/accountant/contracts.html:71
+#: app/templates/accountant/dashboard.html:247
+#: app/templates/accountant/dashboard.html:265
+#: app/templates/accountant/dashboard.html:283
+#: app/templates/accountant/dashboard.html:325
+#: app/templates/accountant/expenses.html:66
+#: app/templates/accountant/income_statement.html:21
+#: app/templates/accountant/income_statement.html:48
+#: app/templates/accountant/invoices.html:62
+#: app/templates/accountant/ledger.html:54
+#: app/templates/accountant/payments.html:87
+#: app/templates/accountant/properties.html:65
+#: app/templates/accountant/tenant_detail.html:93
+#: app/templates/accountant/tenants_list.html:35
+#: app/templates/accountant/trial_balance.html:29
+#: app/templates/employee/contracts_list.html:79
+#: app/templates/employee/properties_list.html:69
+#: app/templates/employee/rent_collection.html:104
+msgid "No data"
+msgstr "لا توجد بيانات"
+
+#: app/templates/accountant/ar_aging.html:5
+msgid "Accounts Receivable Aging"
+msgstr ""
+
+#: app/templates/accountant/ar_aging.html:15
+#: app/templates/accountant/dashboard.html:298
+#: app/templates/accountant/invoices.html:31
+#: app/templates/accountant/payments.html:35
+#: app/templates/accountant/payments.html:58
+#: app/templates/accountant/tenant_detail.html:34
+#: app/templates/accountant/tenant_detail.html:65
+msgid "Due Date"
+msgstr "تاريخ الاستحقاق"
+
+#: app/templates/accountant/ar_aging.html:16
+#: app/templates/accountant/dashboard.html:299
+#: app/templates/accountant/expenses.html:16
+#: app/templates/accountant/expenses.html:51
+#: app/templates/accountant/invoices.html:32
+#: app/templates/accountant/journal_new.html:43
+#: app/templates/accountant/payments.html:31
+#: app/templates/accountant/payments.html:59
+#: app/templates/accountant/tenant_detail.html:30
+#: app/templates/accountant/tenant_detail.html:66
+#: app/templates/tenant/dashboard.html:128
+msgid "Amount"
+msgstr "المبلغ"
+
+#: app/templates/accountant/ar_aging.html:17
+msgid "Days Past Due"
+msgstr ""
+
+#: app/templates/accountant/ar_aging.html:18
+msgid "Bucket"
+msgstr ""
+
+#: app/templates/accountant/ar_aging.html:39
+#: app/templates/accountant/ar_aging.html:70
+#, fuzzy
+msgid "Current"
+msgstr "الإيجار"
+
+#: app/templates/accountant/ar_aging.html:64
+msgid "Summary"
+msgstr ""
+
+#: app/templates/accountant/balance_sheet.html:12
+#, fuzzy
+msgid "Assets"
+msgstr "التنبيهات"
+
+#: app/templates/accountant/balance_sheet.html:30
+#, fuzzy
+msgid "Total Assets"
+msgstr "إجمالي المصروفات"
+
+#: app/templates/accountant/balance_sheet.html:43
+msgid "Liabilities"
+msgstr ""
+
+#: app/templates/accountant/balance_sheet.html:61
+msgid "Total Liabilities"
+msgstr ""
+
+#: app/templates/accountant/balance_sheet.html:92
+#, fuzzy
+msgid "Total Equity"
+msgstr "إجمالي الإيرادات"
+
+#: app/templates/accountant/complaints.html:10
+#: app/templates/accountant/complaints.html:31
+#: app/templates/accountant/contracts.html:14
+#: app/templates/accountant/contracts.html:45
+#: app/templates/accountant/dashboard.html:300
+#: app/templates/accountant/invoices.html:33
+#: app/templates/accountant/maintenance.html:10
+#: app/templates/accountant/maintenance.html:31
+#: app/templates/accountant/payments.html:9
+#: app/templates/accountant/payments.html:60
+#: app/templates/accountant/properties.html:23
+#: app/templates/accountant/properties.html:42
+#: app/templates/accountant/tenant_detail.html:47
+#: app/templates/accountant/tenant_detail.html:67
+#: app/templates/employee/apartment_form.html:85
+#: app/templates/employee/complaint_update.html:46
+#: app/templates/employee/complaints_list.html:25
+#: app/templates/employee/contracts_list.html:43
+#: app/templates/employee/maintenance_list.html:25
+#: app/templates/employee/maintenance_update.html:49
+#: app/templates/employee/properties_list.html:30
+#: app/templates/employee/property_form.html:96
+msgid "Status"
+msgstr "الحالة"
+
+#: app/templates/accountant/complaints.html:12
+#: app/templates/accountant/contracts.html:16
+#: app/templates/accountant/invoices.html:11
+#: app/templates/accountant/maintenance.html:12
+#: app/templates/accountant/payments.html:11
+#: app/templates/accountant/properties.html:17
+#: app/templates/accountant/properties.html:25
+#: app/templates/employee/properties_list.html:24
+#: app/templates/employee/properties_list.html:32
+msgid "All"
+msgstr ""
+
+#: app/templates/accountant/complaints.html:13
+#: app/templates/accountant/dashboard.html:198
+#: app/templates/accountant/dashboard.html:218
+#: app/templates/accountant/maintenance.html:13
+msgid "New"
+msgstr "جديد"
+
+#: app/templates/accountant/complaints.html:14
+#: app/templates/accountant/dashboard.html:219
+msgid "Reviewing"
+msgstr "قيد المراجعة"
+
+#: app/templates/accountant/complaints.html:15
+#: app/templates/accountant/dashboard.html:200
+#: app/templates/accountant/dashboard.html:220
+#: app/templates/accountant/maintenance.html:15
+msgid "Resolved"
+msgstr "محلول"
+
+#: app/templates/accountant/complaints.html:16
+#: app/templates/accountant/dashboard.html:201
+#: app/templates/accountant/dashboard.html:221
+#: app/templates/accountant/maintenance.html:16
+msgid "Closed"
+msgstr "مغلق"
+
+#: app/templates/accountant/complaints.html:20
+#: app/templates/accountant/contracts.html:31
+#: app/templates/accountant/invoices.html:17
+#: app/templates/accountant/maintenance.html:20
+#: app/templates/accountant/payments.html:17
+#: app/templates/accountant/properties.html:31
+#: app/templates/employee/properties_list.html:38
+#, fuzzy
+msgid "Filter"
+msgstr "إزالة التصفية"
+
+#: app/templates/accountant/complaints.html:29
+#: app/templates/employee/complaint_update.html:38
+#: app/templates/employee/complaints_list.html:23
+#: app/templates/tenant/complaint_form.html:8
+msgid "Subject"
+msgstr "الموضوع"
+
+#: app/templates/accountant/complaints.html:30
+#: app/templates/accountant/expenses.html:12
+#: app/templates/accountant/expenses.html:48
+#: app/templates/accountant/maintenance.html:30
+#: app/templates/employee/complaint_update.html:42
+#: app/templates/employee/complaints_list.html:24
+#: app/templates/employee/maintenance_list.html:24
+#: app/templates/employee/maintenance_update.html:44
+#: app/templates/employee/property_form.html:34
+#: app/templates/tenant/complaint_form.html:24
+#: app/templates/tenant/maintenance_form.html:17
+msgid "Description"
+msgstr "الوصف"
+
+#: app/templates/accountant/complaints.html:32
+#: app/templates/accountant/maintenance.html:32
+#: app/templates/accountant/properties.html:43
+#: app/templates/employee/complaints_list.html:26
+#: app/templates/employee/maintenance_list.html:26
+#: app/templates/tenant/complaint_show.html:10
+#: app/templates/tenant/dashboard.html:149
+#: app/templates/tenant/dashboard.html:170
+#: app/templates/tenant/maintenance_show.html:22
+msgid "Created at"
+msgstr "أُنشئ في"
+
+#: app/templates/accountant/complaints.html:46
+#: app/templates/employee/complaints_list.html:46
+#: app/templates/tenant/dashboard.html:180
+#, fuzzy
+msgid "No complaints"
+msgstr "الشكاوى"
+
+#: app/templates/accountant/contracts.html:10
+#: app/templates/accountant/properties.html:11
+#: app/templates/accountant/tenants_list.html:8
+#: app/templates/employee/properties_list.html:18
+msgid "Search"
+msgstr ""
+
+#: app/templates/accountant/contracts.html:11
+#, fuzzy
+msgid "Property or Tenant..."
+msgstr "العقار (اختياري)"
+
+#: app/templates/accountant/contracts.html:17
+#: app/templates/accountant/contracts.html:59
+#: app/templates/accountant/dashboard.html:162
+#: app/templates/accountant/dashboard.html:262
+#: app/templates/employee/contracts_list.html:58
+#: app/templates/employee/rent_collection.html:46
+msgid "Active"
+msgstr "نشط"
+
+#: app/templates/accountant/contracts.html:18
+#: app/templates/accountant/contracts.html:61
+#: app/templates/employee/contracts_list.html:60
+msgid "Expired"
+msgstr ""
+
+#: app/templates/accountant/contracts.html:19
+#: app/templates/accountant/contracts.html:63
+#: app/templates/employee/contracts_list.html:62
+#, fuzzy
+msgid "Pending"
+msgstr "النهاية"
+
+#: app/templates/accountant/contracts.html:23
+#, fuzzy
+msgid "Start from"
+msgstr "البداية"
+
+#: app/templates/accountant/contracts.html:27
+#, fuzzy
+msgid "End to"
+msgstr "النهاية"
+
+#: app/templates/accountant/contracts.html:40
+#: app/templates/employee/contract_form.html:39
+#: app/templates/employee/contracts_list.html:38
+#: app/templates/employee/rent_collection.html:28
+msgid "Property"
+msgstr "العقار"
+
+#: app/templates/accountant/contracts.html:42
+#: app/templates/employee/contract_form.html:60
+#: app/templates/employee/contracts_list.html:40
+#: app/templates/tenant/dashboard.html:112
+msgid "Start"
+msgstr "البداية"
+
+#: app/templates/accountant/contracts.html:43
+#: app/templates/employee/contract_form.html:64
+#: app/templates/employee/contracts_list.html:41
+#: app/templates/tenant/dashboard.html:112
+msgid "End"
+msgstr "النهاية"
+
+#: app/templates/accountant/contracts.html:44
+#: app/templates/employee/contract_form.html:70
+#: app/templates/employee/contracts_list.html:42
+msgid "Rent"
+msgstr "الإيجار"
+
+#: app/templates/accountant/dashboard.html:2
+#: app/templates/accountant/dashboard.html:6
+msgid "Accountant Dashboard"
+msgstr "لوحة تحكم المحاسب"
+
+# Accountant dashboard additional strings
+#: app/templates/accountant/dashboard.html:7
+msgid "Modern, responsive overview for financial operations"
+msgstr "نظرة عامة حديثة ومتجاوبة للعمليات المالية"
+
+#: app/templates/accountant/dashboard.html:11
+#: app/templates/accountant/tenants_list.html:2
+#: app/templates/accountant/tenants_list.html:5
+msgid "Tenants"
+msgstr "المستأجرون"
+
+#: app/templates/accountant/dashboard.html:29
+#: app/templates/accountant/financial_overview.html:12
+#: app/templates/accountant/income_statement.html:26
+msgid "Total Income"
+msgstr "إجمالي الدخل"
+
+#: app/templates/accountant/dashboard.html:44
+#: app/templates/accountant/financial_overview.html:20
+#: app/templates/accountant/income_statement.html:53
+msgid "Total Expenses"
+msgstr "إجمالي المصروفات"
+
+#: app/templates/accountant/dashboard.html:58
+msgid "Net Profit"
+msgstr "صافي الربح"
+
+#: app/templates/accountant/dashboard.html:72
+msgid "Unpaid Payments"
+msgstr "مدفوعات غير مسددة"
+
+#: app/templates/accountant/dashboard.html:87
+msgid "Monthly Income vs Expenses vs Profit"
+msgstr "الدخل مقابل المصروفات مقابل الربح شهرياً"
+
+#: app/templates/accountant/dashboard.html:89
+#: app/templates/accountant/invoices.html:21
+msgid "Export Excel"
+msgstr "تصدير إكسل"
+
+#: app/templates/accountant/dashboard.html:90
+#: app/templates/accountant/invoices.html:22
+msgid "Export PDF"
+msgstr "تصدير PDF"
+
+#: app/templates/accountant/dashboard.html:100
+msgid "Alerts"
+msgstr "التنبيهات"
+
+#: app/templates/accountant/dashboard.html:102
+msgid "Due Soon (next 7 days)"
+msgstr "مستحق قريباً (7 أيام القادمة)"
+
+#: app/templates/accountant/dashboard.html:110
+msgid "No upcoming dues"
+msgstr "لا مستحقات قادمة"
+
+#: app/templates/accountant/dashboard.html:113
+#: app/templates/accountant/dashboard.html:180
+msgid "Overdue"
+msgstr "متأخر"
+
+#: app/templates/accountant/dashboard.html:121
+msgid "No overdue items"
+msgstr "لا عناصر متأخرة"
+
+#: app/templates/accountant/dashboard.html:137
+msgid "Units Total"
+msgstr "إجمالي الوحدات"
+
+#: app/templates/accountant/dashboard.html:181
+msgid "Upcoming"
+msgstr "قادمة"
+
+#: app/templates/accountant/dashboard.html:199
+#: app/templates/accountant/maintenance.html:14
+msgid "In Progress"
+msgstr "قيد التنفيذ"
+
+#: app/templates/accountant/dashboard.html:238
+msgid "Latest Properties"
+msgstr "أحدث العقارات"
+
+#: app/templates/accountant/dashboard.html:256
+msgid "Latest Contracts"
+msgstr "أحدث العقود"
+
+#: app/templates/accountant/dashboard.html:274
+msgid "Latest Payments"
+msgstr "أحدث المدفوعات"
+
+#: app/templates/accountant/dashboard.html:280
+#: app/templates/accountant/dashboard.html:311
+msgid "paid"
+msgstr "مدفوع"
+
+#: app/templates/accountant/dashboard.html:280
+#: app/templates/accountant/dashboard.html:311
+msgid "unpaid"
+msgstr "غير مدفوع"
+
+#: app/templates/accountant/dashboard.html:291
+msgid "All Payments"
+msgstr "كل المدفوعات"
+
+#: app/templates/accountant/dashboard.html:301
+#: app/templates/accountant/invoices.html:35
+#: app/templates/accountant/payments.html:62
+#: app/templates/accountant/tenant_detail.html:68
+#: app/templates/accountant/tenants_list.html:19
+#: app/templates/admin/users_list.html:113
+#: app/templates/employee/complaints_list.html:27
+#: app/templates/employee/maintenance_list.html:27
+msgid "Actions"
+msgstr "إجراءات"
+
+#: app/templates/accountant/dashboard.html:316
+#: app/templates/accountant/payments.html:78
+#: app/templates/accountant/tenant_detail.html:83
+msgid "Toggle"
+msgstr "تبديل"
+
+#: app/templates/accountant/dashboard.html:318
+#: app/templates/accountant/invoices.html:55
+#: app/templates/accountant/payments.html:80
+#: app/templates/accountant/tenant_detail.html:85
+msgid "Generate Invoice"
+msgstr "إنشاء فاتورة"
+
+#: app/templates/accountant/dashboard.html:320
+#: app/templates/accountant/invoices.html:57
+#: app/templates/accountant/payments.html:82
+#: app/templates/accountant/tenant_detail.html:87
+msgid "Download"
+msgstr "تحميل"
+
+#: app/templates/accountant/dashboard.html:350
+#: app/templates/accountant/financial_overview.html:47
+msgid "Profit"
+msgstr "الربح"
+
+#: app/templates/accountant/expenses.html:13
+#, fuzzy
+msgid "Enter description"
+msgstr "الوصف"
+
+#: app/templates/accountant/expenses.html:20
+#: app/templates/accountant/expenses.html:49
+msgid "Category"
+msgstr ""
+
+#: app/templates/accountant/expenses.html:21
+#: app/templates/accountant/expenses.html:25
+#, fuzzy
+msgid "Optional"
+msgstr "الإجمالي"
+
+#: app/templates/accountant/expenses.html:24
+#: app/templates/accountant/expenses.html:50
+#, fuzzy
+msgid "Vendor"
+msgstr "النهاية"
+
+#: app/templates/accountant/expenses.html:28
+#: app/templates/accountant/expenses.html:47
+#: app/templates/accountant/journal_new.html:13
+#: app/templates/accountant/ledger.html:36
+#, fuzzy
+msgid "Date"
+msgstr "تحديث"
+
+#: app/templates/accountant/expenses.html:33
+#, fuzzy
+msgid "Add Expense"
+msgstr "المصروفات"
+
+#: app/templates/accountant/financial_overview.html:28
+#, fuzzy
+msgid "Total Profit"
+msgstr "إجمالي المدفوع"
+
+#: app/templates/accountant/financial_overview.html:38
+#, fuzzy
+msgid "Last 12 months"
+msgstr "أحدث المدفوعات"
+
+#: app/templates/accountant/financial_overview.html:44
+#, fuzzy
+msgid "Month"
+msgstr "المبلغ"
+
+#: app/templates/accountant/financial_overview.html:60
+#: app/templates/admin/users_list.html:151
+#, fuzzy
+msgid "No data available"
+msgstr "متاح"
+
+#: app/templates/accountant/financial_overview.html:71
+#, fuzzy
+msgid "Back to Payments"
+msgstr "كل المدفوعات"
+
+#: app/templates/accountant/income_statement.html:66
+#, fuzzy
+msgid "Net Income"
+msgstr "الدخل"
+
+#: app/templates/accountant/invoices.html:9
+#, fuzzy
+msgid "Has Invoice"
+msgstr "الفواتير"
+
+#: app/templates/accountant/invoices.html:12
+msgid "Yes"
+msgstr ""
+
+#: app/templates/accountant/invoices.html:13
+msgid "No"
+msgstr ""
+
+#: app/templates/accountant/invoices.html:34
+#, fuzzy
+msgid "Invoice"
+msgstr "الفواتير"
+
+#: app/templates/accountant/invoices.html:49
+#, fuzzy
+msgid "Exists"
+msgstr "تعديل"
+
+#: app/templates/accountant/invoices.html:51
+#: app/templates/employee/rent_collection.html:48
+#, fuzzy
+msgid "None"
+msgstr "ملاحظات"
+
+#: app/templates/accountant/journal_new.html:17
+#: app/templates/accountant/ledger.html:37
+msgid "Memo"
+msgstr ""
+
+#: app/templates/accountant/journal_new.html:18
+#, fuzzy
+msgid "Enter a short description"
+msgstr "الوصف"
+
+#: app/templates/accountant/journal_new.html:23
+#, fuzzy
+msgid "Debit Account"
+msgstr "المحاسب"
+
+#: app/templates/accountant/journal_new.html:25
+msgid "Select Debit Account"
+msgstr ""
+
+#: app/templates/accountant/journal_new.html:32
+#, fuzzy
+msgid "Credit Account"
+msgstr "شجرة الحسابات"
+
+#: app/templates/accountant/journal_new.html:34
+msgid "Select Credit Account"
+msgstr ""
+
+#: app/templates/accountant/journal_new.html:50
+#: app/templates/employee/apartment_form.html:100
+#: app/templates/employee/complaint_update.html:59
+#: app/templates/employee/contract_form.html:80
+#: app/templates/employee/maintenance_update.html:64
+#: app/templates/employee/property_form.html:112
+msgid "Save"
+msgstr "حفظ"
+
+#: app/templates/accountant/ledger.html:12
+#: app/templates/accountant/trial_balance.html:12
+#, fuzzy
+msgid "Account"
+msgstr "المحاسب"
+
+#: app/templates/accountant/ledger.html:14
+#, fuzzy
+msgid "Select Account"
+msgstr "شجرة الحسابات"
+
+#: app/templates/accountant/ledger.html:24
+#: app/templates/employee/contracts_list.html:70
+#, fuzzy
+msgid "View"
+msgstr "قيد المراجعة"
+
+#: app/templates/accountant/ledger.html:38
+#, fuzzy
+msgid "Debit"
+msgstr "تعديل"
+
+#: app/templates/accountant/ledger.html:39
+#, fuzzy
+msgid "Credit"
+msgstr "تعديل"
+
+#: app/templates/accountant/ledger.html:40
+#: app/templates/accountant/trial_balance.html:15
+#, fuzzy
+msgid "Balance"
+msgstr "ميزان المراجعة"
+
+#: app/templates/accountant/maintenance.html:29
+#: app/templates/accountant/properties.html:40
+#: app/templates/employee/maintenance_list.html:23
+#: app/templates/employee/maintenance_update.html:39
+#: app/templates/employee/property_form.html:22
+#: app/templates/tenant/maintenance_form.html:13
+msgid "Title"
+msgstr "العنوان"
+
+#: app/templates/accountant/maintenance.html:46
+#: app/templates/employee/maintenance_list.html:46
+#: app/templates/tenant/dashboard.html:159
+#, fuzzy
+msgid "No maintenance requests"
+msgstr "طلبات الصيانة"
+
+#: app/templates/accountant/payments.html:13
+#: app/templates/accountant/tenant_detail.html:11
+#: app/templates/accountant/tenant_detail.html:50
+#: app/templates/employee/rent_collection.html:80
+#: app/templates/employee/rent_collection.html:96
+#, fuzzy
+msgid "Paid"
+msgstr "مدفوع"
+
+#: app/templates/accountant/payments.html:23
+#, fuzzy
+msgid "Add Payment"
+msgstr "كل المدفوعات"
+
+#: app/templates/accountant/payments.html:27
+#, fuzzy
+msgid "Contract ID"
+msgstr "العقود"
+
+#: app/templates/accountant/payments.html:39
+#: app/templates/accountant/payments.html:61
+#: app/templates/accountant/tenant_detail.html:38
+msgid "Method"
+msgstr ""
+
+#: app/templates/accountant/payments.html:42
+#: app/templates/accountant/tenant_detail.html:41
+msgid "Cash"
+msgstr ""
+
+#: app/templates/accountant/payments.html:43
+#: app/templates/accountant/tenant_detail.html:42
+msgid "Card"
+msgstr ""
+
+#: app/templates/accountant/payments.html:44
+#: app/templates/accountant/tenant_detail.html:43
+msgid "Bank Transfer"
+msgstr ""
+
+#: app/templates/accountant/payments.html:48
+#, fuzzy
+msgid "Create Payment"
+msgstr "أحدث المدفوعات"
+
+#: app/templates/accountant/properties.html:6
+#: app/templates/employee/properties_list.html:8
+#, fuzzy
+msgid "Total Buildings"
+msgstr "إضافة مبنى"
+
+#: app/templates/accountant/properties.html:6
+#: app/templates/accountant/properties.html:19
+#: app/templates/employee/properties_list.html:8
+#: app/templates/employee/properties_list.html:26
+#: app/templates/employee/unleased_units.html:40
+msgid "Standalone Apartments"
+msgstr "شقق منفصلة"
+
+#: app/templates/accountant/properties.html:12
+#: app/templates/employee/properties_list.html:19
+#, fuzzy
+msgid "Title..."
+msgstr "العنوان"
+
+#: app/templates/accountant/properties.html:18
+#: app/templates/employee/properties_list.html:25
+#, fuzzy
+msgid "Buildings"
+msgstr "بناية"
+
+#: app/templates/accountant/properties.html:53
+#: app/templates/admin/unleased_units.html:30
+#: app/templates/employee/property_form.html:15
+#: app/templates/employee/unleased_units.html:30
+msgid "Building"
+msgstr "بناية"
+
+#: app/templates/accountant/properties.html:55
+#: app/templates/admin/unleased_units.html:26
+#: app/templates/admin/unleased_units.html:29
+#: app/templates/employee/apartments_list.html:49
+#: app/templates/employee/apartments_list.html:52
+#: app/templates/employee/property_form.html:16
+#: app/templates/employee/unleased_units.html:26
+#: app/templates/employee/unleased_units.html:29
+msgid "Apartment"
+msgstr "شقة"
+
+#: app/templates/accountant/tenant_detail.html:2
+#, fuzzy
+msgid "Tenant Statement"
+msgstr "بيان الدخل"
+
+#: app/templates/accountant/tenant_detail.html:7
+#: app/templates/accountant/tenants_list.html:17
+#: app/templates/admin/user_form.html:63
+#, fuzzy
+msgid "Phone"
+msgstr "الصفحة الرئيسية"
+
+#: app/templates/accountant/tenant_detail.html:10
+#: app/templates/admin/users_list.html:99
+msgid "Total"
+msgstr "الإجمالي"
+
+#: app/templates/accountant/tenant_detail.html:17
+#, fuzzy
+msgid "Record Payment"
+msgstr "المدفوعات"
+
+#: app/templates/accountant/tenant_detail.html:21
+#: app/templates/employee/rent_collection.html:27
+#: app/templates/tenant/dashboard.html:110
+#, fuzzy
+msgid "Contract"
+msgstr "العقود"
+
+#: app/templates/accountant/tenant_detail.html:54
+msgid "Add"
+msgstr ""
+
+#: app/templates/accountant/tenants_list.html:7
+msgid "Search by name or phone"
+msgstr ""
+
+#: app/templates/accountant/tenants_list.html:30
+msgid "Open"
+msgstr ""
+
+#: app/templates/accountant/trial_balance.html:13
+#, fuzzy
+msgid "Debits"
+msgstr "تعديل"
+
+#: app/templates/accountant/trial_balance.html:14
+#, fuzzy
+msgid "Credits"
+msgstr "تعديل"
+
+#: app/templates/accountant/trial_balance.html:35
+#, fuzzy
+msgid "Totals"
+msgstr "الإجمالي"
+
+#: app/templates/admin/user_form.html:3 app/templates/admin/user_form.html:41
+msgid "Add Employee"
+msgstr "إضافة موظف"
+
+#: app/templates/admin/user_form.html:3 app/templates/admin/user_form.html:43
+#: app/templates/admin/users_list.html:97
+msgid "Add Tenant"
+msgstr "إضافة مستأجر"
+
+#: app/templates/admin/user_form.html:50
+#: app/templates/admin/users_list.html:109
+#: app/templates/auth/company_setup.html:12 app/templates/auth/login.html:49
+msgid "Username"
+msgstr "اسم المستخدم"
+
+#: app/templates/admin/user_form.html:55
+#: app/templates/admin/users_list.html:111
+msgid "Role"
+msgstr "الدور"
+
+#: app/templates/admin/user_form.html:68
+#: app/templates/auth/company_setup.html:20 app/templates/auth/login.html:53
+msgid "Password"
+msgstr "كلمة المرور"
+
+#: app/templates/admin/user_form.html:73
+#, fuzzy
+msgid "Property to lease"
+msgstr "تم حذف العقار"
+
+#: app/templates/admin/user_form.html:75
+#: app/templates/employee/contract_form.html:41
+#, fuzzy
+msgid "Select a property"
+msgstr "تعديل العقار"
+
+#: app/templates/admin/user_form.html:80
+#: app/templates/employee/property_form.html:28
+#: app/templates/public/property_view.html:76
+msgid "Price"
+msgstr "السعر"
+
+#: app/templates/admin/user_form.html:84
+msgid "For buildings, select an apartment or enter its number"
+msgstr ""
+
+#: app/templates/admin/user_form.html:87
+#, fuzzy
+msgid "Apartment in building"
+msgstr "إضافة مبنى"
+
+#: app/templates/admin/user_form.html:89 app/templates/admin/user_form.html:118
+#, fuzzy
+msgid "Select an apartment"
+msgstr "شقق منفصلة"
+
+#: app/templates/admin/user_form.html:91
+msgid "Only available apartments are listed."
+msgstr ""
+
+#: app/templates/admin/user_form.html:93
+#, fuzzy
+msgid "Apartment number"
+msgstr "شقة"
+
+#: app/templates/admin/user_form.html:94
+msgid "e.g., 12A"
+msgstr ""
+
+#: app/templates/admin/user_form.html:95
+msgid "If not listed above, enter the apartment number"
+msgstr ""
+
+#: app/templates/admin/user_form.html:101
+msgid "Create Employee"
+msgstr "إنشاء موظف"
+
+#: app/templates/admin/user_form.html:101
+msgid "Create Tenant"
+msgstr "إنشاء مستأجر"
+
+#: app/templates/admin/user_form.html:103
+#: app/templates/auth/company_setup.html:29
+#: app/templates/employee/apartment_form.html:101
+#: app/templates/employee/complaint_update.html:60
+#: app/templates/employee/contract_form.html:81
+#: app/templates/employee/maintenance_update.html:65
+#: app/templates/employee/property_form.html:113
+#: app/templates/tenant/complaint_form.html:32
+#: app/templates/tenant/maintenance_form.html:31
+msgid "Cancel"
+msgstr "إلغاء"
+
+#: app/templates/admin/users_list.html:91
+#, fuzzy
+msgid "Users Management"
+msgstr "اسم المستخدم"
+
+#: app/templates/admin/users_list.html:94
+msgid "Add Employee / Accountant"
+msgstr "إضافة موظف / محاسب"
+
+#: app/templates/admin/users_list.html:110
+#, fuzzy
+msgid "Contact"
+msgstr "العقود"
+
+#: app/templates/admin/users_list.html:112
+msgid "Created"
+msgstr "تم الإنشاء"
+
+#: app/templates/admin/users_list.html:140
+#: app/templates/employee/rent_collection.html:92
+msgid "Mark as Paid"
+msgstr ""
+
+#: app/templates/auth/company_setup.html:2
+#, fuzzy
+msgid "Company Setup"
+msgstr "شكوى"
+
+#: app/templates/auth/company_setup.html:7
+#, fuzzy
+msgid "Create Manager Account"
+msgstr "إنشاء مستأجر"
+
+#: app/templates/auth/company_setup.html:9
+msgid "Set the username and password for the initial admin of"
+msgstr ""
+
+#: app/templates/auth/company_setup.html:16
+#, fuzzy
+msgid "Phone (optional)"
+msgstr "العقار (اختياري)"
+
+#: app/templates/auth/company_setup.html:24
+#, fuzzy
+msgid "Confirm Password"
+msgstr "كلمة المرور"
+
+#: app/templates/auth/company_setup.html:28
+#, fuzzy
+msgid "Create"
+msgstr "تم الإنشاء"
+
+#: app/templates/auth/login.html:2 app/templates/auth/login.html:45
+msgid "Login"
+msgstr "تسجيل الدخول"
+
+#: app/templates/auth/login.html:50
+msgid "Enter username"
+msgstr "ادخل اسم المستخدم"
+
+#: app/templates/auth/login.html:54
+msgid "Enter password"
+msgstr "ادخل كلمة المرور"
+
+#: app/templates/auth/login.html:57
+msgid "Sign in"
+msgstr "دخول"
+
+#: app/templates/employee/apartment_form.html:2
+#: app/templates/employee/apartment_form.html:39
+#, fuzzy
+msgid "Edit Apartment"
+msgstr "شقة"
+
+#: app/templates/employee/apartment_form.html:2
+#: app/templates/employee/apartment_form.html:39
+#: app/templates/employee/apartments_list.html:37
+#, fuzzy
+msgid "Add Apartment"
+msgstr "شقة"
+
+#: app/templates/employee/apartment_form.html:44
+#: app/templates/employee/property_form.html:59
+msgid "Number"
+msgstr ""
+
+#: app/templates/employee/apartment_form.html:50
+#: app/templates/employee/property_form.html:65
+msgid "Floor"
+msgstr ""
+
+#: app/templates/employee/apartment_form.html:56
+#: app/templates/employee/property_form.html:71
+#: app/templates/public/property_view.html:88
+msgid "Area (sqm)"
+msgstr "المساحة (م²)"
+
+#: app/templates/employee/apartment_form.html:65
+#: app/templates/employee/property_form.html:80
+#: app/templates/public/property_view.html:86
+msgid "Bedrooms"
+msgstr "غرف النوم"
+
+#: app/templates/employee/apartment_form.html:71
+#: app/templates/employee/property_form.html:86
+#: app/templates/public/property_view.html:87
+msgid "Bathrooms"
+msgstr "الحمامات"
+
+#: app/templates/employee/apartment_form.html:77
+#, fuzzy
+msgid "Rent Price"
+msgstr "السعر"
+
+#: app/templates/employee/apartment_form.html:89
+#: app/templates/employee/dashboard.html:133
+#: app/templates/employee/property_form.html:100
+#: app/templates/tenant/complaint_form.html:16
+msgid "Maintenance"
+msgstr "صيانة"
+
+#: app/templates/employee/apartment_form.html:95
+#: app/templates/employee/property_form.html:107
+msgid "Images"
+msgstr ""
+
+#: app/templates/employee/apartments_list.html:35
+#, fuzzy
+msgid "Apartments"
+msgstr "شقة"
+
+#: app/templates/employee/apartments_list.html:64
+#: app/templates/employee/unleased_units.html:36
+#: app/templates/employee/unleased_units.html:52
+#, fuzzy
+msgid "No apartments available"
+msgstr "عدد الشقق"
+
+#: app/templates/employee/complaint_update.html:2
+#: app/templates/employee/complaint_update.html:35
+msgid "Update Complaint"
+msgstr "تحديث الشكوى"
+
+#: app/templates/employee/complaint_update.html:55
+#: app/templates/employee/maintenance_update.html:59
+#: app/templates/tenant/complaint_show.html:24
+msgid "Notes"
+msgstr "ملاحظات"
+
+#: app/templates/employee/complaints_list.html:40
+#: app/templates/employee/maintenance_list.html:40
+msgid "Update"
+msgstr "تحديث"
+
+#: app/templates/employee/contract_form.html:2
+#: app/templates/employee/contract_form.html:35
+msgid "Create Contract"
+msgstr "إنشاء عقد"
+
+#: app/templates/employee/contract_form.html:51
+#, fuzzy
+msgid "Select a tenant"
+msgstr "إنشاء مستأجر"
+
+#: app/templates/employee/contract_form.html:75
+msgid "Contract Document (optional)"
+msgstr "مستند العقد (اختياري)"
+
+#: app/templates/employee/contracts_list.html:29
+msgid "Add Contract"
+msgstr "إضافة عقد"
+
+#: app/templates/employee/contracts_list.html:44
+msgid "Document"
+msgstr ""
+
+#: app/templates/employee/dashboard.html:2
+#: app/templates/employee/dashboard.html:81
+msgid "Employee Dashboard"
+msgstr "لوحة تحكم الموظف"
+
+#: app/templates/employee/dashboard.html:99
+#: app/templates/employee/rent_collection.html:2
+#: app/templates/employee/rent_collection.html:15
+msgid "Rent Collection"
+msgstr ""
+
+#: app/templates/employee/dashboard.html:116
+#: app/templates/employee/unleased_units.html:2
+#: app/templates/employee/unleased_units.html:18
+#, fuzzy
+msgid "Unleased Units"
+msgstr "عقارات غير مؤجرة"
+
+#: app/templates/employee/dashboard.html:122
+msgid "Recent Properties"
+msgstr "أحدث العقارات"
+
+#: app/templates/employee/dashboard.html:139
+#, fuzzy
+msgid "No properties yet"
+msgstr "العقارات"
+
+#: app/templates/employee/maintenance_update.html:2
+#: app/templates/employee/maintenance_update.html:35
+msgid "Update Maintenance Request"
+msgstr "تحديث طلب الصيانة"
+
+#: app/templates/employee/properties_list.html:11
+msgid "Add Property"
+msgstr "إضافة عقار"
+
+#: app/templates/employee/property_form.html:2
+#: app/templates/employee/property_form.html:7
+msgid "Edit Property"
+msgstr "تعديل العقار"
+
+#: app/templates/employee/property_form.html:2
+#: app/templates/employee/property_form.html:7
+msgid "Create Property"
+msgstr "إنشاء عقار"
+
+#: app/templates/employee/property_form.html:42
+#: app/templates/public/property_view.html:81
+msgid "Number of apartments"
+msgstr "عدد الشقق"
+
+#: app/templates/employee/property_form.html:48
+#: app/templates/public/property_view.html:82
+msgid "Number of floors"
+msgstr "عدد الأدوار"
+
+#: app/templates/employee/rent_collection.html:17
+msgid "Month starting"
+msgstr ""
+
+#: app/templates/employee/rent_collection.html:29
+#, fuzzy
+msgid "Rent Amount"
+msgstr "المبلغ"
+
+#: app/templates/employee/rent_collection.html:30
+msgid "This Month"
+msgstr ""
+
+#: app/templates/employee/rent_collection.html:31
+#, fuzzy
+msgid "Action"
+msgstr "إجراءات"
+
+#: app/templates/employee/rent_collection.html:85
+#, fuzzy
+msgid "No contract"
+msgstr "العقود"
+
+#: app/templates/employee/rent_collection.html:98
+#, fuzzy
+msgid "Unavailable"
+msgstr "متاح"
+
+#: app/templates/employee/unleased_units.html:20
+msgid "Apartments inside buildings"
+msgstr ""
+
+#: app/templates/public/property_view.html:63
+#, fuzzy
+msgid "No images available"
+msgstr "متاح"
+
+#: app/templates/public/property_view.html:76
+msgid "USD"
+msgstr ""
+
+#: app/templates/public/property_view.html:94
+#, fuzzy
+msgid "Location"
+msgstr "إجراءات"
+
+#: app/templates/public/property_view.html:101
+#, fuzzy
+msgid "Copied"
+msgstr "مشغول"
+
+#: app/templates/public/property_view.html:101
+#: app/templates/public/property_view.html:102
+#, fuzzy
+msgid "Copy Link"
+msgstr "شكوى"
+
+#: app/templates/tenant/complaint_form.html:2
+#: app/templates/tenant/complaint_form.html:4
+#: app/templates/tenant/dashboard.html:100
+msgid "New Complaint"
+msgstr "شكوى جديدة"
+
+#: app/templates/tenant/complaint_form.html:9
+msgid "Enter a brief subject"
+msgstr ""
+
+#: app/templates/tenant/complaint_form.html:10
+msgid "Provide a short, descriptive title for your complaint."
+msgstr ""
+
+#: app/templates/tenant/complaint_form.html:17
+#, fuzzy
+msgid "Noise"
+msgstr "الفواتير"
+
+#: app/templates/tenant/complaint_form.html:18
+#, fuzzy
+msgid "Other"
+msgstr "ملاحظات"
+
+#: app/templates/tenant/complaint_form.html:20
+msgid "Optional: Select the category that best fits your complaint."
+msgstr ""
+
+#: app/templates/tenant/complaint_form.html:25
+msgid "Provide details of your complaint"
+msgstr ""
+
+#: app/templates/tenant/complaint_form.html:30
+#: app/templates/tenant/maintenance_form.html:34
+msgid "Submit"
+msgstr "إرسال"
+
+#: app/templates/tenant/complaint_show.html:2
+#: app/templates/tenant/complaint_show.html:4
+msgid "Complaint"
+msgstr "شكوى"
+
+#: app/templates/tenant/complaint_show.html:32
+msgid "Back to dashboard"
+msgstr "العودة إلى اللوحة"
+
+#: app/templates/tenant/dashboard.html:2 app/templates/tenant/dashboard.html:89
+msgid "Tenant Dashboard"
+msgstr "لوحة تحكم المستأجر"
+
+#: app/templates/tenant/dashboard.html:95
+#: app/templates/tenant/maintenance_form.html:2
+#: app/templates/tenant/maintenance_form.html:8
+#, fuzzy
+msgid "New Maintenance Request"
+msgstr "طلب صيانة"
+
+#: app/templates/tenant/dashboard.html:96
+msgid "Report an issue or request service"
+msgstr ""
+
+#: app/templates/tenant/dashboard.html:101
+msgid "Submit a complaint to management"
+msgstr ""
+
+#: app/templates/tenant/dashboard.html:121
+msgid "No contracts available"
+msgstr ""
+
+#: app/templates/tenant/dashboard.html:127
+#, fuzzy
+msgid "Payment"
+msgstr "المدفوعات"
+
+#: app/templates/tenant/dashboard.html:129
+msgid "Due"
+msgstr "مستحق"
+
+#: app/templates/tenant/dashboard.html:134
+#, fuzzy
+msgid "No payments available"
+msgstr "متاح"
+
+#: app/templates/tenant/dashboard.html:139
+#, fuzzy
+msgid "Maintenance & Complaints"
+msgstr "تحديث الشكوى"
+
+#: app/templates/tenant/dashboard.html:147
+#: app/templates/tenant/dashboard.html:168
+msgid "Employee notes"
+msgstr "ملاحظات الموظف"
+
+#: app/templates/tenant/maintenance_form.html:14
+msgid "Enter the title"
+msgstr ""
+
+#: app/templates/tenant/maintenance_form.html:18
+msgid "Describe the issue in detail"
+msgstr ""
+
+#: app/templates/tenant/maintenance_form.html:21
+msgid "Property (optional)"
+msgstr "العقار (اختياري)"
+
+#: app/templates/tenant/maintenance_form.html:23
+#, fuzzy
+msgid "Select Property"
+msgstr "تعديل العقار"
+
+#: app/templates/tenant/maintenance_show.html:2
+#: app/templates/tenant/maintenance_show.html:8
+msgid "Maintenance Request"
+msgstr "طلب صيانة"
+
+#: app/templates/tenant/maintenance_show.html:28
+#, fuzzy
+msgid "Employee Notes"
+msgstr "ملاحظات الموظف"
+
+#: app/templates/tenant/maintenance_show.html:36
+#, fuzzy
+msgid "Back to Dashboard"
+msgstr "العودة إلى اللوحة"
+
+#: app/tenant/routes.py:61
+msgid "Maintenance request submitted"
+msgstr "تم إرسال طلب الصيانة"
+
+#: app/tenant/routes.py:89
+msgid "Complaint submitted"
+msgstr "تم إرسال الشكوى"
+
+#: venv/Lib/site-packages/click/_termui_impl.py:608
+#, python-brace-format
+msgid "{editor}: Editing failed"
+msgstr ""
+
+#: venv/Lib/site-packages/click/_termui_impl.py:612
+#, python-brace-format
+msgid "{editor}: Editing failed: {e}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:1104
+#: venv/Lib/site-packages/click/core.py:1141
+#, python-brace-format
+msgid "{text} {deprecated_message}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:1160
+#, fuzzy
+msgid "Options"
+msgstr "إجراءات"
+
+#: venv/Lib/site-packages/click/core.py:1222
+#, python-brace-format
+msgid "Got unexpected extra argument ({args})"
+msgid_plural "Got unexpected extra arguments ({args})"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: venv/Lib/site-packages/click/core.py:1241
+#, python-brace-format
+msgid "DeprecationWarning: The command {name!r} is deprecated.{extra_message}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:1425
+msgid "Aborted!"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:1799
+#, fuzzy
+msgid "Commands"
+msgstr "الشكاوى"
+
+#: venv/Lib/site-packages/click/core.py:1830
+msgid "Missing command."
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:1908
+#, python-brace-format
+msgid "No such command {name!r}."
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:2332
+msgid "Value must be an iterable."
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:2355
+#, python-brace-format
+msgid "Takes {nargs} values but 1 was given."
+msgid_plural "Takes {nargs} values but {len} were given."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: venv/Lib/site-packages/click/core.py:2505
+#, python-brace-format
+msgid ""
+"DeprecationWarning: The {param_type} {name!r} is "
+"deprecated.{extra_message}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:2956
+#, python-brace-format
+msgid "env var: {var}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:2959
+#, python-brace-format
+msgid "default: {default}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:2963
+msgid "required"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:3023
+msgid "(dynamic)"
+msgstr ""
+
+#: venv/Lib/site-packages/click/decorators.py:465
+#, python-format
+msgid "%(prog)s, version %(version)s"
+msgstr ""
+
+#: venv/Lib/site-packages/click/decorators.py:522
+msgid "Show the version and exit."
+msgstr ""
+
+#: venv/Lib/site-packages/click/decorators.py:548
+msgid "Show this message and exit."
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:50
+#: venv/Lib/site-packages/click/exceptions.py:89
+#, python-brace-format
+msgid "Error: {message}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:81
+#, python-brace-format
+msgid "Try '{command} {option}' for help."
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:130
+#, python-brace-format
+msgid "Invalid value: {message}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:132
+#, python-brace-format
+msgid "Invalid value for {param_hint}: {message}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:190
+msgid "Missing argument"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:192
+msgid "Missing option"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:194
+msgid "Missing parameter"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:196
+#, python-brace-format
+msgid "Missing {param_type}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:203
+#, python-brace-format
+msgid "Missing parameter: {param_name}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:223
+#, python-brace-format
+msgid "No such option: {name}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:235
+#, python-brace-format
+msgid "Did you mean {possibility}?"
+msgid_plural "(Possible options: {possibilities})"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: venv/Lib/site-packages/click/exceptions.py:282
+msgid "unknown error"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:289
+#, python-brace-format
+msgid "Could not open file {filename!r}: {message}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/formatting.py:156
+#, fuzzy
+msgid "Usage:"
+msgstr "حفظ"
+
+#: venv/Lib/site-packages/click/parser.py:199
+#, python-brace-format
+msgid "Argument {name!r} takes {nargs} values."
+msgstr ""
+
+#: venv/Lib/site-packages/click/parser.py:381
+#, python-brace-format
+msgid "Option {name!r} does not take a value."
+msgstr ""
+
+#: venv/Lib/site-packages/click/parser.py:444
+#, python-brace-format
+msgid "Option {name!r} requires an argument."
+msgid_plural "Option {name!r} requires {nargs} arguments."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: venv/Lib/site-packages/click/shell_completion.py:332
+msgid "Shell completion is not supported for Bash versions older than 4.4."
+msgstr ""
+
+#: venv/Lib/site-packages/click/shell_completion.py:339
+msgid "Couldn't detect Bash version, shell completion is not supported."
+msgstr ""
+
+#: venv/Lib/site-packages/click/termui.py:162
+msgid "Repeat for confirmation"
+msgstr ""
+
+#: venv/Lib/site-packages/click/termui.py:178
+msgid "Error: The value you entered was invalid."
+msgstr ""
+
+#: venv/Lib/site-packages/click/termui.py:180
+#, python-brace-format
+msgid "Error: {e.message}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/termui.py:191
+msgid "Error: The two entered values do not match."
+msgstr ""
+
+#: venv/Lib/site-packages/click/termui.py:247
+msgid "Error: invalid input"
+msgstr ""
+
+#: venv/Lib/site-packages/click/termui.py:866
+msgid "Press any key to continue..."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:332
+#, python-brace-format
+msgid ""
+"Choose from:\n"
+"\t{choices}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:369
+#, python-brace-format
+msgid "{value!r} is not {choice}."
+msgid_plural "{value!r} is not one of {choices}."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: venv/Lib/site-packages/click/types.py:460
+#, python-brace-format
+msgid "{value!r} does not match the format {format}."
+msgid_plural "{value!r} does not match the formats {formats}."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: venv/Lib/site-packages/click/types.py:482
+#, python-brace-format
+msgid "{value!r} is not a valid {number_type}."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:538
+#, python-brace-format
+msgid "{value} is not in the range {range}."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:719
+#, python-brace-format
+msgid "{value!r} is not a valid boolean. Recognized values: {states}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:747
+#, python-brace-format
+msgid "{value!r} is not a valid UUID."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:937
+#, fuzzy
+msgid "file"
+msgstr "العنوان"
+
+#: venv/Lib/site-packages/click/types.py:939
+msgid "directory"
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:941
+#, fuzzy
+msgid "path"
+msgstr "تحديث"
+
+#: venv/Lib/site-packages/click/types.py:988
+#, python-brace-format
+msgid "{name} {filename!r} does not exist."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:997
+#, python-brace-format
+msgid "{name} {filename!r} is a file."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:1005
+#, python-brace-format
+msgid "{name} {filename!r} is a directory."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:1014
+#, python-brace-format
+msgid "{name} {filename!r} is not readable."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:1023
+#, python-brace-format
+msgid "{name} {filename!r} is not writable."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:1032
+#, python-brace-format
+msgid "{name} {filename!r} is not executable."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:1099
+#, python-brace-format
+msgid "{len_type} values are required, but {len_value} was given."
+msgid_plural "{len_type} values are required, but {len_value} were given."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: venv/Lib/site-packages/flask_wtf/file.py:35
+#: venv/Lib/site-packages/wtforms/validators.py:294
+#: venv/Lib/site-packages/wtforms/validators.py:322
+#, fuzzy
+msgid "This field is required."
+msgstr "كل الحقول مطلوبة"
+
+#: venv/Lib/site-packages/flask_wtf/file.py:70
+#, python-brace-format
+msgid "File does not have an approved extension: {extensions}"
+msgstr ""
+
+#: venv/Lib/site-packages/flask_wtf/file.py:77
+msgid "File does not have an approved extension."
+msgstr ""
+
+#: venv/Lib/site-packages/flask_wtf/file.py:112
+#, python-brace-format
+msgid "File must be between {min_size} and {max_size} bytes."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:87
+#, python-format
+msgid "Invalid field name '%s'."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:100
+#, python-format
+msgid "Field must be equal to %(other_name)s."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:147
+#, python-format
+msgid "Field must be at least %(min)d character long."
+msgid_plural "Field must be at least %(min)d characters long."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:153
+#, python-format
+msgid "Field cannot be longer than %(max)d character."
+msgid_plural "Field cannot be longer than %(max)d characters."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:159
+#, python-format
+msgid "Field must be exactly %(max)d character long."
+msgid_plural "Field must be exactly %(max)d characters long."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:165
+#, python-format
+msgid "Field must be between %(min)d and %(max)d characters long."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:217
+#, python-format
+msgid "Number must be at least %(min)s."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:220
+#, python-format
+msgid "Number must be at most %(max)s."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:223
+#, python-format
+msgid "Number must be between %(min)s and %(max)s."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:357
+#, fuzzy
+msgid "Invalid input."
+msgstr "حالة غير صالحة"
+
+#: venv/Lib/site-packages/wtforms/validators.py:416
+msgid "Invalid email address."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:454
+#, fuzzy
+msgid "Invalid IP address."
+msgstr "حالة غير صالحة"
+
+#: venv/Lib/site-packages/wtforms/validators.py:497
+#, fuzzy
+msgid "Invalid Mac address."
+msgstr "بيانات الدخول غير صحيحة"
+
+#: venv/Lib/site-packages/wtforms/validators.py:532
+#, fuzzy
+msgid "Invalid URL."
+msgstr "حالة غير صالحة"
+
+#: venv/Lib/site-packages/wtforms/validators.py:553
+#, fuzzy
+msgid "Invalid UUID."
+msgstr "حالة غير صالحة"
+
+#: venv/Lib/site-packages/wtforms/validators.py:586
+#, python-format
+msgid "Invalid value, must be one of: %(values)s."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/validators.py:621
+#, python-format
+msgid "Invalid value, can't be any of: %(values)s."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/csrf/core.py:96
+#, fuzzy
+msgid "Invalid CSRF Token."
+msgstr "بيانات الدخول غير صحيحة"
+
+#: venv/Lib/site-packages/wtforms/csrf/session.py:63
+msgid "CSRF token missing."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/csrf/session.py:71
+msgid "CSRF failed."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/csrf/session.py:76
+msgid "CSRF token expired."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/fields/choices.py:132
+msgid "Invalid Choice: could not coerce."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/fields/choices.py:136
+#: venv/Lib/site-packages/wtforms/fields/choices.py:188
+msgid "Choices cannot be None."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/fields/choices.py:145
+msgid "Not a valid choice."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/fields/choices.py:182
+msgid "Invalid choice(s): one or more data inputs could not be coerced."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/fields/choices.py:198
+#, python-format
+msgid "'%(value)s' is not a valid choice for this field."
+msgid_plural "'%(value)s' are not valid choices for this field."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#: venv/Lib/site-packages/wtforms/fields/datetime.py:50
+msgid "Not a valid datetime value."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/fields/datetime.py:76
+msgid "Not a valid date value."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/fields/datetime.py:102
+msgid "Not a valid time value."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/fields/numeric.py:82
+#: venv/Lib/site-packages/wtforms/fields/numeric.py:92
+msgid "Not a valid integer value."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/fields/numeric.py:167
+msgid "Not a valid decimal value."
+msgstr ""
+
+#: venv/Lib/site-packages/wtforms/fields/numeric.py:196
+msgid "Not a valid float value."
+msgstr ""
+
+#~ msgid "Admin Dashboard"
+#~ msgstr "لوحة تحكم المدير"
+
+#~ msgid "Recent Contracts"
+#~ msgstr "أحدث العقود"
+
+#~ msgid "Delete"
+#~ msgstr "حذف"
+
+#~ msgid "Are you sure?"
+#~ msgstr "هل أنت متأكد؟"
+
+#~ msgid "My Contracts"
+#~ msgstr "عقودي"
+
+#~ msgid "Invoices & Payments"
+#~ msgstr "الفواتير والمدفوعات"
+
+#~ msgid "New Request"
+#~ msgstr "طلب جديد"
+
+#~ msgid "Email"
+#~ msgstr "البريد الإلكتروني"
+
+#~ msgid "Maintenance Requests > 24h"
+#~ msgstr "طلبات صيانة لأكثر من 24 ساعة"
+
+# Filtering labels
+#~ msgid "Filtered to unleased properties"
+#~ msgstr "مصفاة لعرض العقارات غير المؤجرة"
+
+#~ msgid "All Properties"
+#~ msgstr "كل العقارات"
+

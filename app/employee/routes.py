@@ -278,7 +278,8 @@ def properties_create():
                 if f and f.filename:
                     ext = f.filename.rsplit(".", 1)[-1].lower() if "." in f.filename else ""
                     if ext not in allowed:
-                        flash(_(f"Invalid image type. Allowed: {', '.join(sorted(allowed))}"), "danger")
+                        allowed_str = ", ".join(sorted(allowed))
+                        flash(_("Invalid image type. Allowed: %(allowed)s", allowed=allowed_str), "danger")
                         return redirect(url_for("employee.properties_create"))
                     base_name = secure_filename(os.path.splitext(f.filename)[0]) or "image"
                     unique_name = f"{base_name}-{uuid.uuid4().hex[:8]}.{ext}"
@@ -310,7 +311,8 @@ def properties_create():
                 if f and f.filename:
                     ext = f.filename.rsplit(".", 1)[-1].lower() if "." in f.filename else ""
                     if ext not in allowed:
-                        flash(_(f"Invalid image type. Allowed: {', '.join(sorted(allowed))}"), "danger")
+                        allowed_str = ", ".join(sorted(allowed))
+                        flash(_("Invalid image type. Allowed: %(allowed)s", allowed=allowed_str), "danger")
                         return redirect(url_for("employee.properties_create"))
                     base_name = secure_filename(os.path.splitext(f.filename)[0]) or "image"
                     unique_name = f"{base_name}-{uuid.uuid4().hex[:8]}.{ext}"
@@ -390,7 +392,8 @@ def properties_edit(prop_id: int):
                 if f and f.filename:
                     ext = f.filename.rsplit(".", 1)[-1].lower() if "." in f.filename else ""
                     if ext not in allowed:
-                        flash(_(f"Invalid image type. Allowed: {', '.join(sorted(allowed))}"), "danger")
+                        allowed_str = ", ".join(sorted(allowed))
+                        flash(_("Invalid image type. Allowed: %(allowed)s", allowed=allowed_str), "danger")
                         return redirect(url_for("employee.properties_edit", prop_id=prop.id))
                     base_name = secure_filename(os.path.splitext(f.filename)[0]) or "image"
                     unique_name = f"{base_name}-{uuid.uuid4().hex[:8]}.{ext}"
@@ -473,7 +476,8 @@ def apartments_create(building_id: int):
             if f and f.filename:
                 ext = f.filename.rsplit(".", 1)[-1].lower() if "." in f.filename else ""
                 if ext not in allowed:
-                    flash(_(f"Invalid image type. Allowed: {', '.join(sorted(allowed))}"), "danger")
+                    allowed_str = ", ".join(sorted(allowed))
+                    flash(_("Invalid image type. Allowed: %(allowed)s", allowed=allowed_str), "danger")
                     return redirect(url_for("employee.apartments_create", building_id=building.id))
                 base_name = secure_filename(os.path.splitext(f.filename)[0]) or "image"
                 unique_name = f"{base_name}-{uuid.uuid4().hex[:8]}.{ext}"
@@ -529,7 +533,8 @@ def apartments_edit(apt_id: int):
                 if f and f.filename:
                     ext = f.filename.rsplit(".", 1)[-1].lower() if "." in f.filename else ""
                     if ext not in allowed:
-                        flash(_(f"Invalid image type. Allowed: {', '.join(sorted(allowed))}"), "danger")
+                        allowed_str = ", ".join(sorted(allowed))
+                        flash(_("Invalid image type. Allowed: %(allowed)s", allowed=allowed_str), "danger")
                         return redirect(url_for("employee.apartments_edit", apt_id=apt.id))
                     base_name = secure_filename(os.path.splitext(f.filename)[0]) or "image"
                     unique_name = f"{base_name}-{uuid.uuid4().hex[:8]}.{ext}"
@@ -584,7 +589,8 @@ def contracts_create():
             allowed = current_app.config.get("ALLOWED_EXTENSIONS", set())
             ext = doc.filename.rsplit(".", 1)[-1].lower() if "." in doc.filename else ""
             if ext not in allowed:
-                flash(_(f"Invalid file type. Allowed: {', '.join(sorted(allowed))}"), "danger")
+                allowed_str = ", ".join(sorted(allowed))
+                flash(_("Invalid file type. Allowed: %(allowed)s", allowed=allowed_str), "danger")
                 return redirect(url_for("employee.contracts_create"))
 
             upload_dir = os.path.join(current_app.config["UPLOAD_FOLDER"], "contracts")

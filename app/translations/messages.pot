@@ -1,14 +1,17 @@
-
+# Translations template for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version:  real-estate\n"
+"Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-10-12 06:10+0000\n"
-"PO-Revision-Date: 2025-10-01 00:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: en\n"
-"Language-Team: en <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -28,7 +31,7 @@ msgstr ""
 #: app/templates/employee/unleased_units.html:32
 #: app/templates/employee/unleased_units.html:48
 msgid "Available"
-msgstr "Available"
+msgstr ""
 
 #: app/accountant/routes.py:240 app/templates/accountant/dashboard.html:141
 #: app/templates/accountant/dashboard.html:244
@@ -40,12 +43,11 @@ msgstr "Available"
 #: app/templates/employee/properties_list.html:61
 #: app/templates/employee/property_form.html:99
 msgid "Occupied"
-msgstr "Occupied"
+msgstr ""
 
 #: app/accountant/routes.py:409 app/accountant/routes.py:663
-#, fuzzy
 msgid "Invalid payment data"
-msgstr "Unpaid Payments"
+msgstr ""
 
 #: app/accountant/routes.py:432
 msgid "Payment recorded for tenant"
@@ -53,49 +55,43 @@ msgstr ""
 
 #: app/accountant/routes.py:477
 msgid "Payment status updated"
-msgstr "Payment status updated"
+msgstr ""
 
 #: app/accountant/routes.py:666
 msgid "Contract not found"
 msgstr ""
 
 #: app/accountant/routes.py:671
-#, fuzzy
 msgid "Payment created"
-msgstr "Property created"
+msgstr ""
 
 #: app/accountant/routes.py:874
-#, fuzzy
 msgid "Account created"
-msgstr "Property created"
+msgstr ""
 
 #: app/accountant/routes.py:876
 msgid "Account code already exists"
 msgstr ""
 
 #: app/accountant/routes.py:878
-#, fuzzy
 msgid "Invalid account data"
-msgstr "Invalid credentials"
+msgstr ""
 
 #: app/accountant/routes.py:912
 msgid "Expense recorded"
 msgstr ""
 
 #: app/accountant/routes.py:914
-#, fuzzy
 msgid "Invalid expense data"
-msgstr "Invalid credentials"
+msgstr ""
 
 #: app/accountant/routes.py:942
-#, fuzzy
 msgid "Invalid journal data"
-msgstr "Invalid credentials"
+msgstr ""
 
 #: app/accountant/routes.py:957
-#, fuzzy
 msgid "Journal entry created"
-msgstr "New Journal Entry"
+msgstr ""
 
 #: app/admin/routes.py:304 app/admin/routes.py:314 app/employee/routes.py:248
 msgid "All fields are required"
@@ -110,9 +106,8 @@ msgid "Username or phone already exists"
 msgstr ""
 
 #: app/admin/routes.py:358 app/admin/routes.py:371
-#, fuzzy
 msgid "Invalid property selected"
-msgstr "Property deleted"
+msgstr ""
 
 #: app/admin/routes.py:384
 msgid "Please select an apartment or enter its number"
@@ -149,15 +144,15 @@ msgstr ""
 #: app/auth/routes.py:21
 #, python-format
 msgid "Welcome back, %(user)s"
-msgstr "Welcome back, %(user)s"
+msgstr ""
 
 #: app/auth/routes.py:24
 msgid "Invalid credentials"
-msgstr "Invalid credentials"
+msgstr ""
 
 #: app/auth/routes.py:34
 msgid "You have been logged out"
-msgstr "You have been logged out"
+msgstr ""
 
 #: app/employee/routes.py:282 app/employee/routes.py:315
 #: app/employee/routes.py:396 app/employee/routes.py:480
@@ -168,11 +163,11 @@ msgstr ""
 
 #: app/employee/routes.py:354
 msgid "Property created"
-msgstr "Property created"
+msgstr ""
 
 #: app/employee/routes.py:407
 msgid "Property updated"
-msgstr "Property updated"
+msgstr ""
 
 #: app/employee/routes.py:417
 msgid "Use the Share button to copy the link"
@@ -180,22 +175,19 @@ msgstr ""
 
 #: app/employee/routes.py:428
 msgid "Property deleted"
-msgstr "Property deleted"
+msgstr ""
 
 #: app/employee/routes.py:502
-#, fuzzy
 msgid "Apartment created"
-msgstr "Apartment"
+msgstr ""
 
 #: app/employee/routes.py:549
-#, fuzzy
 msgid "Apartment updated"
-msgstr "Payment status updated"
+msgstr ""
 
 #: app/employee/routes.py:562
-#, fuzzy
 msgid "Apartment deleted"
-msgstr "Apartment"
+msgstr ""
 
 #: app/employee/routes.py:593
 #, python-format
@@ -203,29 +195,24 @@ msgid "Invalid file type. Allowed: %(allowed)s"
 msgstr ""
 
 #: app/employee/routes.py:615
-#, fuzzy
 msgid "Contract created"
-msgstr "Property created"
+msgstr ""
 
 #: app/employee/routes.py:632 app/employee/routes.py:653
-#, fuzzy
 msgid "Invalid status"
-msgstr "Invalid credentials"
+msgstr ""
 
 #: app/employee/routes.py:638
-#, fuzzy
 msgid "Maintenance request updated"
-msgstr "Maintenance Requests"
+msgstr ""
 
 #: app/employee/routes.py:659
-#, fuzzy
 msgid "Complaint updated"
-msgstr "Complaints"
+msgstr ""
 
 #: app/employee/routes.py:748
-#, fuzzy
 msgid "No active contract for this tenant"
-msgstr "Active Contracts"
+msgstr ""
 
 #: app/employee/routes.py:795
 msgid "Rent marked as received"
@@ -245,16 +232,15 @@ msgstr ""
 
 #: app/templates/base.html:6 app/templates/base.html:31
 msgid "Real Estate"
-msgstr "Real Estate"
+msgstr ""
 
 #: app/templates/base.html:39
 msgid "Admin"
 msgstr ""
 
 #: app/templates/admin/users_list.html:2 app/templates/base.html:40
-#, fuzzy
 msgid "Users"
-msgstr "Username"
+msgstr ""
 
 #: app/templates/accountant/properties.html:2
 #: app/templates/accountant/properties.html:5 app/templates/base.html:41
@@ -263,12 +249,11 @@ msgstr "Username"
 #: app/templates/employee/properties_list.html:2
 #: app/templates/employee/properties_list.html:7
 msgid "Properties"
-msgstr "Properties"
+msgstr ""
 
 #: app/templates/admin/user_form.html:57 app/templates/base.html:44
-#, fuzzy
 msgid "Employee"
-msgstr "Employee Dashboard"
+msgstr ""
 
 #: app/templates/accountant/contracts.html:2
 #: app/templates/accountant/contracts.html:5
@@ -277,9 +262,8 @@ msgstr "Employee Dashboard"
 #: app/templates/base.html:58 app/templates/employee/contracts_list.html:2
 #: app/templates/employee/contracts_list.html:27
 #: app/templates/employee/dashboard.html:93
-#, fuzzy
 msgid "Contracts"
-msgstr "My Contracts"
+msgstr ""
 
 #: app/templates/accountant/ar_aging.html:14
 #: app/templates/accountant/contracts.html:41
@@ -287,19 +271,16 @@ msgstr "My Contracts"
 #: app/templates/employee/contract_form.html:49
 #: app/templates/employee/contracts_list.html:39
 #: app/templates/employee/rent_collection.html:26
-#, fuzzy
 msgid "Tenant"
-msgstr "Tenants"
+msgstr ""
 
 #: app/templates/admin/user_form.html:58 app/templates/base.html:53
-#, fuzzy
 msgid "Accountant"
-msgstr "Accountant Dashboard"
+msgstr ""
 
-# Nav items
 #: app/templates/base.html:55
 msgid "Dashboard"
-msgstr "Dashboard"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:196
 #: app/templates/accountant/maintenance.html:2
@@ -308,7 +289,7 @@ msgstr "Dashboard"
 #: app/templates/employee/maintenance_list.html:2
 #: app/templates/employee/maintenance_list.html:15
 msgid "Maintenance Requests"
-msgstr "Maintenance Requests"
+msgstr ""
 
 #: app/templates/accountant/complaints.html:2
 #: app/templates/accountant/complaints.html:5
@@ -317,103 +298,99 @@ msgstr "Maintenance Requests"
 #: app/templates/employee/complaints_list.html:15
 #: app/templates/employee/dashboard.html:110
 msgid "Complaints"
-msgstr "Complaints"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:14
 #: app/templates/accountant/dashboard.html:177
 #: app/templates/accountant/payments.html:2
 #: app/templates/accountant/payments.html:4 app/templates/base.html:62
 msgid "Payments"
-msgstr "Payments"
+msgstr ""
 
 #: app/templates/accountant/payments.html:12
 #: app/templates/accountant/tenant_detail.html:12
 #: app/templates/accountant/tenant_detail.html:49 app/templates/base.html:63
 #: app/templates/employee/rent_collection.html:82
 msgid "Unpaid"
-msgstr "Unpaid"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:17
 #: app/templates/accountant/invoices.html:2
 #: app/templates/accountant/invoices.html:4 app/templates/base.html:64
 msgid "Invoices"
-msgstr "Invoices"
+msgstr ""
 
 #: app/templates/accountant/accounts.html:2
 #: app/templates/accountant/accounts.html:5 app/templates/base.html:65
 msgid "Chart of Accounts"
-msgstr "Chart of Accounts"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:349
 #: app/templates/accountant/expenses.html:2
 #: app/templates/accountant/expenses.html:5
 #: app/templates/accountant/financial_overview.html:46
 #: app/templates/accountant/income_statement.html:38 app/templates/base.html:66
-#, fuzzy
 msgid "Expenses"
-msgstr "Total Expenses"
+msgstr ""
 
 #: app/templates/accountant/journal_new.html:2
 #: app/templates/accountant/journal_new.html:5 app/templates/base.html:67
 msgid "New Journal Entry"
-msgstr "New Journal Entry"
+msgstr ""
 
 #: app/templates/accountant/ledger.html:2
 #: app/templates/accountant/ledger.html:5 app/templates/base.html:68
 msgid "General Ledger"
-msgstr "General Ledger"
+msgstr ""
 
 #: app/templates/accountant/trial_balance.html:2
 #: app/templates/accountant/trial_balance.html:5 app/templates/base.html:69
 msgid "Trial Balance"
-msgstr "Trial Balance"
+msgstr ""
 
 #: app/templates/accountant/income_statement.html:2
 #: app/templates/accountant/income_statement.html:5 app/templates/base.html:70
 msgid "Income Statement"
-msgstr "Income Statement"
+msgstr ""
 
 #: app/templates/accountant/balance_sheet.html:2
 #: app/templates/accountant/balance_sheet.html:5 app/templates/base.html:71
 msgid "Balance Sheet"
-msgstr "Balance Sheet"
+msgstr ""
 
 #: app/templates/accountant/ar_aging.html:2 app/templates/base.html:72
 msgid "AR Aging"
-msgstr "AR Aging"
+msgstr ""
 
 #: app/templates/accountant/financial_overview.html:2
 #: app/templates/accountant/financial_overview.html:5
 #: app/templates/base.html:73
 msgid "Financial Overview"
-msgstr "Financial Overview"
+msgstr ""
 
 #: app/templates/base.html:77
 msgid "Logout"
-msgstr "Logout"
+msgstr ""
 
 #: app/templates/base.html:83
 msgid "Language"
-msgstr "Language"
+msgstr ""
 
 #: app/templates/accountant/accounts.html:10
-#, fuzzy
 msgid "Add New Account"
-msgstr "Chart of Accounts"
+msgstr ""
 
 #: app/templates/accountant/accounts.html:15
 #: app/templates/accountant/accounts.html:51
 #: app/templates/accountant/trial_balance.html:11
-#, fuzzy
 msgid "Code"
-msgstr "Closed"
+msgstr ""
 
 #: app/templates/accountant/accounts.html:19
 #: app/templates/accountant/accounts.html:52
 #: app/templates/accountant/tenants_list.html:16
-#, fuzzy
 msgid "Name"
-msgstr "Username"
+msgstr ""
 
 #: app/templates/accountant/accounts.html:23
 #: app/templates/accountant/accounts.html:53
@@ -423,7 +400,7 @@ msgstr "Username"
 #: app/templates/employee/property_form.html:13
 #: app/templates/tenant/complaint_form.html:14
 msgid "Type"
-msgstr "Type"
+msgstr ""
 
 #: app/templates/accountant/accounts.html:25
 #: app/templates/accountant/accounts.html:63
@@ -438,29 +415,25 @@ msgstr ""
 #: app/templates/accountant/accounts.html:27
 #: app/templates/accountant/accounts.html:65
 #: app/templates/accountant/balance_sheet.html:74
-#, fuzzy
 msgid "Equity"
-msgstr "Edit"
+msgstr ""
 
 #: app/templates/accountant/accounts.html:28
 #: app/templates/accountant/accounts.html:66
 #: app/templates/accountant/dashboard.html:348
 #: app/templates/accountant/financial_overview.html:45
 #: app/templates/accountant/income_statement.html:11
-#, fuzzy
 msgid "Income"
-msgstr "Total Income"
+msgstr ""
 
 #: app/templates/accountant/accounts.html:29
 #: app/templates/accountant/accounts.html:67
-#, fuzzy
 msgid "Expense"
-msgstr "Total Expenses"
+msgstr ""
 
 #: app/templates/accountant/accounts.html:34
-#, fuzzy
 msgid "Add Account"
-msgstr "Chart of Accounts"
+msgstr ""
 
 #: app/templates/accountant/accounts.html:44
 msgid "Accounts List"
@@ -490,7 +463,7 @@ msgstr ""
 #: app/templates/employee/properties_list.html:69
 #: app/templates/employee/rent_collection.html:104
 msgid "No data"
-msgstr "No data"
+msgstr ""
 
 #: app/templates/accountant/ar_aging.html:5
 msgid "Accounts Receivable Aging"
@@ -504,7 +477,7 @@ msgstr ""
 #: app/templates/accountant/tenant_detail.html:34
 #: app/templates/accountant/tenant_detail.html:65
 msgid "Due Date"
-msgstr "Due Date"
+msgstr ""
 
 #: app/templates/accountant/ar_aging.html:16
 #: app/templates/accountant/dashboard.html:299
@@ -518,7 +491,7 @@ msgstr "Due Date"
 #: app/templates/accountant/tenant_detail.html:66
 #: app/templates/tenant/dashboard.html:128
 msgid "Amount"
-msgstr "Amount"
+msgstr ""
 
 #: app/templates/accountant/ar_aging.html:17
 msgid "Days Past Due"
@@ -538,14 +511,12 @@ msgid "Summary"
 msgstr ""
 
 #: app/templates/accountant/balance_sheet.html:12
-#, fuzzy
 msgid "Assets"
-msgstr "Alerts"
+msgstr ""
 
 #: app/templates/accountant/balance_sheet.html:30
-#, fuzzy
 msgid "Total Assets"
-msgstr "Total Expenses"
+msgstr ""
 
 #: app/templates/accountant/balance_sheet.html:43
 msgid "Liabilities"
@@ -556,9 +527,8 @@ msgid "Total Liabilities"
 msgstr ""
 
 #: app/templates/accountant/balance_sheet.html:92
-#, fuzzy
 msgid "Total Equity"
-msgstr "Total Revenue"
+msgstr ""
 
 #: app/templates/accountant/complaints.html:10
 #: app/templates/accountant/complaints.html:31
@@ -583,7 +553,7 @@ msgstr "Total Revenue"
 #: app/templates/employee/properties_list.html:30
 #: app/templates/employee/property_form.html:96
 msgid "Status"
-msgstr "Status"
+msgstr ""
 
 #: app/templates/accountant/complaints.html:12
 #: app/templates/accountant/contracts.html:16
@@ -602,26 +572,26 @@ msgstr ""
 #: app/templates/accountant/dashboard.html:218
 #: app/templates/accountant/maintenance.html:13
 msgid "New"
-msgstr "New"
+msgstr ""
 
 #: app/templates/accountant/complaints.html:14
 #: app/templates/accountant/dashboard.html:219
 msgid "Reviewing"
-msgstr "Reviewing"
+msgstr ""
 
 #: app/templates/accountant/complaints.html:15
 #: app/templates/accountant/dashboard.html:200
 #: app/templates/accountant/dashboard.html:220
 #: app/templates/accountant/maintenance.html:15
 msgid "Resolved"
-msgstr "Resolved"
+msgstr ""
 
 #: app/templates/accountant/complaints.html:16
 #: app/templates/accountant/dashboard.html:201
 #: app/templates/accountant/dashboard.html:221
 #: app/templates/accountant/maintenance.html:16
 msgid "Closed"
-msgstr "Closed"
+msgstr ""
 
 #: app/templates/accountant/complaints.html:20
 #: app/templates/accountant/contracts.html:31
@@ -652,7 +622,7 @@ msgstr ""
 #: app/templates/tenant/complaint_form.html:24
 #: app/templates/tenant/maintenance_form.html:17
 msgid "Description"
-msgstr "Description"
+msgstr ""
 
 #: app/templates/accountant/complaints.html:32
 #: app/templates/accountant/maintenance.html:32
@@ -663,16 +633,14 @@ msgstr "Description"
 #: app/templates/tenant/dashboard.html:149
 #: app/templates/tenant/dashboard.html:170
 #: app/templates/tenant/maintenance_show.html:22
-#, fuzzy
 msgid "Created at"
-msgstr "Create Property"
+msgstr ""
 
 #: app/templates/accountant/complaints.html:46
 #: app/templates/employee/complaints_list.html:46
 #: app/templates/tenant/dashboard.html:180
-#, fuzzy
 msgid "No complaints"
-msgstr "Complaints"
+msgstr ""
 
 #: app/templates/accountant/contracts.html:10
 #: app/templates/accountant/properties.html:11
@@ -682,9 +650,8 @@ msgid "Search"
 msgstr ""
 
 #: app/templates/accountant/contracts.html:11
-#, fuzzy
 msgid "Property or Tenant..."
-msgstr "Property created"
+msgstr ""
 
 #: app/templates/accountant/contracts.html:17
 #: app/templates/accountant/contracts.html:59
@@ -693,7 +660,7 @@ msgstr "Property created"
 #: app/templates/employee/contracts_list.html:58
 #: app/templates/employee/rent_collection.html:46
 msgid "Active"
-msgstr "Active"
+msgstr ""
 
 #: app/templates/accountant/contracts.html:18
 #: app/templates/accountant/contracts.html:61
@@ -712,25 +679,22 @@ msgid "Start from"
 msgstr ""
 
 #: app/templates/accountant/contracts.html:27
-#, fuzzy
 msgid "End to"
-msgstr "Edit"
+msgstr ""
 
 #: app/templates/accountant/contracts.html:40
 #: app/templates/employee/contract_form.html:39
 #: app/templates/employee/contracts_list.html:38
 #: app/templates/employee/rent_collection.html:28
-#, fuzzy
 msgid "Property"
-msgstr "Add Property"
+msgstr ""
 
 #: app/templates/accountant/contracts.html:42
 #: app/templates/employee/contract_form.html:60
 #: app/templates/employee/contracts_list.html:40
 #: app/templates/tenant/dashboard.html:112
-#, fuzzy
 msgid "Start"
-msgstr "Status"
+msgstr ""
 
 #: app/templates/accountant/contracts.html:43
 #: app/templates/employee/contract_form.html:64
@@ -742,49 +706,47 @@ msgstr ""
 #: app/templates/accountant/contracts.html:44
 #: app/templates/employee/contract_form.html:70
 #: app/templates/employee/contracts_list.html:42
-#, fuzzy
 msgid "Rent"
-msgstr "Apartment"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:2
 #: app/templates/accountant/dashboard.html:6
 msgid "Accountant Dashboard"
-msgstr "Accountant Dashboard"
+msgstr ""
 
-# Accountant dashboard additional strings
 #: app/templates/accountant/dashboard.html:7
 msgid "Modern, responsive overview for financial operations"
-msgstr "Modern, responsive overview for financial operations"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:11
 #: app/templates/accountant/tenants_list.html:2
 #: app/templates/accountant/tenants_list.html:5
 msgid "Tenants"
-msgstr "Tenants"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:29
 #: app/templates/accountant/financial_overview.html:12
 #: app/templates/accountant/income_statement.html:26
 msgid "Total Income"
-msgstr "Total Income"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:44
 #: app/templates/accountant/financial_overview.html:20
 #: app/templates/accountant/income_statement.html:53
 msgid "Total Expenses"
-msgstr "Total Expenses"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:58
 msgid "Net Profit"
-msgstr "Net Profit"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:72
 msgid "Unpaid Payments"
-msgstr "Unpaid Payments"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:87
 msgid "Monthly Income vs Expenses vs Profit"
-msgstr "Monthly Income vs Expenses vs Profit"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:89
 #: app/templates/accountant/invoices.html:21
@@ -798,63 +760,63 @@ msgstr ""
 
 #: app/templates/accountant/dashboard.html:100
 msgid "Alerts"
-msgstr "Alerts"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:102
 msgid "Due Soon (next 7 days)"
-msgstr "Due Soon (next 7 days)"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:110
 msgid "No upcoming dues"
-msgstr "No upcoming dues"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:113
 #: app/templates/accountant/dashboard.html:180
 msgid "Overdue"
-msgstr "Overdue"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:121
 msgid "No overdue items"
-msgstr "No overdue items"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:137
 msgid "Units Total"
-msgstr "Units Total"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:181
 msgid "Upcoming"
-msgstr "Upcoming"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:199
 #: app/templates/accountant/maintenance.html:14
 msgid "In Progress"
-msgstr "In Progress"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:238
 msgid "Latest Properties"
-msgstr "Latest Properties"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:256
 msgid "Latest Contracts"
-msgstr "Latest Contracts"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:274
 msgid "Latest Payments"
-msgstr "Latest Payments"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:280
 #: app/templates/accountant/dashboard.html:311
 msgid "paid"
-msgstr "paid"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:280
 #: app/templates/accountant/dashboard.html:311
 msgid "unpaid"
-msgstr "unpaid"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:291
 msgid "All Payments"
-msgstr "All Payments"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:301
 #: app/templates/accountant/invoices.html:35
@@ -865,13 +827,13 @@ msgstr "All Payments"
 #: app/templates/employee/complaints_list.html:27
 #: app/templates/employee/maintenance_list.html:27
 msgid "Actions"
-msgstr "Actions"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:316
 #: app/templates/accountant/payments.html:78
 #: app/templates/accountant/tenant_detail.html:83
 msgid "Toggle"
-msgstr "Toggle"
+msgstr ""
 
 #: app/templates/accountant/dashboard.html:318
 #: app/templates/accountant/invoices.html:55
@@ -889,14 +851,12 @@ msgstr ""
 
 #: app/templates/accountant/dashboard.html:350
 #: app/templates/accountant/financial_overview.html:47
-#, fuzzy
 msgid "Profit"
-msgstr "Net Profit"
+msgstr ""
 
 #: app/templates/accountant/expenses.html:13
-#, fuzzy
 msgid "Enter description"
-msgstr "Description"
+msgstr ""
 
 #: app/templates/accountant/expenses.html:20
 #: app/templates/accountant/expenses.html:49
@@ -917,50 +877,41 @@ msgstr ""
 #: app/templates/accountant/expenses.html:47
 #: app/templates/accountant/journal_new.html:13
 #: app/templates/accountant/ledger.html:36
-#, fuzzy
 msgid "Date"
-msgstr "Due Date"
+msgstr ""
 
 #: app/templates/accountant/expenses.html:33
-#, fuzzy
 msgid "Add Expense"
-msgstr "Total Expenses"
+msgstr ""
 
 #: app/templates/accountant/financial_overview.html:28
-#, fuzzy
 msgid "Total Profit"
-msgstr "Total Paid"
+msgstr ""
 
 #: app/templates/accountant/financial_overview.html:38
-#, fuzzy
 msgid "Last 12 months"
-msgstr "Latest Payments"
+msgstr ""
 
 #: app/templates/accountant/financial_overview.html:44
-#, fuzzy
 msgid "Month"
-msgstr "Amount"
+msgstr ""
 
 #: app/templates/accountant/financial_overview.html:60
 #: app/templates/admin/users_list.html:151
-#, fuzzy
 msgid "No data available"
-msgstr "Available"
+msgstr ""
 
 #: app/templates/accountant/financial_overview.html:71
-#, fuzzy
 msgid "Back to Payments"
-msgstr "All Payments"
+msgstr ""
 
 #: app/templates/accountant/income_statement.html:66
-#, fuzzy
 msgid "Net Income"
-msgstr "Total Income"
+msgstr ""
 
 #: app/templates/accountant/invoices.html:9
-#, fuzzy
 msgid "Has Invoice"
-msgstr "Invoices"
+msgstr ""
 
 #: app/templates/accountant/invoices.html:12
 msgid "Yes"
@@ -971,14 +922,12 @@ msgid "No"
 msgstr ""
 
 #: app/templates/accountant/invoices.html:34
-#, fuzzy
 msgid "Invoice"
-msgstr "Invoices"
+msgstr ""
 
 #: app/templates/accountant/invoices.html:49
-#, fuzzy
 msgid "Exists"
-msgstr "Edit"
+msgstr ""
 
 #: app/templates/accountant/invoices.html:51
 #: app/templates/employee/rent_collection.html:48
@@ -991,23 +940,20 @@ msgid "Memo"
 msgstr ""
 
 #: app/templates/accountant/journal_new.html:18
-#, fuzzy
 msgid "Enter a short description"
-msgstr "Description"
+msgstr ""
 
 #: app/templates/accountant/journal_new.html:23
-#, fuzzy
 msgid "Debit Account"
-msgstr "Chart of Accounts"
+msgstr ""
 
 #: app/templates/accountant/journal_new.html:25
 msgid "Select Debit Account"
 msgstr ""
 
 #: app/templates/accountant/journal_new.html:32
-#, fuzzy
 msgid "Credit Account"
-msgstr "Chart of Accounts"
+msgstr ""
 
 #: app/templates/accountant/journal_new.html:34
 msgid "Select Credit Account"
@@ -1020,40 +966,34 @@ msgstr ""
 #: app/templates/employee/maintenance_update.html:64
 #: app/templates/employee/property_form.html:112
 msgid "Save"
-msgstr "Save"
+msgstr ""
 
 #: app/templates/accountant/ledger.html:12
 #: app/templates/accountant/trial_balance.html:12
-#, fuzzy
 msgid "Account"
-msgstr "Amount"
+msgstr ""
 
 #: app/templates/accountant/ledger.html:14
-#, fuzzy
 msgid "Select Account"
-msgstr "Chart of Accounts"
+msgstr ""
 
 #: app/templates/accountant/ledger.html:24
 #: app/templates/employee/contracts_list.html:70
-#, fuzzy
 msgid "View"
-msgstr "Reviewing"
+msgstr ""
 
 #: app/templates/accountant/ledger.html:38
-#, fuzzy
 msgid "Debit"
-msgstr "Edit"
+msgstr ""
 
 #: app/templates/accountant/ledger.html:39
-#, fuzzy
 msgid "Credit"
-msgstr "Edit"
+msgstr ""
 
 #: app/templates/accountant/ledger.html:40
 #: app/templates/accountant/trial_balance.html:15
-#, fuzzy
 msgid "Balance"
-msgstr "Trial Balance"
+msgstr ""
 
 #: app/templates/accountant/maintenance.html:29
 #: app/templates/accountant/properties.html:40
@@ -1062,33 +1002,29 @@ msgstr "Trial Balance"
 #: app/templates/employee/property_form.html:22
 #: app/templates/tenant/maintenance_form.html:13
 msgid "Title"
-msgstr "Title"
+msgstr ""
 
 #: app/templates/accountant/maintenance.html:46
 #: app/templates/employee/maintenance_list.html:46
 #: app/templates/tenant/dashboard.html:159
-#, fuzzy
 msgid "No maintenance requests"
-msgstr "Maintenance Requests"
+msgstr ""
 
 #: app/templates/accountant/payments.html:13
 #: app/templates/accountant/tenant_detail.html:11
 #: app/templates/accountant/tenant_detail.html:50
 #: app/templates/employee/rent_collection.html:80
 #: app/templates/employee/rent_collection.html:96
-#, fuzzy
 msgid "Paid"
-msgstr "paid"
+msgstr ""
 
 #: app/templates/accountant/payments.html:23
-#, fuzzy
 msgid "Add Payment"
-msgstr "All Payments"
+msgstr ""
 
 #: app/templates/accountant/payments.html:27
-#, fuzzy
 msgid "Contract ID"
-msgstr "My Contracts"
+msgstr ""
 
 #: app/templates/accountant/payments.html:39
 #: app/templates/accountant/payments.html:61
@@ -1112,15 +1048,13 @@ msgid "Bank Transfer"
 msgstr ""
 
 #: app/templates/accountant/payments.html:48
-#, fuzzy
 msgid "Create Payment"
-msgstr "Latest Payments"
+msgstr ""
 
 #: app/templates/accountant/properties.html:6
 #: app/templates/employee/properties_list.html:8
-#, fuzzy
 msgid "Total Buildings"
-msgstr "Add Building"
+msgstr ""
 
 #: app/templates/accountant/properties.html:6
 #: app/templates/accountant/properties.html:19
@@ -1128,26 +1062,24 @@ msgstr "Add Building"
 #: app/templates/employee/properties_list.html:26
 #: app/templates/employee/unleased_units.html:40
 msgid "Standalone Apartments"
-msgstr "Standalone Apartments"
+msgstr ""
 
 #: app/templates/accountant/properties.html:12
 #: app/templates/employee/properties_list.html:19
-#, fuzzy
 msgid "Title..."
-msgstr "Title"
+msgstr ""
 
 #: app/templates/accountant/properties.html:18
 #: app/templates/employee/properties_list.html:25
-#, fuzzy
 msgid "Buildings"
-msgstr "Building"
+msgstr ""
 
 #: app/templates/accountant/properties.html:53
 #: app/templates/admin/unleased_units.html:30
 #: app/templates/employee/property_form.html:15
 #: app/templates/employee/unleased_units.html:30
 msgid "Building"
-msgstr "Building"
+msgstr ""
 
 #: app/templates/accountant/properties.html:55
 #: app/templates/admin/unleased_units.html:26
@@ -1158,12 +1090,11 @@ msgstr "Building"
 #: app/templates/employee/unleased_units.html:26
 #: app/templates/employee/unleased_units.html:29
 msgid "Apartment"
-msgstr "Apartment"
+msgstr ""
 
 #: app/templates/accountant/tenant_detail.html:2
-#, fuzzy
 msgid "Tenant Statement"
-msgstr "Income Statement"
+msgstr ""
 
 #: app/templates/accountant/tenant_detail.html:7
 #: app/templates/accountant/tenants_list.html:17
@@ -1173,21 +1104,18 @@ msgstr ""
 
 #: app/templates/accountant/tenant_detail.html:10
 #: app/templates/admin/users_list.html:99
-#, fuzzy
 msgid "Total"
-msgstr "Total Paid"
+msgstr ""
 
 #: app/templates/accountant/tenant_detail.html:17
-#, fuzzy
 msgid "Record Payment"
-msgstr "Payments"
+msgstr ""
 
 #: app/templates/accountant/tenant_detail.html:21
 #: app/templates/employee/rent_collection.html:27
 #: app/templates/tenant/dashboard.html:110
-#, fuzzy
 msgid "Contract"
-msgstr "My Contracts"
+msgstr ""
 
 #: app/templates/accountant/tenant_detail.html:54
 msgid "Add"
@@ -1202,19 +1130,16 @@ msgid "Open"
 msgstr ""
 
 #: app/templates/accountant/trial_balance.html:13
-#, fuzzy
 msgid "Debits"
-msgstr "Edit"
+msgstr ""
 
 #: app/templates/accountant/trial_balance.html:14
-#, fuzzy
 msgid "Credits"
-msgstr "Edit"
+msgstr ""
 
 #: app/templates/accountant/trial_balance.html:35
-#, fuzzy
 msgid "Totals"
-msgstr "Total Paid"
+msgstr ""
 
 #: app/templates/admin/user_form.html:3 app/templates/admin/user_form.html:41
 msgid "Add Employee"
@@ -1222,66 +1147,59 @@ msgstr ""
 
 #: app/templates/admin/user_form.html:3 app/templates/admin/user_form.html:43
 #: app/templates/admin/users_list.html:97
-#, fuzzy
 msgid "Add Tenant"
-msgstr "Tenants"
+msgstr ""
 
 #: app/templates/admin/user_form.html:50
 #: app/templates/admin/users_list.html:109
 #: app/templates/auth/company_setup.html:12 app/templates/auth/login.html:49
 msgid "Username"
-msgstr "Username"
+msgstr ""
 
 #: app/templates/admin/user_form.html:55
 #: app/templates/admin/users_list.html:111
-#, fuzzy
 msgid "Role"
-msgstr "Resolved"
+msgstr ""
 
 #: app/templates/admin/user_form.html:68
 #: app/templates/auth/company_setup.html:20 app/templates/auth/login.html:53
 msgid "Password"
-msgstr "Password"
+msgstr ""
 
 #: app/templates/admin/user_form.html:73
-#, fuzzy
 msgid "Property to lease"
-msgstr "Property deleted"
+msgstr ""
 
 #: app/templates/admin/user_form.html:75
 #: app/templates/employee/contract_form.html:41
-#, fuzzy
 msgid "Select a property"
-msgstr "Edit Property"
+msgstr ""
 
 #: app/templates/admin/user_form.html:80
 #: app/templates/employee/property_form.html:28
 #: app/templates/public/property_view.html:76
 msgid "Price"
-msgstr "Price"
+msgstr ""
 
 #: app/templates/admin/user_form.html:84
 msgid "For buildings, select an apartment or enter its number"
 msgstr ""
 
 #: app/templates/admin/user_form.html:87
-#, fuzzy
 msgid "Apartment in building"
-msgstr "Add Building"
+msgstr ""
 
 #: app/templates/admin/user_form.html:89 app/templates/admin/user_form.html:118
-#, fuzzy
 msgid "Select an apartment"
-msgstr "Standalone Apartments"
+msgstr ""
 
 #: app/templates/admin/user_form.html:91
 msgid "Only available apartments are listed."
 msgstr ""
 
 #: app/templates/admin/user_form.html:93
-#, fuzzy
 msgid "Apartment number"
-msgstr "Apartment"
+msgstr ""
 
 #: app/templates/admin/user_form.html:94
 msgid "e.g., 12A"
@@ -1292,14 +1210,12 @@ msgid "If not listed above, enter the apartment number"
 msgstr ""
 
 #: app/templates/admin/user_form.html:101
-#, fuzzy
 msgid "Create Employee"
-msgstr "Create Property"
+msgstr ""
 
 #: app/templates/admin/user_form.html:101
-#, fuzzy
 msgid "Create Tenant"
-msgstr "Create Property"
+msgstr ""
 
 #: app/templates/admin/user_form.html:103
 #: app/templates/auth/company_setup.html:29
@@ -1311,26 +1227,23 @@ msgstr "Create Property"
 #: app/templates/tenant/complaint_form.html:32
 #: app/templates/tenant/maintenance_form.html:31
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #: app/templates/admin/users_list.html:91
-#, fuzzy
 msgid "Users Management"
-msgstr "Username"
+msgstr ""
 
 #: app/templates/admin/users_list.html:94
 msgid "Add Employee / Accountant"
 msgstr ""
 
 #: app/templates/admin/users_list.html:110
-#, fuzzy
 msgid "Contact"
-msgstr "My Contracts"
+msgstr ""
 
 #: app/templates/admin/users_list.html:112
-#, fuzzy
 msgid "Created"
-msgstr "Property created"
+msgstr ""
 
 #: app/templates/admin/users_list.html:140
 #: app/templates/employee/rent_collection.html:92
@@ -1338,9 +1251,8 @@ msgid "Mark as Paid"
 msgstr ""
 
 #: app/templates/auth/company_setup.html:2
-#, fuzzy
 msgid "Company Setup"
-msgstr "Complaints"
+msgstr ""
 
 #: app/templates/auth/company_setup.html:7
 msgid "Create Manager Account"
@@ -1355,9 +1267,8 @@ msgid "Phone (optional)"
 msgstr ""
 
 #: app/templates/auth/company_setup.html:24
-#, fuzzy
 msgid "Confirm Password"
-msgstr "Password"
+msgstr ""
 
 #: app/templates/auth/company_setup.html:28
 msgid "Create"
@@ -1365,34 +1276,30 @@ msgstr ""
 
 #: app/templates/auth/login.html:2 app/templates/auth/login.html:45
 msgid "Login"
-msgstr "Login"
+msgstr ""
 
 #: app/templates/auth/login.html:50
-#, fuzzy
 msgid "Enter username"
-msgstr "Username"
+msgstr ""
 
 #: app/templates/auth/login.html:54
-#, fuzzy
 msgid "Enter password"
-msgstr "Password"
+msgstr ""
 
 #: app/templates/auth/login.html:57
 msgid "Sign in"
-msgstr "Sign in"
+msgstr ""
 
 #: app/templates/employee/apartment_form.html:2
 #: app/templates/employee/apartment_form.html:39
-#, fuzzy
 msgid "Edit Apartment"
-msgstr "Apartment"
+msgstr ""
 
 #: app/templates/employee/apartment_form.html:2
 #: app/templates/employee/apartment_form.html:39
 #: app/templates/employee/apartments_list.html:37
-#, fuzzy
 msgid "Add Apartment"
-msgstr "Apartment"
+msgstr ""
 
 #: app/templates/employee/apartment_form.html:44
 #: app/templates/employee/property_form.html:59
@@ -1408,31 +1315,30 @@ msgstr ""
 #: app/templates/employee/property_form.html:71
 #: app/templates/public/property_view.html:88
 msgid "Area (sqm)"
-msgstr "Area (sqm)"
+msgstr ""
 
 #: app/templates/employee/apartment_form.html:65
 #: app/templates/employee/property_form.html:80
 #: app/templates/public/property_view.html:86
 msgid "Bedrooms"
-msgstr "Bedrooms"
+msgstr ""
 
 #: app/templates/employee/apartment_form.html:71
 #: app/templates/employee/property_form.html:86
 #: app/templates/public/property_view.html:87
 msgid "Bathrooms"
-msgstr "Bathrooms"
+msgstr ""
 
 #: app/templates/employee/apartment_form.html:77
-#, fuzzy
 msgid "Rent Price"
-msgstr "Price"
+msgstr ""
 
 #: app/templates/employee/apartment_form.html:89
 #: app/templates/employee/dashboard.html:133
 #: app/templates/employee/property_form.html:100
 #: app/templates/tenant/complaint_form.html:16
 msgid "Maintenance"
-msgstr "Maintenance"
+msgstr ""
 
 #: app/templates/employee/apartment_form.html:95
 #: app/templates/employee/property_form.html:107
@@ -1440,41 +1346,35 @@ msgid "Images"
 msgstr ""
 
 #: app/templates/employee/apartments_list.html:35
-#, fuzzy
 msgid "Apartments"
-msgstr "Apartment"
+msgstr ""
 
 #: app/templates/employee/apartments_list.html:64
 #: app/templates/employee/unleased_units.html:36
 #: app/templates/employee/unleased_units.html:52
-#, fuzzy
 msgid "No apartments available"
-msgstr "Number of apartments"
+msgstr ""
 
 #: app/templates/employee/complaint_update.html:2
 #: app/templates/employee/complaint_update.html:35
-#, fuzzy
 msgid "Update Complaint"
-msgstr "Complaints"
+msgstr ""
 
 #: app/templates/employee/complaint_update.html:55
 #: app/templates/employee/maintenance_update.html:59
 #: app/templates/tenant/complaint_show.html:24
-#, fuzzy
 msgid "Notes"
-msgstr "Invoices"
+msgstr ""
 
 #: app/templates/employee/complaints_list.html:40
 #: app/templates/employee/maintenance_list.html:40
-#, fuzzy
 msgid "Update"
-msgstr "Due Date"
+msgstr ""
 
 #: app/templates/employee/contract_form.html:2
 #: app/templates/employee/contract_form.html:35
-#, fuzzy
 msgid "Create Contract"
-msgstr "Recent Contracts"
+msgstr ""
 
 #: app/templates/employee/contract_form.html:51
 msgid "Select a tenant"
@@ -1485,9 +1385,8 @@ msgid "Contract Document (optional)"
 msgstr ""
 
 #: app/templates/employee/contracts_list.html:29
-#, fuzzy
 msgid "Add Contract"
-msgstr "My Contracts"
+msgstr ""
 
 #: app/templates/employee/contracts_list.html:44
 msgid "Document"
@@ -1496,7 +1395,7 @@ msgstr ""
 #: app/templates/employee/dashboard.html:2
 #: app/templates/employee/dashboard.html:81
 msgid "Employee Dashboard"
-msgstr "Employee Dashboard"
+msgstr ""
 
 #: app/templates/employee/dashboard.html:99
 #: app/templates/employee/rent_collection.html:2
@@ -1512,106 +1411,95 @@ msgstr ""
 
 #: app/templates/employee/dashboard.html:122
 msgid "Recent Properties"
-msgstr "Recent Properties"
+msgstr ""
 
 #: app/templates/employee/dashboard.html:139
-#, fuzzy
 msgid "No properties yet"
-msgstr "Properties"
+msgstr ""
 
 #: app/templates/employee/maintenance_update.html:2
 #: app/templates/employee/maintenance_update.html:35
-#, fuzzy
 msgid "Update Maintenance Request"
-msgstr "Maintenance Requests"
+msgstr ""
 
 #: app/templates/employee/properties_list.html:11
 msgid "Add Property"
-msgstr "Add Property"
+msgstr ""
 
 #: app/templates/employee/property_form.html:2
 #: app/templates/employee/property_form.html:7
 msgid "Edit Property"
-msgstr "Edit Property"
+msgstr ""
 
 #: app/templates/employee/property_form.html:2
 #: app/templates/employee/property_form.html:7
 msgid "Create Property"
-msgstr "Create Property"
+msgstr ""
 
 #: app/templates/employee/property_form.html:42
 #: app/templates/public/property_view.html:81
 msgid "Number of apartments"
-msgstr "Number of apartments"
+msgstr ""
 
 #: app/templates/employee/property_form.html:48
 #: app/templates/public/property_view.html:82
 msgid "Number of floors"
-msgstr "Number of floors"
+msgstr ""
 
 #: app/templates/employee/rent_collection.html:17
 msgid "Month starting"
 msgstr ""
 
 #: app/templates/employee/rent_collection.html:29
-#, fuzzy
 msgid "Rent Amount"
-msgstr "Amount"
+msgstr ""
 
 #: app/templates/employee/rent_collection.html:30
 msgid "This Month"
 msgstr ""
 
 #: app/templates/employee/rent_collection.html:31
-#, fuzzy
 msgid "Action"
-msgstr "Actions"
+msgstr ""
 
 #: app/templates/employee/rent_collection.html:85
-#, fuzzy
 msgid "No contract"
-msgstr "My Contracts"
+msgstr ""
 
 #: app/templates/employee/rent_collection.html:98
-#, fuzzy
 msgid "Unavailable"
-msgstr "Available"
+msgstr ""
 
 #: app/templates/employee/unleased_units.html:20
 msgid "Apartments inside buildings"
 msgstr ""
 
 #: app/templates/public/property_view.html:63
-#, fuzzy
 msgid "No images available"
-msgstr "Available"
+msgstr ""
 
 #: app/templates/public/property_view.html:76
 msgid "USD"
 msgstr ""
 
 #: app/templates/public/property_view.html:94
-#, fuzzy
 msgid "Location"
-msgstr "Actions"
+msgstr ""
 
 #: app/templates/public/property_view.html:101
-#, fuzzy
 msgid "Copied"
-msgstr "Occupied"
+msgstr ""
 
 #: app/templates/public/property_view.html:101
 #: app/templates/public/property_view.html:102
-#, fuzzy
 msgid "Copy Link"
-msgstr "Complaints"
+msgstr ""
 
 #: app/templates/tenant/complaint_form.html:2
 #: app/templates/tenant/complaint_form.html:4
 #: app/templates/tenant/dashboard.html:100
-#, fuzzy
 msgid "New Complaint"
-msgstr "Complaints"
+msgstr ""
 
 #: app/templates/tenant/complaint_form.html:9
 msgid "Enter a brief subject"
@@ -1622,9 +1510,8 @@ msgid "Provide a short, descriptive title for your complaint."
 msgstr ""
 
 #: app/templates/tenant/complaint_form.html:17
-#, fuzzy
 msgid "Noise"
-msgstr "Invoices"
+msgstr ""
 
 #: app/templates/tenant/complaint_form.html:18
 msgid "Other"
@@ -1645,25 +1532,22 @@ msgstr ""
 
 #: app/templates/tenant/complaint_show.html:2
 #: app/templates/tenant/complaint_show.html:4
-#, fuzzy
 msgid "Complaint"
-msgstr "Complaints"
+msgstr ""
 
 #: app/templates/tenant/complaint_show.html:32
-#, fuzzy
 msgid "Back to dashboard"
-msgstr "Accountant Dashboard"
+msgstr ""
 
 #: app/templates/tenant/dashboard.html:2 app/templates/tenant/dashboard.html:89
 msgid "Tenant Dashboard"
-msgstr "Tenant Dashboard"
+msgstr ""
 
 #: app/templates/tenant/dashboard.html:95
 #: app/templates/tenant/maintenance_form.html:2
 #: app/templates/tenant/maintenance_form.html:8
-#, fuzzy
 msgid "New Maintenance Request"
-msgstr "Maintenance Requests"
+msgstr ""
 
 #: app/templates/tenant/dashboard.html:96
 msgid "Report an issue or request service"
@@ -1678,29 +1562,25 @@ msgid "No contracts available"
 msgstr ""
 
 #: app/templates/tenant/dashboard.html:127
-#, fuzzy
 msgid "Payment"
-msgstr "Payments"
+msgstr ""
 
 #: app/templates/tenant/dashboard.html:129
 msgid "Due"
-msgstr "Due"
+msgstr ""
 
 #: app/templates/tenant/dashboard.html:134
-#, fuzzy
 msgid "No payments available"
-msgstr "Available"
+msgstr ""
 
 #: app/templates/tenant/dashboard.html:139
-#, fuzzy
 msgid "Maintenance & Complaints"
-msgstr "Maintenance Requests"
+msgstr ""
 
 #: app/templates/tenant/dashboard.html:147
 #: app/templates/tenant/dashboard.html:168
-#, fuzzy
 msgid "Employee notes"
-msgstr "Employee Dashboard"
+msgstr ""
 
 #: app/templates/tenant/maintenance_form.html:14
 msgid "Enter the title"
@@ -1711,40 +1591,33 @@ msgid "Describe the issue in detail"
 msgstr ""
 
 #: app/templates/tenant/maintenance_form.html:21
-#, fuzzy
 msgid "Property (optional)"
-msgstr "Property updated"
+msgstr ""
 
 #: app/templates/tenant/maintenance_form.html:23
-#, fuzzy
 msgid "Select Property"
-msgstr "Edit Property"
+msgstr ""
 
 #: app/templates/tenant/maintenance_show.html:2
 #: app/templates/tenant/maintenance_show.html:8
-#, fuzzy
 msgid "Maintenance Request"
-msgstr "Maintenance Requests"
+msgstr ""
 
 #: app/templates/tenant/maintenance_show.html:28
-#, fuzzy
 msgid "Employee Notes"
-msgstr "Employee Dashboard"
+msgstr ""
 
 #: app/templates/tenant/maintenance_show.html:36
-#, fuzzy
 msgid "Back to Dashboard"
-msgstr "Accountant Dashboard"
+msgstr ""
 
 #: app/tenant/routes.py:61
-#, fuzzy
 msgid "Maintenance request submitted"
-msgstr "Maintenance Requests"
+msgstr ""
 
 #: app/tenant/routes.py:89
-#, fuzzy
 msgid "Complaint submitted"
-msgstr "Complaints"
+msgstr ""
 
 #: venv/Lib/site-packages/click/_termui_impl.py:608
 #, python-brace-format
@@ -1763,9 +1636,8 @@ msgid "{text} {deprecated_message}"
 msgstr ""
 
 #: venv/Lib/site-packages/click/core.py:1160
-#, fuzzy
 msgid "Options"
-msgstr "Actions"
+msgstr ""
 
 #: venv/Lib/site-packages/click/core.py:1222
 #, python-brace-format
@@ -1784,9 +1656,8 @@ msgid "Aborted!"
 msgstr ""
 
 #: venv/Lib/site-packages/click/core.py:1799
-#, fuzzy
 msgid "Commands"
-msgstr "Complaints"
+msgstr ""
 
 #: venv/Lib/site-packages/click/core.py:1830
 msgid "Missing command."
@@ -1911,9 +1782,8 @@ msgid "Could not open file {filename!r}: {message}"
 msgstr ""
 
 #: venv/Lib/site-packages/click/formatting.py:156
-#, fuzzy
 msgid "Usage:"
-msgstr "Save"
+msgstr ""
 
 #: venv/Lib/site-packages/click/parser.py:199
 #, python-brace-format
@@ -2007,9 +1877,8 @@ msgid "{value!r} is not a valid UUID."
 msgstr ""
 
 #: venv/Lib/site-packages/click/types.py:937
-#, fuzzy
 msgid "file"
-msgstr "Title"
+msgstr ""
 
 #: venv/Lib/site-packages/click/types.py:939
 msgid "directory"
@@ -2128,9 +1997,8 @@ msgid "Number must be between %(min)s and %(max)s."
 msgstr ""
 
 #: venv/Lib/site-packages/wtforms/validators.py:357
-#, fuzzy
 msgid "Invalid input."
-msgstr "Invalid credentials"
+msgstr ""
 
 #: venv/Lib/site-packages/wtforms/validators.py:416
 msgid "Invalid email address."
@@ -2141,14 +2009,12 @@ msgid "Invalid IP address."
 msgstr ""
 
 #: venv/Lib/site-packages/wtforms/validators.py:497
-#, fuzzy
 msgid "Invalid Mac address."
-msgstr "Invalid credentials"
+msgstr ""
 
 #: venv/Lib/site-packages/wtforms/validators.py:532
-#, fuzzy
 msgid "Invalid URL."
-msgstr "Invalid credentials"
+msgstr ""
 
 #: venv/Lib/site-packages/wtforms/validators.py:553
 msgid "Invalid UUID."
@@ -2165,9 +2031,8 @@ msgid "Invalid value, can't be any of: %(values)s."
 msgstr ""
 
 #: venv/Lib/site-packages/wtforms/csrf/core.py:96
-#, fuzzy
 msgid "Invalid CSRF Token."
-msgstr "Invalid credentials"
+msgstr ""
 
 #: venv/Lib/site-packages/wtforms/csrf/session.py:63
 msgid "CSRF token missing."
@@ -2229,19 +2094,4 @@ msgstr ""
 #: venv/Lib/site-packages/wtforms/fields/numeric.py:196
 msgid "Not a valid float value."
 msgstr ""
-
-#~ msgid "Admin Dashboard"
-#~ msgstr "Admin Dashboard"
-
-#~ msgid "Delete"
-#~ msgstr "Delete"
-
-#~ msgid "Are you sure?"
-#~ msgstr "Are you sure?"
-
-#~ msgid "Invoices & Payments"
-#~ msgstr "Invoices & Payments"
-
-#~ msgid "All Properties"
-#~ msgstr "All Properties"
 
