@@ -15,7 +15,13 @@
         'resolved':'bg-success', 
         'closed':'bg-secondary'
       }[c.status] %}
-      <span class="badge {{ badge_class }}">{{ c.status }}</span>
+      {% set status_label = {
+        'new': _('New'),
+        'reviewing': _('Reviewing'),
+        'resolved': _('Resolved'),
+        'closed': _('Closed')
+      }.get(c.status, c.status) %}
+      <span class="badge {{ badge_class }}">{{ status_label }}</span>
     </div>
     <hr>
     <p>{{ c.description }}</p>

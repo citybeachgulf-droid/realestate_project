@@ -43,11 +43,11 @@
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
+          <span class="visually-hidden">{{ _('Previous') }}</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
+          <span class="visually-hidden">{{ _('Next') }}</span>
         </button>
       </div>
       {% if images|length > 1 %}
@@ -68,8 +68,9 @@
     <h1 class="h3 mb-3">{{ prop.title }}</h1>
 
     <div class="mb-2">
-      <span class="badge {% if prop.status=='available' %}bg-success{% elif prop.status=='occupied' %}bg-warning{% else %}bg-secondary{% endif %}">
-        {{ prop.status|capitalize }}
+      <span class="badge {% if prop.status=='available' %}bg-success{% elif prop.status=='occupied' %}bg-warning{% elif prop.status=='maintenance' %}bg-secondary{% else %}bg-secondary{% endif %}">
+        {% set status_label = {'available': _('Available'), 'occupied': _('Occupied'), 'maintenance': _('Maintenance')}.get(prop.status, prop.status) %}
+        {{ status_label }}
       </span>
     </div>
 
