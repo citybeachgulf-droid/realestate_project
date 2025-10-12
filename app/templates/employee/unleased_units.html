@@ -21,7 +21,8 @@
 <div class="grid-container mb-4">
   {% for a in building_apartments %}
   {% set building = buildings_by_id.get(a.building_id) %}
-  <div class="property-card">
+  <div class="property-card" role="button" style="cursor: pointer;"
+       onclick="window.location.href='{{ url_for('employee.apartments_edit', apt_id=a.id) }}'">
     {% set first_image = (a.images or '').split(',')[0] %}
     <img src="{{ first_image and url_for('uploaded_file', filename=first_image) or url_for('static', filename='default-apartment.jpg') }}" alt="{{ a.title or (a.number and ( _('Apartment') ~ ' ' ~ a.number )) or _('Apartment') }}">
     <div class="property-info">
@@ -31,7 +32,7 @@
       </div>
       <div class="d-flex align-items-center gap-2">
         <button class="btn btn-sm btn-outline-primary" type="button"
-                onclick="navigator.clipboard.writeText('{{ apartment_share_urls.get(a.id) }}'); this.innerText='{{ _('Copied') }}'; setTimeout(()=>this.innerText='{{ _('Share') }}',1500);">
+                onclick="event.stopPropagation(); navigator.clipboard.writeText('{{ apartment_share_urls.get(a.id) }}'); this.innerText='{{ _('Copied') }}'; setTimeout(()=>this.innerText='{{ _('Share') }}',1500);">
           <i class="bi bi-share"></i> {{ _('Share') }}
         </button>
         <span class="property-status status-available">{{ _('Available') }}</span>
@@ -46,14 +47,15 @@
 <h5 class="section-title"><i class="bi bi-house-door"></i> {{ _('Standalone Apartments') }}</h5>
 <div class="grid-container">
   {% for p in standalone_apartments %}
-  <div class="property-card">
+  <div class="property-card" role="button" style="cursor: pointer;"
+       onclick="window.location.href='{{ url_for('employee.properties_edit', prop_id=p.id) }}'">
     {% set first_p_image = (p.images or '').split(',')[0] %}
     <img src="{{ first_p_image and url_for('uploaded_file', filename=first_p_image) or url_for('static', filename='default-apartment.jpg') }}" alt="{{ p.title }}">
     <div class="property-info">
       <span>{{ p.title }}</span>
       <div class="d-flex align-items-center gap-2">
         <button class="btn btn-sm btn-outline-primary" type="button"
-                onclick="navigator.clipboard.writeText('{{ property_share_urls.get(p.id) }}'); this.innerText='{{ _('Copied') }}'; setTimeout(()=>this.innerText='{{ _('Share') }}',1500);">
+                onclick="event.stopPropagation(); navigator.clipboard.writeText('{{ property_share_urls.get(p.id) }}'); this.innerText='{{ _('Copied') }}'; setTimeout(()=>this.innerText='{{ _('Share') }}',1500);">
           <i class="bi bi-share"></i> {{ _('Share') }}
         </button>
         <span class="property-status status-available">{{ _('Available') }}</span>
