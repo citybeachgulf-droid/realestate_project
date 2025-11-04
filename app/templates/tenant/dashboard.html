@@ -2,183 +2,196 @@
 {% block title %}{{ _('Tenant Dashboard') }}{% endblock %}
 
 {% block content %}
+<div class="role-dashboard">
+  <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center justify-content-between gap-3">
+    <div>
+      <h2 class="mb-1"><i class="bi bi-person-lines-fill me-2"></i>{{ _('Welcome back') }}</h2>
+      <p class="text-muted mb-0">{{ _('Stay on top of your home, payments, and requests in one place.') }}</p>
+    </div>
+    <div class="quick-actions">
+      <a class="btn btn-primary" href="{{ url_for('tenant.maintenance_create') }}">
+        <i class="bi bi-tools me-2"></i>{{ _('New Maintenance Request') }}
+      </a>
+      <a class="btn btn-outline-primary" href="{{ url_for('tenant.complaint_create') }}">
+        <i class="bi bi-exclamation-triangle me-2"></i>{{ _('Submit a Complaint') }}
+      </a>
+    </div>
+  </div>
 
-<style>
-/* شبكة الكروت */
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin-bottom: 30px;
-}
+  {% set contracts_total = contracts|length %}
+  {% set payments_total = payments|length %}
+  {% set payments_paid = payments|selectattr('status', 'equalto', 'paid')|list|length %}
+  {% set payments_unpaid = payments_total - payments_paid %}
+  {% set maintenance_total = maintenance_requests|length %}
+  {% set complaints_total = complaints|length %}
 
-/* كرت مستأجر */
-.card-tenant {
-  background-color: #fff;
-  border-radius: 18px;
-  padding: 20px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  position: relative;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.card-tenant:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-}
+  <div class="metrics-grid">
+    <a class="metric-card text-decoration-none text-white" href="{{ url_for('tenant.dashboard') }}" style="--metric-from:#2563eb;--metric-to:#3b82f6;">
+      <span class="metric-icon"><i class="bi bi-file-earmark-text"></i></span>
+      <span class="metric-label">{{ _('Contracts') }}</span>
+      <span class="metric-value">{{ contracts_total }}</span>
+      <span class="metric-subtext">
+        <span class="metric-trend"><i class="bi bi-calendar2"></i>{{ _('Leases') }}</span>
+        {{ _('Review start and end dates anytime') }}
+      </span>
+    </a>
 
-/* أيقونات داخل دوائر */
-.card-tenant .icon {
-  font-size: 2rem;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  color: #fff;
-}
-.icon-blue { background-color: #0d6efd; }
-.icon-green { background-color: #198754; }
-.icon-yellow { background-color: #ffc107; color: #212529; }
-.icon-orange { background-color: #fd7e14; }
-.icon-red { background-color: #dc3545; }
+    <div class="metric-card" style="--metric-from:#0f766e;--metric-to:#10b981;">
+      <span class="metric-icon"><i class="bi bi-credit-card-2-front"></i></span>
+      <span class="metric-label">{{ _('Payments') }}</span>
+      <span class="metric-value">{{ payments_total }}</span>
+      <span class="metric-subtext">
+        <span class="badge text-bg-success">{{ _('Paid') }}: {{ payments_paid }}</span>
+        <span class="badge text-bg-warning text-dark ms-2">{{ _('Outstanding') }}: {{ payments_unpaid }}</span>
+      </span>
+    </div>
 
-/* العناوين */
-.card-tenant h6 {
-  font-weight: 700;
-  font-size: 1.1rem;
-  margin-bottom: 6px;
-}
-.card-tenant .small-text {
-  font-size: 0.85rem;
-  color: #6c757d;
-  margin-bottom: 4px;
-}
+    <a class="metric-card text-decoration-none text-white" href="{{ url_for('tenant.maintenance_create') }}" style="--metric-from:#f97316;--metric-to:#facc15;">
+      <span class="metric-icon"><i class="bi bi-tools"></i></span>
+      <span class="metric-label">{{ _('Maintenance requests') }}</span>
+      <span class="metric-value">{{ maintenance_total }}</span>
+      <span class="metric-subtext">
+        <span class="metric-trend"><i class="bi bi-hammer"></i>{{ _('Status updates') }}</span>
+        {{ _('Track every repair from submission to completion') }}
+      </span>
+    </a>
 
-/* شارات الحالة */
-.badge-status {
-  padding: 5px 10px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
+    <a class="metric-card text-decoration-none text-white" href="{{ url_for('tenant.complaint_create') }}" style="--metric-from:#ec4899;--metric-to:#8b5cf6;">
+      <span class="metric-icon"><i class="bi bi-chat-square-dots"></i></span>
+      <span class="metric-label">{{ _('Complaints') }}</span>
+      <span class="metric-value">{{ complaints_total }}</span>
+      <span class="metric-subtext">
+        <span class="metric-trend"><i class="bi bi-person-hearts"></i>{{ _('Support') }}</span>
+        {{ _('See progress and staff responses') }}
+      </span>
+    </a>
+  </div>
 
-/* ألوان الحالات */
-.bg-new { background: #0d6efd; color: #fff; }
-.bg-in_progress { background: #ffc107; color: #212529; }
-.bg-resolved { background: #198754; color: #fff; }
-.bg-closed { background: #6c757d; color: #fff; }
-.bg-active { background: #198754; color: #fff; }
-.bg-pending { background: #ffc107; color: #212529; }
-.bg-expired { background: #6c757d; color: #fff; }
-.bg-paid { background: #198754; color: #fff; }
-.bg-unpaid { background: #ffc107; color: #212529; }
+  <div class="role-section">
+    <div class="role-section-header">
+      <h5><i class="bi bi-house-heart"></i>{{ _('Your Contracts & Payments') }}</h5>
+    </div>
+    <div class="role-section-body">
+      <div class="role-subgrid">
+        {% if contracts %}
+        {% for c in contracts %}
+        {% set status_map = {
+          'active': _('Active'),
+          'pending': _('Pending'),
+          'expired': _('Expired')
+        } %}
+        {% set badge_map = {
+          'active': 'text-bg-success',
+          'pending': 'text-bg-warning text-dark',
+          'expired': 'text-bg-secondary'
+        } %}
+        {% set badge_class = badge_map.get(c.status, 'text-bg-secondary') %}
+        <div class="metric-card is-light">
+          <span class="metric-icon"><i class="bi bi-file-earmark-check"></i></span>
+          <span class="metric-label text-muted">{{ _('Contract') }} #{{ c.id }}</span>
+          <span class="metric-value">{{ c.property.title }}</span>
+          <span class="metric-subtext text-muted">
+            <span class="badge {{ badge_class }}">{{ status_map.get(c.status, c.status) }}</span>
+            <span class="ms-2">{{ _('Start') }}: {{ c.start_date }} | {{ _('End') }}: {{ c.end_date }}</span>
+          </span>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="role-empty-state w-100">{{ _('No contracts available') }}</div>
+        {% endif %}
 
-/* عنوان رئيسي */
-h3.dashboard-title {
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-</style>
+        {% if payments %}
+        {% for p in payments %}
+        {% set badge_class = 'text-bg-success' if p.status == 'paid' else 'text-bg-warning text-dark' %}
+        <div class="metric-card is-light">
+          <span class="metric-icon"><i class="bi bi-currency-dollar"></i></span>
+          <span class="metric-label text-muted">{{ _('Payment') }} #{{ p.id }}</span>
+          <span class="metric-value">{{ p.amount }}</span>
+          <span class="metric-subtext text-muted">
+            <span class="badge {{ badge_class }}">{{ p.status }}</span>
+            <span class="ms-2">{{ _('Due') }}: {{ p.due_date }}</span>
+          </span>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="role-empty-state w-100">{{ _('No payments available') }}</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
 
-<h3 class="dashboard-title">{{ _('Tenant Dashboard') }}</h3>
-
-<!-- إجراءات سريعة -->
-<div class="dashboard-grid mb-4">
-  <a class="card-tenant text-decoration-none text-dark" href="{{ url_for('tenant.maintenance_create') }}">
-    <i class="bi bi-tools icon-orange"></i>
-    <h6>{{ _('New Maintenance Request') }}</h6>
-    <div class="small-text">{{ _('Report an issue or request service') }}</div>
-  </a>
-  <a class="card-tenant text-decoration-none text-dark" href="{{ url_for('tenant.complaint_create') }}">
-    <i class="bi bi-exclamation-triangle icon-red"></i>
-    <h6>{{ _('New Complaint') }}</h6>
-    <div class="small-text">{{ _('Submit a complaint to management') }}</div>
-  </a>
+  <div class="role-section">
+    <div class="role-section-header">
+      <h5><i class="bi bi-ui-checks-grid"></i>{{ _('Requests & Updates') }}</h5>
+      <div class="d-flex gap-2">
+        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('tenant.maintenance_create') }}">
+          <i class="bi bi-plus-circle me-1"></i>{{ _('New maintenance ticket') }}
+        </a>
+        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('tenant.complaint_create') }}">
+          <i class="bi bi-plus-circle-dotted me-1"></i>{{ _('New complaint') }}
+        </a>
+      </div>
+    </div>
+    <div class="role-section-body">
+      <div class="row g-4">
+        <div class="col-12 col-lg-6">
+          <h6 class="fw-semibold mb-3">{{ _('Maintenance') }}</h6>
+          {% if maintenance_requests %}
+          <ul class="list-timeline mb-0">
+            {% for m in maintenance_requests %}
+            {% set maintenance_classes = {
+              'new': 'text-bg-primary',
+              'in_progress': 'text-bg-warning text-dark',
+              'resolved': 'text-bg-success',
+              'closed': 'text-bg-secondary'
+            } %}
+            {% set badge_class = maintenance_classes.get(m.status, 'text-bg-secondary') %}
+            <li onclick="window.location.href='{{ url_for('tenant.maintenance_show', request_id=m.id) }}'" style="cursor:pointer;">
+              <div class="fw-semibold">{{ m.title }}</div>
+              <div class="text-muted small">
+                <span class="badge {{ badge_class }}">{{ m.status }}</span>
+                <span class="ms-1">#{{ m.id }}</span>
+              </div>
+              {% if m.notes %}
+              <div class="text-primary small mt-1">{{ _('Employee notes') }}: {{ m.notes }}</div>
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <div class="role-empty-state">{{ _('No maintenance requests yet') }}</div>
+          {% endif %}
+        </div>
+        <div class="col-12 col-lg-6">
+          <h6 class="fw-semibold mb-3">{{ _('Complaints') }}</h6>
+          {% if complaints %}
+          <ul class="list-timeline mb-0">
+            {% for c in complaints %}
+            {% set complaint_classes = {
+              'new': 'text-bg-primary',
+              'reviewing': 'text-bg-warning text-dark',
+              'resolved': 'text-bg-success',
+              'closed': 'text-bg-secondary'
+            } %}
+            {% set badge_class = complaint_classes.get(c.status, 'text-bg-secondary') %}
+            <li onclick="window.location.href='{{ url_for('tenant.complaint_show', complaint_id=c.id) }}'" style="cursor:pointer;">
+              <div class="fw-semibold text-truncate">{{ c.subject }}</div>
+              <div class="text-muted small">
+                <span class="badge {{ badge_class }}">{{ c.status }}</span>
+                <span class="ms-1">#{{ c.id }}</span>
+              </div>
+              {% if c.notes %}
+              <div class="text-primary small mt-1">{{ _('Employee notes') }}: {{ c.notes }}</div>
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <div class="role-empty-state">{{ _('No complaints submitted') }}</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<!-- عقودي ومدفوعاتي -->
-<div class="dashboard-grid">
-  {% for c in contracts %}
-  <div class="card-tenant">
-    <i class="bi bi-file-earmark-text icon-blue"></i>
-    <h6>{{ _('Contract') }} #{{ c.id }}</h6>
-    <div class="small-text">{{ c.property.title }}</div>
-    <div class="small-text">{{ _('Start') }}: {{ c.start_date }} — {{ _('End') }}: {{ c.end_date }}</div>
-    {% set status_class = {
-        'active':'bg-active',
-        'pending':'bg-pending',
-        'expired':'bg-expired'
-    }[c.status] %}
-    <span class="badge-status {{ status_class }}">{{ c.status }}</span>
-  </div>
-  {% else %}
-  <div class="card-tenant">{{ _('No contracts available') }}</div>
-  {% endfor %}
-
-  {% for p in payments %}
-  <div class="card-tenant">
-    <i class="bi bi-currency-dollar icon-green"></i>
-    <h6>{{ _('Payment') }} #{{ p.id }}</h6>
-    <div class="small-text">{{ _('Amount') }}: {{ p.amount }}</div>
-    <div class="small-text">{{ _('Due') }}: {{ p.due_date }}</div>
-    {% set pay_class = 'bg-paid' if p.status=='paid' else 'bg-unpaid' %}
-    <span class="badge-status {{ pay_class }}">{{ p.status }}</span>
-  </div>
-  {% else %}
-  <div class="card-tenant">{{ _('No payments available') }}</div>
-  {% endfor %}
-</div>
-
-<!-- طلبات الصيانة والشكاوى -->
-<h5 class="dashboard-title">{{ _('Maintenance & Complaints') }}</h5>
-<div class="dashboard-grid">
-  {% for m in maintenance_requests %}
-  <div class="card-tenant" onclick="window.location.href='{{ url_for('tenant.maintenance_show', request_id=m.id) }}'">
-    <i class="bi bi-tools icon-orange"></i>
-    <h6>{{ m.title }}</h6>
-    <div class="small-text">{{ m.description }}</div>
-    {% if m.notes %}
-    <div class="small-text text-primary">{{ _('Employee notes') }}: {{ m.notes }}</div>
-    {% endif %}
-    <div class="small-text"><i class="bi bi-clock"></i> {{ _('Created at') }}: {{ m.created_at }}</div>
-    {% set m_class = {
-      'new': 'bg-new',
-      'in_progress': 'bg-in_progress',
-      'resolved': 'bg-resolved',
-      'closed': 'bg-closed'
-    }[m.status] %}
-    <span class="badge-status {{ m_class }}">{{ m.status }}</span>
-  </div>
-  {% else %}
-  <div class="card-tenant">{{ _('No maintenance requests') }}</div>
-  {% endfor %}
-
-  {% for c in complaints %}
-  <div class="card-tenant" onclick="window.location.href='{{ url_for('tenant.complaint_show', complaint_id=c.id) }}'">
-    <i class="bi bi-exclamation-triangle icon-red"></i>
-    <h6>{{ c.subject }}</h6>
-    <div class="small-text">{{ c.description }}</div>
-    {% if c.notes %}
-    <div class="small-text text-primary">{{ _('Employee notes') }}: {{ c.notes }}</div>
-    {% endif %}
-    <div class="small-text"><i class="bi bi-clock"></i> {{ _('Created at') }}: {{ c.created_at }}</div>
-    {% set c_class = {
-      'new': 'bg-new',
-      'reviewing': 'bg-in_progress',
-      'resolved': 'bg-resolved',
-      'closed': 'bg-closed'
-    }[c.status] %}
-    <span class="badge-status {{ c_class }}">{{ c.status }}</span>
-  </div>
-  {% else %}
-  <div class="card-tenant">{{ _('No complaints') }}</div>
-  {% endfor %}
-</div>
-
 {% endblock %}
